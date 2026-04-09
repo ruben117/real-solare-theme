@@ -2,246 +2,107 @@
   templateType: global_partial
   label: Website header
 -->
+<header class="site-header" id="site-header">
 
-{% macro add_lang_switcher() %}
-  {% if get_asset_version('@hubspot/language_switcher') == 1 %}
-    {% module "language-switcher"
-      path="@hubspot/language_switcher",
-      label="Language switcher",
-      display_mode="localized"
-      styles={
-        "group_button" : {
-          "group_alignment" : {
-            "alignment" : {
-              "horizontal_align" : "RIGHT"
-            }
-          },
-          "group_background" : {
-            "color" : {
-              "color" : "#000000",
-              "opacity" : 0
-            }
-          },
-          "group_border" : {
-            "border" : {
-              "bottom" : {
-                "style" : "none"
-              },
-              "left" : {
-                "style" : "none"
-              },
-              "right" : {
-                "style" : "none"
-              },
-              "top" : {
-                "style" : "none"
-              }
-            }
-          },
-          "group_chevron" : {
-            "color" : {
-              "color" : "#516d8d",
-              "opacity" : 100
-            },
-            "size" : 10,
-            "spacing" : 10
-          },
-          "group_corner" : {
-            "radius" : 0
-          },
-          "group_icon" : {
-            "color" : {
-              "color" : "#516d8d",
-              "opacity" : 100
-            },
-            "size" : 15,
-            "spacing" : 10
-          },
-          "group_spacing" : {
-            "spacing" : {
-              "padding" : {
-                "bottom" : {
-                  "units" : "px",
-                  "value" : 7
-                },
-                "left" : {
-                  "units" : "px",
-                  "value" : 15
-                },
-                "right" : {
-                  "units" : "px",
-                  "value" : 15
-                },
-                "top" : {
-                  "units" : "px",
-                  "value" : 7
-                }
-              }
-            }
-          },
-          "group_text" : {
-            "font" : {
-              "color" : "#516d8d",
-              "size" : 18,
-              "size_unit" : "px"
-            }
-          }
-        },
-        "group_dropdown" : {
-          "group_border" : {
-            "border" : {
-              "bottom" : {
-                "color" : "#000000",
-                "opacity" : 100,
-                "style" : "none",
-                "width" : {
-                  "units" : "px",
-                  "value" : 1
-                }
-              },
-              "left" : {
-                "color" : "#000000",
-                "opacity" : 100,
-                "style" : "none",
-                "width" : {
-                  "units" : "px",
-                  "value" : 1
-                }
-              },
-              "right" : {
-                "color" : "#000000",
-                "opacity" : 100,
-                "style" : "none",
-                "width" : {
-                  "units" : "px",
-                  "value" : 1
-                }
-              },
-              "top" : {
-                "color" : "#000000",
-                "opacity" : 100,
-                "style" : "none",
-                "width" : {
-                  "units" : "px",
-                  "value" : 1
-                }
-              }
-            }
-          },
-          "group_box_shadow" : {
-            "add_box_shadow" : true
-          },
-          "group_hover" : {
-            "group_background" : {
-              "color" : {
-                "color" : "#f8fafc",
-                "opacity" : 100
-              }
-            }
-          },
-          "group_text" : {
-            "font" : {
-              "color" : "#516d8d",
-              "size" : 16,
-              "size_unit" : "px"
-            }
-          }
-        }
-      },
-      add_chevron_down=true,
-      icon_options="icon"
-    %}
-  {% else %}
-    {% module "language-switcher"
-      path="@hubspot/language_switcher",
-      label="Language switcher",
-      display_mode="localized"
-    %}
-    <div class="header__language-switcher--label-current"> {{ locale_name(locale) }}</div>
-  {% endif %}
-{% endmacro %}
-<header class="header">
+  {# Accessibility skip link #}
+  <a href="#main-content" class="header__skip">Saltar al contenido</a>
 
-  {# The link below is used for a navigation skipper which allows users navigating the site with their keyboard to skip over the site navigation. More information on the navigation skipper can be found here: https://github.com/HubSpot/cms-theme-boilerplate/wiki/Accessibility #}
-
-  <a href="#main-content" class="header__skip">Skip to content</a>
-
-  {# Top header drag and drop area #}
-
-  {% dnd_area "header-top"
-    label="Top header",
-    class="content-wrapper"
-  %}
-  {% end_dnd_area %}
-
-  {# Main header #}
-
-  <div class="header__container content-wrapper">
-
-    {# Header logo column #}
-
-    <div class="header__logo header__logo--main">
-      {% module "site_logo"
-        path="@hubspot/logo"
-        img={
-          "loading": "eager"
-        }
+  {# ── Topbar ──────────────────────────────────────────────────── #}
+  <div class="topbar">
+    <div class="content-wrapper topbar__container">
+      {% module "topbar_info"
+        path="@hubspot/rich_text",
+        label="Topbar – Teléfono / Info",
+        html='<p><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C9.6 21 3 14.4 3 6c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg> ¡Llámanos ahora! Tel: <a href="tel:5919177470">591 917 7470</a></p>'
       %}
     </div>
-
-    {# Header navigation column #}
-
-    <div class="header__column">
-
-      {# Header navigation row one #}
-
-
-
-      <div class="header__row-1">
-        {% if content.translated_content.values()|selectattr("published")|length or is_listing_view and group.translations %}
-          <div class="header__language-switcher header--element">
-            <div class="header__language-switcher--label">
-              {{ add_lang_switcher() }}
-            </div>
-          </div>
-        {% endif %}
-        <div class="header__search header--element">
-          {% module "site_search"
-            path="@hubspot/search_input",
-            label="Search",
-            field_label="Search",
-            placeholder=""
-          %}
-        </div>
-      </div>
-
-      {# Header navigation row two #}
-
-      <div class="header__row-2">
-        <div class="header--toggle header__navigation--toggle"></div>
-        {% if content.translated_content|length or is_listing_view and group.translations %}
-          <div class="header--toggle header__language-switcher--toggle"></div>
-        {% endif %}
-        <div class="header--toggle header__search--toggle"></div>
-        <div class="header__close--toggle"></div>
-        <div class="header__navigation header--element">
-          {% module "navigation-primary"
-            path="../../modules/menu",
-            label="Primary navigation"
-          %}
-        </div>
-      </div>
-
-    </div>
-
   </div>
 
-  {# Bottom header drag and drop area #}
+  {# ── Main header ─────────────────────────────────────────────── #}
+  <div class="header__main">
+    <div class="content-wrapper header__container">
 
-  {% dnd_area "header-bottom"
-    label="Bottom header",
-    class="content-wrapper"
-  %}
-  {% end_dnd_area %}
+      {# Logo – editable en el editor global, independiente del logo de cuenta #}
+      <div class="header__logo">
+        {% module "site_logo"
+          path="@hubspot/logo",
+          label="Real Solare",
+          img={
+            "override_inherited_src": true,
+            "src": get_asset_url("../../images/logo-real-solare-blanco.png"),
+            "loading": "eager"
+          }
+        %}
+      </div>
+
+      {# Navegación principal #}
+      <nav class="header__nav" id="header-nav" aria-label="Navegación principal">
+        {% module "navigation-primary"
+          path="../../modules/menu",
+          label="Menú principal"
+        %}
+      </nav>
+
+      {# CTA – editable (texto y destino) desde el editor global #}
+      <div class="header__cta">
+        {% module "header_cta"
+          path="../../modules/button",
+          label="CTA del header",
+          button_text="Agenda una demo",
+          link={
+            "url": {
+              "href": "#contacto",
+              "type": "EXTERNAL"
+            },
+            "open_in_new_tab": false,
+            "no_follow": false
+          },
+          styles={
+            "background": {
+              "color": {
+                "color": "#E0001A",
+                "opacity": 100
+              }
+            },
+            "text": {
+              "font": {
+                "color": "#FFFFFF",
+                "size": 15,
+                "size_unit": "px",
+                "bold": true
+              }
+            },
+            "corner": {
+              "radius": 4
+            },
+            "spacing": {
+              "spacing": {
+                "padding": {
+                  "top":    {"value": 11, "units": "px"},
+                  "bottom": {"value": 11, "units": "px"},
+                  "left":   {"value": 24, "units": "px"},
+                  "right":  {"value": 24, "units": "px"}
+                }
+              }
+            }
+          }
+        %}
+      </div>
+
+      {# Botón hamburguesa – solo mobile #}
+      <button
+        class="header__hamburger"
+        id="header-hamburger"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="header-nav"
+      >
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+        <span class="hamburger__line"></span>
+      </button>
+
+    </div>
+  </div>
 
 </header>

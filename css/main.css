@@ -1,9 +1,19 @@
 /* Theme base styles */
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 /* Tools
 Any animations, or functions used throughout the project.
 Note: _macros.css needs to be imported into each stylesheet where macros are used and not included here
 */
+:root {
+  --primary-color: #E0001A;
+  --secondary-color: #152638;
+  --accent-color: #FFEC01;
+  --text-color: #2D2D2D;
+  --font-family-base: 'Roboto', 'Cabin', sans-serif;
+  --font-size-base: 16px;
+  --font-size-heading: clamp(1.25rem, 3.5vw, 3rem);
+  --font-size-subheading: 1.25rem;
+}
 
 /* Generic
 This is where reset, normalize & box-sizing styles go.
@@ -33,6 +43,8 @@ Specific pieces of UI that are stylized. Typically used for global partial styli
 */
 
 {% include './components/_header.css' %}
+{% include './components/_hero.css' %}
+{% include './components/_patrimonio.css' %}
 {% include './components/_default-modules.css' %}
 
 /* Utilities
@@ -40,3 +52,7 @@ Helper classes with ability to override anything that comes before it
 */
 
 {% include './utilities/_helper.css' %}
+
+*,html,body {
+  font-family: "Roboto", sans-serif;
+}

@@ -1,0 +1,163 @@
+/* ============================================================
+   HERO BANNER – Real Solare
+
+   Estrategia de selectores:
+   • extra_classes en dnd_module genera un wrapper con esa clase
+     ej: <div class="hs_cos_wrapper hero__title-module">...</div>
+
+   • dnd_section y dnd_column NO aceptan css_class, por lo que
+     se apuntan con selectores estructurales usando :has() del
+     módulo ancla (.hero__title-module) que siempre vive en ellos.
+
+   Estructura renderizada por HubSpot DnD:
+   .dnd-section                          ← fondo imagen / overlay
+     └── .row-fluid
+           └── .dnd-column.span6         ← 50% ancho, padding top
+                 ├── .dnd-row
+                 │     └── .hero__title-module    (h1)
+                 ├── .dnd-row
+                 │     └── .hero__subtitle-module (p)
+                 ├── .dnd-row
+                 │     └── .hero__divider-module  (divisor + p)
+                 └── .dnd-row
+                       └── .hero__cta-module      (botón)
+   ============================================================ */
+
+/* ── Sección: tamaño completo de viewport ────────────────── */
+
+.dnd-section:has(.hero__title-module) {
+  position: relative;
+}
+
+/* ── Overlay oscuro de izquierda a derecha ───────────────── */
+
+.dnd-section:has(.hero__title-module)::before {
+  background: linear-gradient(
+    to right,
+    rgba(21, 38, 56, 0.75) 0%,
+    rgba(21, 38, 56, 0.45) 55%,
+    rgba(21, 38, 56, 0.05) 100%
+  );
+  bottom: 0;
+  content: "";
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
+
+/* El row-fluid debe quedar sobre el overlay */
+.dnd-section:has(.hero__title-module) > .row-fluid {
+  position: relative;
+  z-index: 2;
+}
+
+/* ── Columna de contenido: espaciado vertical ────────────── */
+
+.dnd-section:has(.hero__title-module) .dnd-column {
+  padding:0;
+}
+
+/* ── Título H1 ───────────────────────────────────────────── */
+
+.hero__title-module h1 {
+  color: #ffffff;
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin: 0 0 1.25rem;
+}
+
+/* ── Subtítulo ───────────────────────────────────────────── */
+
+.hero__subtitle-module p {
+  color: #ffffff;
+  font-size: clamp(0.9375rem, 1.5vw, 1.125rem);
+  font-weight: 300;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 480px;
+  opacity: 0.92;
+}
+
+/* ── Divisor amarillo + texto secundario ─────────────────── */
+
+/* Línea divisora: generada con ::before en el wrapper del módulo */
+.hero__divider-module::after {
+  background-color: var(--accent-color, #FFEC01);
+  border-radius: 2px;
+  content: "";
+  display: block;
+  height: 3px;
+  margin-bottom: 0.75rem;
+  width: 100px;
+}
+
+.hero__divider-module p {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: var(--font-size-base);
+  line-height: 1.65;
+  margin: 0;
+  max-width: 440px;
+  font-weight: 200;
+  padding: 40px 0px 15px;
+}
+
+/* ── Botón CTA dentro del hero ───────────────────────────── */
+
+.hero__cta-module .button-wrapper {
+  margin-top: 5px;
+}
+
+.hero__cta-module .button {
+  background-color: var(--primary-color, #E0001A);
+  border-radius: 4px;
+  color: #ffffff !important;
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 0.875rem 2rem;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.hero__cta-module .button:hover,
+.hero__cta-module .button:focus {
+  background-color: #b5001a;
+  transform: translateY(-2px);
+}
+
+.hero__cta-module .button:active {
+  transform: translateY(0);
+}
+
+/* ── Responsive – Mobile (≤ 767px) ──────────────────────── */
+
+@media (max-width: 767px) {
+  .dnd-section:has(.hero__title-module) {
+    min-height: 100svh;
+  }
+
+  /* En mobile el gradiente cubre todo con opacidad uniforme */
+  .dnd-section:has(.hero__title-module)::before {
+    background: rgba(21, 38, 56, 0.65);
+  }
+
+  /* La columna ocupa el ancho completo en mobile */
+  .dnd-section:has(.hero__title-module) .dnd-column {
+    padding-bottom: 3rem;
+    width: 100% !important;
+  }
+
+  .hero__title-module h1 {
+    font-size: 1.875rem;
+  }
+
+  .hero__subtitle-module p,
+  .hero__divider-module p {
+    max-width: 100%;
+  }
+}
