@@ -1,0 +1,108 @@
+[
+  {
+    "label": "Overline / Eyebrow",
+    "name": "overline",
+    "type": "text",
+    "default": "¿SOLTERO O CON FAMILIA?"
+  },
+  {
+    "label": "Posición del overline",
+    "name": "overline_position",
+    "type": "choice",
+    "display": "radio",
+    "choices": [
+      ["above", "Arriba del título"],
+      ["below", "Abajo del título"]
+    ],
+    "default": "above"
+  },
+  {
+    "label": "Título principal",
+    "name": "title",
+    "type": "text",
+    "default": "Título de la sección"
+  },
+  {
+    "label": "Mostrar divisor",
+    "name": "show_divider",
+    "type": "boolean",
+    "display": "toggle",
+    "default": true
+  },
+  {
+    "label": "Estilos",
+    "name": "styles",
+    "type": "group",
+    "tab": "STYLE",
+    "children": [
+      {
+        "label": "Alineación",
+        "name": "group_alignment",
+        "type": "group",
+        "children": [
+          {
+            "label": "Alineación del contenido",
+            "name": "alignment",
+            "type": "alignment",
+            "alignment_direction": "HORIZONTAL",
+            "default": {
+              "horizontal_align": "CENTER"
+            }
+          }
+        ]
+      },
+      {
+        "label": "Título",
+        "name": "title",
+        "type": "group",
+        "children": [
+          {
+            "label": "Fuente",
+            "name": "font",
+            "type": "font",
+            "default": {
+              "size": 36,
+              "size_unit": "px",
+              "color": "#2D2D2D",
+              "bold": true
+            }
+          }
+        ]
+      },
+      {
+        "label": "Overline",
+        "name": "overline",
+        "type": "group",
+        "children": [
+          {
+            "label": "Fuente",
+            "name": "font",
+            "type": "font",
+            "default": {
+              "size": 12,
+              "size_unit": "px",
+              "color": "#E0001A",
+              "bold": true
+            }
+          }
+        ]
+      },
+      {
+        "label": "Divisor",
+        "name": "divider",
+        "type": "group",
+        "children": [
+          {
+            "label": "Color del divisor",
+            "name": "color",
+            "type": "color",
+            "default": {
+              "color": "#E0001A",
+              "opacity": 100
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

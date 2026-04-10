@@ -1,0 +1,61 @@
+{# ── Estilos scoped: aplican los valores de los campos STYLE ── #}
+{% require_css %}
+<style>
+  {% scope_css %}
+
+    .section-title__wrapper {
+      {% if module.styles.group_alignment.alignment.horizontal_align %}
+        text-align: {{ module.styles.group_alignment.alignment.horizontal_align|lower }};
+        align-items: {{ module.styles.group_alignment.alignment.horizontal_align|lower }};
+      {% endif %}
+    }
+
+    .section-title__title {
+      {{ module.styles.title.font.css }}
+    }
+
+    .section-title__overline {
+      {{ module.styles.overline.font.css }}
+    }
+
+    .section-title__divider {
+      {% if module.styles.divider.color.color %}
+        background-color: rgba({{ module.styles.divider.color.color|convert_rgb }}, {{ module.styles.divider.color.opacity / 100 }});
+      {% endif %}
+    }
+
+  {% end_scope_css %}
+</style>
+{% end_require_css %}
+
+{# ── Markup ─────────────────────────────────────────────── #}
+
+{# Determinar la clase de alineación para el selector CSS correcto #}
+{% set align_class = "" %}
+{% if module.styles.group_alignment.alignment.horizontal_align %}
+  {% set align_class = "align-" ~ module.styles.group_alignment.alignment.horizontal_align|lower %}
+{% endif %}
+
+<div class="section-title__wrapper {{ align_class }}">
+
+  {# Overline encima del título #}
+  {% if module.overline and module.overline_position == "above" %}
+    <p class="section-title__overline">{{ module.overline|escape_html }}</p>
+  {% endif %}
+
+  {# Título principal #}
+  {% if module.title %}
+    <h2 class="section-title__title">{{ module.title|escape_html }}</h2>
+  {% endif %}
+
+  {# Overline debajo del título #}
+  {% if module.overline and module.overline_position == "below" %}
+    <p class="section-title__overline">{{ module.overline|escape_html }}</p>
+  {% endif %}
+
+  {# Divisor #}
+  {% if module.show_divider %}
+    <span class="section-title__divider" aria-hidden="true"></span>
+  {% endif %}
+
+</div>

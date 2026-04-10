@@ -29,7 +29,7 @@
 
 .patrimonio__intro {
   color: rgba(255, 255, 255, 0.80);
-  font-size: 0.9375rem;
+  font-size: var(--font-size-base);
   font-weight: 400;
   line-height: 1.6;
   margin: 0 0 1.5rem;
@@ -46,8 +46,8 @@
 
 .patrimonio__list li {
   color: rgba(255, 255, 255, 0.75);
-  font-size: 0.875rem;
-  line-height: 1.65;
+  font-size: var(--font-size-base);
+  line-height: 1.4;
   max-width: 460px;
   padding-left: 1.25rem;
   position: relative;
@@ -56,7 +56,7 @@
 
 /* Bullet personalizado: punto rojo */
 .patrimonio__list li::before {
-  background-color: var(--primary-color, #E0001A);
+  background-color: #ffffff;
   border-radius: 50%;
   content: "";
   display: block;
@@ -85,10 +85,9 @@
 
 .patrimonio__disclaimer {
   color: rgba(255, 255, 255, 0.45);
-  font-size: 0.75rem;
+  font-size: 10px;
   line-height: 1.5;
   margin: 0;
-  max-width: 300px;
 }
 
 /* ── Columna de imagen ───────────────────────────────────── */

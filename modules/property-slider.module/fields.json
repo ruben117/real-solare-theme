@@ -1,0 +1,137 @@
+[
+  {
+    "label": "Propiedades",
+    "name": "slides",
+    "type": "group",
+    "occurrence": {
+      "min": 1,
+      "max": 12,
+      "default": 3,
+      "sorting_label_field": "slides.name"
+    },
+    "children": [
+      {
+        "label": "Imagen de la propiedad",
+        "name": "image",
+        "type": "image",
+        "responsive": true,
+        "resizable": true,
+        "show_loading": true,
+        "default": {
+          "loading": "lazy",
+          "alt": ""
+        }
+      },
+      {
+        "label": "Nombre de la propiedad",
+        "name": "name_property",
+        "type": "text",
+        "default": "Nombre"
+      },
+      {
+        "label": "Precio",
+        "name": "price",
+        "type": "text",
+        "default": "Desde $1,000,000"
+      },
+      {
+        "label": "Descripción corta",
+        "name": "description",
+        "type": "text",
+        "default": "Descripción breve de la propiedad."
+      },
+      {
+        "label": "Link de la propiedad",
+        "name": "link",
+        "type": "link",
+        "supported_types": ["EXTERNAL", "CONTENT"],
+        "default": {
+          "url": {
+            "href": "#",
+            "type": "EXTERNAL"
+          },
+          "open_in_new_tab": false,
+          "no_follow": false
+        }
+      }
+    ],
+    "default": [
+      {
+        "name_property": "Alcalá",
+        "price": "Desde $1,879,000",
+        "description": "Compacta en tamaño, grande en posibilidades.",
+        "image": { "loading": "lazy", "alt": "Alcalá" },
+        "link": { "url": { "href": "#", "type": "EXTERNAL" }, "open_in_new_tab": false, "no_follow": false }
+      },
+      {
+        "name_property": "Cantabria",
+        "price": "Desde $2,199,000",
+        "description": "Diseñada para trascender. Balance perfecto entre amplitud y funcionalidad.",
+        "image": { "loading": "lazy", "alt": "Cantabria" },
+        "link": { "url": { "href": "#", "type": "EXTERNAL" }, "open_in_new_tab": false, "no_follow": false }
+      },
+      {
+        "name_property": "Córdoba",
+        "price": "Desde $1,879,000",
+        "description": "El equilibrio perfecto entre independencia y funcionalidad.",
+        "image": { "loading": "lazy", "alt": "Córdoba" },
+        "link": { "url": { "href": "#", "type": "EXTERNAL" }, "open_in_new_tab": false, "no_follow": false }
+      },
+      {
+        "name_property": "Piamonte",
+        "price": "Desde $2,499,000",
+        "description": "La casa más amplia de Real Solare para familias que buscan el máximo confort.",
+        "image": { "loading": "lazy", "alt": "Piamonte" },
+        "link": { "url": { "href": "#", "type": "EXTERNAL" }, "open_in_new_tab": false, "no_follow": false }
+      }
+    ]
+  },
+  {
+    "label": "Botón primario",
+    "name": "cta_primary",
+    "type": "group",
+    "children": [
+      {
+        "label": "Texto",
+        "name": "text",
+        "type": "text",
+        "default": "Agenda una visita"
+      },
+      {
+        "label": "Link",
+        "name": "link",
+        "type": "link",
+        "supported_types": ["EXTERNAL", "CONTENT", "EMAIL_ADDRESS"],
+        "default": {
+          "url": { "href": "#agenda", "type": "EXTERNAL" },
+          "open_in_new_tab": false,
+          "no_follow": false
+        }
+      }
+    ]
+  },
+  {
+    "label": "Botón secundario",
+    "name": "cta_secondary",
+    "type": "group",
+    "children": [
+      {
+        "label": "Texto",
+        "name": "text",
+        "type": "text",
+        "default": "Pre-cotizador"
+      },
+      {
+        "label": "Link",
+        "name": "link",
+        "type": "link",
+        "supported_types": ["EXTERNAL", "CONTENT", "EMAIL_ADDRESS"],
+        "default": {
+          "url": { "href": "#cotizador", "type": "EXTERNAL" },
+          "open_in_new_tab": false,
+          "no_follow": false
+        }
+      }
+    ]
+  }
+]

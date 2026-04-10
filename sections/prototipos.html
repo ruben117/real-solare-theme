@@ -1,0 +1,56 @@
+<!--
+  templateType: section
+  label: Prototipos – Slider de propiedades
+  isAvailableForNewContent: true
+  description: "Sección con título central y slider de tarjetas de propiedades (imagen vertical + overlay). Muestra 2 completos y la mitad del tercero."
+-->
+
+{# ── IMPORTANTE: HubSpot DnD ────────────────────────────────
+   Un dnd_section contiene UN row-fluid (display:flex).
+   Dos dnd_column con offset=0, width=12 serían hermanos en ese
+   flex y colapsarían. La solución correcta es UN solo dnd_column
+   con DOS dnd_row internos para apilar los módulos verticalmente.
+#}
+
+{% dnd_section
+  background_color="#ffffff",
+  vertical_alignment="TOP",
+  padding={
+    "top": "72px",
+    "bottom": "72px"
+  }
+%}
+
+  {# ── Única columna full-width ── #}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+
+    {# ── Fila 1: Título de sección ── #}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/section-title",
+        label="Prototipos – Título",
+        extra_classes="prototipos__title",
+        overline="¿SOLTERO O CON FAMILIA?",
+        overline_position="above",
+        title="Tenemos un espacio diseñado para tus necesidades",
+        show_divider=true
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {# ── Fila 2: Slider de propiedades ── #}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/property-slider",
+        label="Prototipos – Slider",
+        extra_classes="prototipos__slider"
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+  {% end_dnd_column %}
+
+{% end_dnd_section %}

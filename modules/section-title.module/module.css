@@ -1,0 +1,71 @@
+/* ── Wrapper ─────────────────────────────────────────────── */
+
+.section-title__wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 820px;
+  padding-bottom: 2rem;
+  /* Alineación default: centrada */
+  align-items: center;
+  text-align: center;
+}
+
+/* Variantes de alineación generadas desde HubL (align-class) */
+.section-title__wrapper.align-left {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.section-title__wrapper.align-right {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.section-title__wrapper.align-center {
+  align-items: center;
+  text-align: center;
+}
+
+/* ── Overline / Eyebrow ──────────────────────────────────── */
+
+.section-title__overline {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  line-height: 1.4;
+  margin: 0 0 0.875rem;
+  text-transform: uppercase;
+}
+
+/* ── Título H2 ───────────────────────────────────────────── */
+
+.section-title__title {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 800;
+  line-height: 1.18;
+  margin: 0 0 0.875rem;
+}
+
+/* ── Divisor ─────────────────────────────────────────────── */
+
+.section-title__divider {
+  background-color: var(--primary-color, #E0001A);
+  border-radius: 2px;
+  display: block;
+  flex-shrink: 0;
+  height: 3px;
+  width: 56px;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .section-title__wrapper {
+    padding-bottom: 1.5rem;
+  }
+
+  .section-title__title {
+    font-size: 1.5rem;
+  }
+}
