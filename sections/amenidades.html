@@ -1,0 +1,83 @@
+{# ── Amenidades – "Vive en la mejor zona de Querétaro"
+   Layout: 5 columnas (texto + íconos) | 7 columnas (slider de imágenes)
+#}
+
+{% dnd_section
+  background_color="#ffffff",
+  vertical_alignment="MIDDLE",
+  padding={ "top": "80px", "bottom": "80px" }
+%}
+
+  {# ── Columna izquierda: heading, íconos, lista ── #}
+  {% dnd_column offset=0, width=5 %}
+
+    {# Título y subtítulo #}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        html="<h2>Vive en la mejor zona de Querétaro</h2><p>Una ciudad dentro de tu hogar ¡Todo lo que necesitas, sin salir de casa!</p>",
+        extra_classes="amenidades__heading-module",
+        offset=0, width=12
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {# Ícono 1 – Seguridad #}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/icon-richtext",
+        icon_position="left",
+        icon_size=56,
+        icon_gap=20,
+        content="<p><strong>Seguridad:</strong> Accesos controlados y caseta de vigilancia para la tranquilidad de los tuyos 24/7.</p>",
+        extra_classes="amenidades__icon-module",
+        offset=0, width=12
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {# Ícono 2 – Educación #}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/icon-richtext",
+        icon_position="left",
+        icon_size=56,
+        icon_gap=20,
+        content="<p><strong>Educación Interna:</strong> Contamos con infraestructura para Kínder, Primaria y Secundaria dentro del desarrollo.</p>",
+        extra_classes="amenidades__icon-module",
+        offset=0, width=12
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {# Lista de amenidades adicionales #}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        html="<ul><li>Ciclopista</li><li>Pet Park</li><li>Módulos deportivos y áreas verdes recreativas</li><li>Ubicados a solo 29 minutos del Aeropuerto Internacional de Querétaro</li></ul>",
+        extra_classes="amenidades__list-module",
+        offset=0, width=12
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+  {% end_dnd_column %}
+
+  {# ── Columna derecha: slider de imágenes ── #}
+  {% dnd_column offset=5, width=7 %}
+
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/image-slider",
+        loop=true,
+        autoplay=false,
+        autoplay_delay=4000,
+        extra_classes="amenidades__slider-module",
+        offset=0, width=12
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+  {% end_dnd_column %}
+
+{% end_dnd_section %}

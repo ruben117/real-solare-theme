@@ -1,0 +1,54 @@
+/* ── Icon + Richtext ───────────────────────────────────── */
+
+.icon-rt {
+  display: flex;
+  gap: var(--icon-rt-gap, 16px);
+}
+
+/* ── Posiciones ─────────────────────────────────────────── */
+
+.icon-rt--left {
+  flex-direction: row;
+  align-items: var(--icon-rt-valign, flex-start);
+}
+
+.icon-rt--right {
+  flex-direction: row-reverse;
+  align-items: var(--icon-rt-valign, flex-start);
+}
+
+.icon-rt--top {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.icon-rt--bottom {
+  flex-direction: column-reverse;
+  align-items: flex-start;
+}
+
+/* ── Ícono ──────────────────────────────────────────────── */
+
+.icon-rt__icon-wrap {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-rt__icon {
+  display: block;
+  height: var(--icon-rt-size, 56px);
+  object-fit: contain;
+  width: var(--icon-rt-size, 56px);
+}
+
+/* ── Contenido ──────────────────────────────────────────── */
+
+.icon-rt__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.icon-rt__content > *:first-child { margin-top: 0; }
+.icon-rt__content > *:last-child  { margin-bottom: 0; }

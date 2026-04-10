@@ -1,0 +1,141 @@
+/* ── Image Slider ───────────────────────────────────────── */
+
+.img-slider {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+/* ── Viewport ───────────────────────────────────────────── */
+
+.img-slider__viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+/* ── Track ──────────────────────────────────────────────── */
+
+.img-slider__track {
+  display: flex;
+  align-items: center;
+  gap: var(--img-gap, 16px);
+  transition: transform 0.48s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* ── Slides ─────────────────────────────────────────────── */
+
+.img-slider__slide {
+  flex: 0 0 var(--img-slide-w, 76%);
+}
+
+/* ── Image wrap (donde ocurre el scale/opacity) ─────────── */
+
+.img-slider__img-wrap {
+  aspect-ratio: var(--img-ratio, 3/4);
+  border-radius: var(--img-radius, 12px);
+  overflow: hidden;
+  transition:
+    transform 0.48s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity   0.48s ease;
+  width: 100%;
+}
+
+/* Inactivo: scale + opacity */
+.img-slider__slide:not(.is-active) .img-slider__img-wrap {
+  opacity: var(--img-inactive-opacity, 0.65);
+  transform: scale(var(--img-inactive-scale, 0.82));
+}
+
+/* Inactivo a la izquierda: origen derecho */
+.img-slider__slide.is-prev .img-slider__img-wrap {
+  transform-origin: right center;
+}
+
+/* Inactivo a la derecha: origen izquierdo */
+.img-slider__slide.is-next .img-slider__img-wrap {
+  transform-origin: left center;
+}
+
+/* Activo: escala completa */
+.img-slider__slide.is-active .img-slider__img-wrap {
+  opacity: 1;
+  transform: scale(1);
+  transform-origin: center center;
+}
+
+/* ── Imagen ─────────────────────────────────────────────── */
+
+.img-slider__img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+}
+
+/* ── Pie de imagen ──────────────────────────────────────── */
+
+.img-slider__caption {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 0.8125rem;
+  margin: 0.5rem 0 0;
+  text-align: center;
+}
+
+/* ── Navegación ─────────────────────────────────────────── */
+
+.img-slider__nav {
+  display: flex;
+  gap: 0.625rem;
+  /* Alinear con la imagen activa horizontalmente */
+  padding: 0 calc((100% - var(--img-slide-w, 76%)) / 2);
+}
+
+.img-slider__nav--center { justify-content: center; }
+.img-slider__nav--left   { justify-content: flex-start; }
+.img-slider__nav--right  { justify-content: flex-end; }
+
+/* Flechas – círculos con borde rojo */
+
+.img-slider__arrow {
+  align-items: center;
+  background-color: transparent;
+  border: 2px solid var(--primary-color, #E0001A);
+  border-radius: 50%;
+  color: var(--primary-color, #E0001A);
+  cursor: pointer;
+  display: flex;
+  flex-shrink: 0;
+  height: var(--img-arrow-size, 44px);
+  justify-content: center;
+  padding: 0;
+  transition:
+    background-color 0.2s ease,
+    color            0.2s ease,
+    transform        0.2s ease;
+  width: var(--img-arrow-size, 44px);
+}
+
+.img-slider__arrow:hover {
+  background-color: var(--primary-color, #E0001A);
+  color: #ffffff;
+  transform: scale(1.07);
+}
+
+.img-slider__arrow:disabled {
+  border-color: rgba(0, 0, 0, 0.18);
+  color: rgba(0, 0, 0, 0.18);
+  cursor: default;
+  pointer-events: none;
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .img-slider__nav {
+    padding: 0;
+    justify-content: center !important;
+  }
+}

@@ -1,0 +1,143 @@
+[
+  {
+    "id": "slides",
+    "name": "slides",
+    "label": "Imágenes",
+    "type": "group",
+    "occurrence": { "min": 1, "max": 20, "default": 3 },
+    "children": [
+      {
+        "id": "image",
+        "name": "image",
+        "label": "Imagen",
+        "type": "image",
+        "required": true,
+        "default": {
+          "alt": "",
+          "loading": "lazy"
+        }
+      },
+      {
+        "id": "caption",
+        "name": "caption",
+        "label": "Pie de imagen (opcional)",
+        "type": "text",
+        "default": ""
+      }
+    ]
+  },
+  {
+    "id": "loop",
+    "name": "loop",
+    "label": "Bucle infinito",
+    "type": "boolean",
+    "default": true
+  },
+  {
+    "id": "autoplay",
+    "name": "autoplay",
+    "label": "Reproducción automática",
+    "type": "boolean",
+    "default": false
+  },
+  {
+    "id": "autoplay_delay",
+    "name": "autoplay_delay",
+    "label": "Intervalo de autoplay (ms)",
+    "type": "number",
+    "default": 4000,
+    "min": 1000,
+    "max": 10000
+  },
+  {
+    "id": "settings",
+    "name": "settings",
+    "label": "Opciones visuales",
+    "type": "group",
+    "tab": "STYLE",
+    "children": [
+      {
+        "id": "nav_position",
+        "name": "nav_position",
+        "label": "Posición de la navegación",
+        "type": "choice",
+        "display": "radio",
+        "choices": [
+          ["center", "Centro"],
+          ["left",   "Izquierda"],
+          ["right",  "Derecha"]
+        ],
+        "default": "center"
+      },
+      {
+        "id": "slide_width",
+        "name": "slide_width",
+        "label": "Ancho del slide activo (%)",
+        "type": "number",
+        "default": 76,
+        "min": 40,
+        "max": 100
+      },
+      {
+        "id": "inactive_scale",
+        "name": "inactive_scale",
+        "label": "Escala de slides inactivos (%)",
+        "type": "number",
+        "default": 82,
+        "min": 40,
+        "max": 99
+      },
+      {
+        "id": "inactive_opacity",
+        "name": "inactive_opacity",
+        "label": "Opacidad de slides inactivos (%)",
+        "type": "number",
+        "default": 65,
+        "min": 10,
+        "max": 100
+      },
+      {
+        "id": "gap",
+        "name": "gap",
+        "label": "Separación entre slides (px)",
+        "type": "number",
+        "default": 16,
+        "min": 0,
+        "max": 64
+      },
+      {
+        "id": "aspect_ratio",
+        "name": "aspect_ratio",
+        "label": "Relación de aspecto",
+        "type": "choice",
+        "display": "select",
+        "choices": [
+          ["3/4",  "3:4 — Retrato"],
+          ["4/5",  "4:5"],
+          ["1/1",  "1:1 — Cuadrado"],
+          ["16/9", "16:9 — Paisaje"],
+          ["4/3",  "4:3"]
+        ],
+        "default": "3/4"
+      },
+      {
+        "id": "border_radius",
+        "name": "border_radius",
+        "label": "Radio de bordes (px)",
+        "type": "number",
+        "default": 12,
+        "min": 0,
+        "max": 32
+      },
+      {
+        "id": "arrow_size",
+        "name": "arrow_size",
+        "label": "Tamaño de flechas (px)",
+        "type": "number",
+        "default": 44,
+        "min": 32,
+        "max": 72
+      }
+    ]
+  }
+]

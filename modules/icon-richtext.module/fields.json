@@ -1,0 +1,99 @@
+[
+  {
+    "id": "icon",
+    "name": "icon",
+    "label": "Ícono",
+    "type": "image",
+    "required": false,
+    "default": {
+      "alt": "",
+      "loading": "lazy"
+    }
+  },
+  {
+    "id": "icon_position",
+    "name": "icon_position",
+    "label": "Posición del ícono",
+    "type": "choice",
+    "display": "radio",
+    "choices": [
+      ["top",    "Arriba"],
+      ["left",   "Izquierda"],
+      ["right",  "Derecha"],
+      ["bottom", "Abajo"]
+    ],
+    "default": "left"
+  },
+  {
+    "id": "icon_size",
+    "name": "icon_size",
+    "label": "Tamaño del ícono (px)",
+    "type": "number",
+    "default": 56,
+    "min": 16,
+    "max": 200
+  },
+  {
+    "id": "icon_gap",
+    "name": "icon_gap",
+    "label": "Espacio entre ícono y texto (px)",
+    "type": "number",
+    "default": 16,
+    "min": 0,
+    "max": 64
+  },
+  {
+    "id": "content",
+    "name": "content",
+    "label": "Contenido",
+    "type": "richtext",
+    "default": "<p><strong>Título del ícono:</strong> Descripción del beneficio o característica que representa este ícono.</p>"
+  },
+  {
+    "id": "styles",
+    "name": "styles",
+    "label": "Estilos del ícono",
+    "type": "group",
+    "tab": "STYLE",
+    "children": [
+      {
+        "id": "icon_bg_color",
+        "name": "icon_bg_color",
+        "label": "Color de fondo",
+        "type": "color",
+        "default": { "color": "#152638", "opacity": 100 }
+      },
+      {
+        "id": "icon_bg_padding",
+        "name": "icon_bg_padding",
+        "label": "Padding del fondo (px)",
+        "type": "number",
+        "default": 16,
+        "min": 0,
+        "max": 48
+      },
+      {
+        "id": "icon_border_radius",
+        "name": "icon_border_radius",
+        "label": "Radio del borde (px)",
+        "type": "number",
+        "default": 8,
+        "min": 0,
+        "max": 100
+      },
+      {
+        "id": "vertical_align",
+        "name": "vertical_align",
+        "label": "Alineación vertical del ícono",
+        "type": "choice",
+        "display": "select",
+        "choices": [
+          ["flex-start", "Arriba"],
+          ["center",     "Centro"],
+          ["flex-end",   "Abajo"]
+        ],
+        "default": "flex-start"
+      }
+    ]
+  }
+]

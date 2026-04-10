@@ -1,0 +1,91 @@
+{# ── Image Slider – Real Solare ───────────────────────────
+   Slide activo más grande; inactivos visibles como "peek".
+   Navegación por flechas con posición configurable.
+#}
+{% set slide_count     = module.slides | length %}
+{% set nav_pos         = module.settings.nav_position   | default("center") %}
+{% set slide_w         = module.settings.slide_width    | default(76) %}
+{% set inactive_scale  = module.settings.inactive_scale | default(82) %}
+{% set inactive_opacity= module.settings.inactive_opacity | default(65) %}
+{% set gap             = module.settings.gap            | default(16) %}
+{% set ratio           = module.settings.aspect_ratio   | default("3/4") %}
+{% set radius          = module.settings.border_radius  | default(12) %}
+{% set arrow_size      = module.settings.arrow_size     | default(44) %}
+
+<div
+  class="img-slider"
+  data-img-slider
+  data-loop="{{ 'true' if module.loop else 'false' }}"
+  data-autoplay="{{ 'true' if module.autoplay else 'false' }}"
+  data-autoplay-delay="{{ module.autoplay_delay | default(4000) }}"
+  data-slide-count="{{ slide_count }}"
+  style="
+    --img-slide-w: {{ slide_w }}%;
+    --img-inactive-scale: {{ inactive_scale / 100 }};
+    --img-inactive-opacity: {{ inactive_opacity / 100 }};
+    --img-gap: {{ gap }}px;
+    --img-radius: {{ radius }}px;
+    --img-ratio: {{ ratio }};
+    --img-arrow-size: {{ arrow_size }}px;
+  "
+>
+
+  {# ── Viewport ── #}
+  <div class="img-slider__viewport">
+    <div class="img-slider__track" data-img-slider-track>
+
+      {% for slide in module.slides %}
+        <div
+          class="img-slider__slide{% if loop.first %} is-active{% endif %}"
+          data-img-slide="{{ loop.index0 }}"
+        >
+          <div class="img-slider__img-wrap">
+            <img
+              class="img-slider__img"
+              src="{{ slide.image.src | escape_url }}"
+              alt="{{ slide.image.alt | escape_attr or slide.caption | escape_attr or '' }}"
+              loading="{{ 'eager' if loop.first else 'lazy' }}"
+              {% if slide.image.width %}width="{{ slide.image.width }}"{% endif %}
+              {% if slide.image.height %}height="{{ slide.image.height }}"{% endif %}
+            >
+          </div>
+          {% if slide.caption %}
+            <p class="img-slider__caption">{{ slide.caption | escape_html }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+
+  {# ── Navegación ── #}
+  {% if slide_count > 1 %}
+    <div class="img-slider__nav img-slider__nav--{{ nav_pos }}">
+      <button
+        class="img-slider__arrow img-slider__arrow--prev"
+        data-img-prev
+        aria-label="Imagen anterior"
+        type="button"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      <button
+        class="img-slider__arrow img-slider__arrow--next"
+        data-img-next
+        aria-label="Imagen siguiente"
+        type="button"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+  {% endif %}
+
+</div>
