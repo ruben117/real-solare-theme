@@ -1,0 +1,71 @@
+/* ── Ubicación ──────────────────────────────────────────── */
+
+/* ── Mapa: imagen full-width con bordes redondeados ─────── */
+
+.ubicacion__map-module img {
+  border-radius: 12px;
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+/* ── Columna EDGE: fondo blanco, imagen centrada ────────── */
+
+/*.dnd-column:has(.ubicacion__edge-module) {
+  background-color: #ad6868;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}*/
+
+.ubicacion__edge-module {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2.5rem;
+  width: 100%;
+}
+
+.ubicacion__edge-module img {
+  display: block;
+  height: auto;
+  max-width: 260px;
+  width: 100%;
+}
+
+/* ── Columna tecnología: texto en blanco ────────────────── */
+
+.ubicacion__tech-module {
+  padding: 3rem 3rem 3rem 3.5rem;
+}
+
+.ubicacion__tech-module h2 {
+  color: #ffffff;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0 0 1.25rem;
+}
+
+.ubicacion__tech-module p {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: var(--font-size-base);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .dnd-column:has(.ubicacion__edge-module) {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .ubicacion__edge-module {
+    padding: 2rem 1.5rem;
+  }
+
+  .ubicacion__tech-module {
+    padding: 2rem 1.5rem;
+  }
+}

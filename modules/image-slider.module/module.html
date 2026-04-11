@@ -2,6 +2,13 @@
    Slide activo más grande; inactivos visibles como "peek".
    Navegación por flechas con posición configurable.
 #}
+{# Imágenes fallback (../../ sube de modules/image-slider.module/ a raíz del tema) #}
+{% set fallback_imgs = [
+  get_asset_url("../../images/amenidades-parque.png"),
+  get_asset_url("../../images/amenidades-parque-2.png"),
+  get_asset_url("../../images/amenidades-parque.png")
+] %}
+
 {% set slide_count     = module.slides | length %}
 {% set nav_pos         = module.settings.nav_position   | default("center") %}
 {% set slide_w         = module.settings.slide_width    | default(76) %}
@@ -35,6 +42,8 @@
     <div class="img-slider__track" data-img-slider-track>
 
       {% for slide in module.slides %}
+        {% set fallback_src = fallback_imgs[loop.index0 % 3] %}
+        {% set img_src = slide.image.src if slide.image.src else fallback_src %}
         <div
           class="img-slider__slide{% if loop.first %} is-active{% endif %}"
           data-img-slide="{{ loop.index0 }}"
@@ -42,7 +51,7 @@
           <div class="img-slider__img-wrap">
             <img
               class="img-slider__img"
-              src="{{ slide.image.src | escape_url }}"
+              src="{{ img_src | escape_url }}"
               alt="{{ slide.image.alt | escape_attr or slide.caption | escape_attr or '' }}"
               loading="{{ 'eager' if loop.first else 'lazy' }}"
               {% if slide.image.width %}width="{{ slide.image.width }}"{% endif %}

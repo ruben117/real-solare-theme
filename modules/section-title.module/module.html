@@ -36,7 +36,7 @@
   {% set align_class = "align-" ~ module.styles.group_alignment.alignment.horizontal_align|lower %}
 {% endif %}
 
-<div class="section-title__wrapper {{ align_class }}">
+<div class="section-title__wrapper {{ align_class }}{% if module.white_text %} white-text{% endif %}">
 
   {# Overline encima del título #}
   {% if module.overline and module.overline_position == "above" %}

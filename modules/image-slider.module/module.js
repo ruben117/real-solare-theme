@@ -41,12 +41,10 @@
       // Centrar el slide activo dentro del viewport
       var peekL   = (viewW - slideW) / 2;
       var offset  = currentIndex * (slideW + gapVal) - peekL;
-      // No mostrar espacio vacío al inicio ni al final
+      // Siempre clampear: evita offsets negativos (track hacia derecha) o vacío al final
       var maxOff  = (total - 1) * (slideW + gapVal) - peekL;
-      if (!isLoop) {
-        if (offset < 0) offset = 0;
-        if (offset > maxOff && maxOff > 0) offset = maxOff;
-      }
+      if (offset < 0) offset = 0;
+      if (maxOff > 0 && offset > maxOff) offset = maxOff;
 
       track.style.transform = 'translateX(-' + offset + 'px)';
 

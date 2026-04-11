@@ -31,29 +31,35 @@
 
   {% include_dnd_partial path="../sections/amenidades.html" %}
 
-  {# Two column image left #}
+  {# Ubicación – Mapa + Certificación EDGE #}
 
+  {% include_dnd_partial path="../sections/ubicacion.html" %}
+
+  {# Certificación EDGE #}
   {% dnd_section
-    background_color="#f8fafc",
-    vertical_alignment="MIDDLE"
+    background_color="#152638",
+    vertical_alignment="MIDDLE",
+    padding={ "top": "0px", "bottom": "0px" }
   %}
     {% dnd_module
       path="@hubspot/linked_image",
       img={
-        "alt": "Stock placeholder image with grayscale geometrical mountain landscape",
+        "src": get_asset_url("../images/certificacion-edge.png"),
+        "alt": "Certificación EDGE – Excellence In Design For Greater Efficiencies",
         "loading": "lazy",
-        "max_height": 451,
-        "max_width": 605,
-        "size_type": "auto_custom_max",
-        "src": get_asset_url("../images/grayscale-mountain.png")
+        "max_height": 177,
+        "max_width": 419,
+        "size_type": "auto_custom_max"
       },
+      extra_classes="ubicacion__edge-module",
       offset=0,
       width=6
     %}
     {% end_dnd_module %}
     {% dnd_module
       path="@hubspot/rich_text",
-      html="<h2>Provide more details here.</h2><p>Use text and images to tell your company’s story. Explain what makes your product or service extraordinary.</p>"
+      html="<h2>Tecnología que cuida tu bolsillo y el planeta</h2><p>Nuestras viviendas cuentan con Certificación EDGE y ecotecnologías que te permiten ahorrar hasta un 50% en tus recibos mensuales de luz, agua y gas.</p>",
+      extra_classes="ubicacion__tech-module",
       offset=6,
       width=6
     %}

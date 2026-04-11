@@ -1,0 +1,55 @@
+<!--
+  templateType: section
+  label: Ubicación – Real Solare
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/ubicacion.png
+  description: "Sección de ubicación: título, mapa interactivo y certificación EDGE con propuesta de ecotecnología."
+-->
+
+{# ── Fila 1: Section title + mapa ─────────────────────────
+   Fondo navy oscuro, ancho completo.
+#}
+{% dnd_section
+  background_color="#152638",
+  vertical_alignment="MIDDLE",
+  padding={ "top": "80px", "bottom": "48px" }
+%}
+    {# ── Única columna full-width ── #}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+
+  {# ── Fila 1: Título de sección ── #}
+  {% dnd_row %}
+    {% dnd_module
+      path="../modules/section-title",
+      label="Ubicación – Título",
+      overline="UBICADAS EN EL PUNTO MÁS ESTRATÉGICO DE LA CIUDAD",
+      overline_position="above",
+      title="Zona comercial, escuelas y centros de trabajo cercanos",
+      show_divider=true,
+      white_text=true,
+      extra_classes="ubicacion__title-module",
+    %}
+    {% end_dnd_module %}
+  {% end_dnd_row %}
+
+  {# Mapa – imagen full width #}
+  {% dnd_row %}
+    {% dnd_module
+      path="@hubspot/linked_image",
+      img={
+        "src": get_asset_url("../images/ubicacion-mapa.png"),
+        "alt": "Mapa de ubicación – Fraccionamiento Real Solare, Querétaro",
+        "loading": "lazy",
+        "size_type": "auto"
+      },
+      extra_classes="ubicacion__map-module",
+      offset=0, width=12
+    %}
+    {% end_dnd_module %}
+  {% end_dnd_row %}
+
+  {% end_dnd_column %}
+{% end_dnd_section %}

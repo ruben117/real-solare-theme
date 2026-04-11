@@ -58,6 +58,16 @@
   width: 56px;
 }
 
+/* ── Variante texto blanco (fondos oscuros) ──────────────── */
+
+.section-title__wrapper.white-text .section-title__title {
+  color: #ffffff !important;
+}
+
+.section-title__wrapper.white-text .section-title__overline {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
 /* ── Responsive ──────────────────────────────────────────── */
 
 @media (max-width: 767px) {

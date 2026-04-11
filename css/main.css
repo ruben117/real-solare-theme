@@ -45,6 +45,7 @@ Specific pieces of UI that are stylized. Typically used for global partial styli
 {% include './components/_header.css' %}
 {% include './components/_hero.css' %}
 {% include './components/_patrimonio.css' %}
+{% include './components/_ubicacion.css' %}
 {% include './components/_default-modules.css' %}
 
 /* Utilities
@@ -55,4 +56,8 @@ Helper classes with ability to override anything that comes before it
 
 *,html,body {
   font-family: "Roboto", sans-serif;
+}
+p, ul, ol,li {
+    font-size: var(--font-size-base, 16px);
+    color: var(--text-color);
 }
