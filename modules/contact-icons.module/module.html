@@ -1,0 +1,44 @@
+{# ── Contact Icons – Real Solare ──────────────────────────
+   Fila de íconos cuadrados con fondo configurable y enlace.
+#}
+{% set icon_size = module.icon_size | default(22) %}
+{% set btn_size  = module.btn_size  | default(50) %}
+{% set gap       = module.gap       | default(8) %}
+{% set bg_color  = module.styles.bg_color.color | default("#E0001A") %}
+{% set radius    = module.styles.border_radius  | default(6) %}
+
+<div
+  class="contact-icons"
+  style="
+    --ci-icon-size: {{ icon_size }}px;
+    --ci-btn-size: {{ btn_size }}px;
+    --ci-gap: {{ gap }}px;
+    --ci-bg: {{ bg_color }};
+    --ci-radius: {{ radius }}px;
+  "
+>
+  {% for item in module.items %}
+    {% set href = item.link.url.href | default("#") %}
+    {% if item.link.url.type == "EMAIL_ADDRESS" %}{% set href = "mailto:" ~ href %}{% endif %}
+    {% if item.link.url.type == "PHONE_NUMBER" %}{% set href = "tel:" ~ href %}{% endif %}
+
+    <a
+      class="contact-icons__btn"
+      href="{{ href | escape_url }}"
+      aria-label="{{ item.etiqueta | escape_attr or 'Contacto' }}"
+      {% if item.link.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+    >
+      {% if item.icon.src %}
+        <img
+          class="contact-icons__img"
+          src="{{ item.icon.src | escape_url }}"
+          alt=""
+          width="{{ icon_size }}"
+          height="{{ icon_size }}"
+          loading="lazy"
+          aria-hidden="true"
+        >
+      {% endif %}
+    </a>
+  {% endfor %}
+</div>

@@ -1,0 +1,71 @@
+<!--
+  templateType: section
+  label: Contacto – CTA + Formulario
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/contacto.png
+  description: "Sección de contacto: columna izquierda con CTA, botón e íconos; columna derecha con formulario HubSpot."
+-->
+
+{% dnd_section
+  background_color="#ffffff",
+  vertical_alignment="MIDDLE",
+  padding={ "top": "80px", "bottom": "80px" }
+%}
+
+  {# ── Columna izquierda: CTA ── #}
+  {% dnd_column offset=0, width=5 %}
+
+    {# Heading + párrafo #}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        html="<h2>¿Listo para estrenar casa en Querétaro?</h2><p>Agenda tu visita hoy mismo. Compártenos tus datos y recibe nuestras promociones en Whatsapp.</p>",
+        extra_classes="contacto__heading-module",
+        offset=0, width=12
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {# Botón Pre-cotizador (outlined) #}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        html="<a href='#pre-cotizador' class='btn-outline-dark'>Pre-cotizador</a>",
+        extra_classes="contacto__btn-module",
+        offset=0, width=12
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {# Íconos de contacto (teléfono, WhatsApp, ubicación) #}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/contact-icons",
+        btn_size=50,
+        icon_size=22,
+        gap=8,
+        extra_classes="contacto__icons-module",
+        offset=0, width=12
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+  {% end_dnd_column %}
+
+  {# ── Columna derecha: Formulario ── #}
+  {% dnd_column offset=5, width=7 %}
+
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/form",
+        form={ "form_id": "" },
+        title="FORMULARIO DE CONTACTO",
+        extra_classes="contacto__form-module",
+        offset=0, width=12
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+  {% end_dnd_column %}
+
+{% end_dnd_section %}

@@ -1,0 +1,194 @@
+/* ── Sección Contacto ───────────────────────────────────── */
+
+/* ── Columna izquierda ──────────────────────────────────── */
+
+.contacto__heading-module h2 {
+  color: var(--secondary-color, #152638);
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin: 0 0 1rem;
+}
+
+.contacto__heading-module p {
+  color: #5a6a7a;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* Botón outlined oscuro */
+.contacto__btn-module {
+  margin: 1.75rem 0 1.5rem;
+}
+
+.contacto__btn-module a,
+a.btn-outline-dark {
+  border: 2px solid var(--secondary-color, #152638);
+  border-radius: 4px;
+  color: var(--secondary-color, #152638);
+  display: inline-block;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  padding: 0.75rem 2rem;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.contacto__btn-module a:hover,
+a.btn-outline-dark:hover {
+  background-color: var(--secondary-color, #152638);
+  color: #ffffff;
+}
+
+/* ── Columna derecha: tarjeta del formulario ────────────── */
+
+.contacto__form-module {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 4px 28px rgba(0, 0, 0, 0.07);
+  padding: 2rem 2.25rem;
+}
+
+/* Título del formulario ("FORMULARIO DE CONTACTO") */
+.contacto__form-module .form-title,
+.contacto__form-module h3 {
+  color: var(--primary-color, #E0001A);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  margin: 0 0 1.5rem;
+  text-transform: uppercase;
+}
+
+/* ── Campos ─────────────────────────────────────────────── */
+
+.contacto__form-module .hs-form-field {
+  margin-bottom: 1rem;
+}
+
+.contacto__form-module .hs-form-field > label {
+  color: var(--secondary-color, #152638);
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.375rem;
+}
+
+.contacto__form-module input.hs-input,
+.contacto__form-module select.hs-input,
+.contacto__form-module textarea.hs-input {
+  background-color: #f4f6f8;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  color: var(--text-color, #2D2D2D);
+  font-size: 0.9375rem;
+  padding: 0.625rem 0.875rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  width: 100% !important;
+}
+
+.contacto__form-module input.hs-input:focus,
+.contacto__form-module select.hs-input:focus,
+.contacto__form-module textarea.hs-input:focus {
+  border-color: var(--secondary-color, #152638);
+  box-shadow: 0 0 0 3px rgba(21, 38, 56, 0.08);
+  outline: none;
+}
+
+/* Dropdown chevron */
+.contacto__form-module select.hs-input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23152638' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2.5rem;
+}
+
+/* Layout 2 columnas para Nombre+Apellido y Correo+Teléfono */
+.contacto__form-module .hs-form .form-columns-2 {
+  display: flex;
+  gap: 1rem;
+}
+
+.contacto__form-module .hs-form .form-columns-2 .hs-form-field {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Checkbox aviso de privacidad */
+.contacto__form-module .legal-consent-container,
+.contacto__form-module .hs-form-field.hs-fieldtype-booleancheckbox {
+  margin-bottom: 1.25rem;
+}
+
+.contacto__form-module .hs-form-booleancheckbox-display,
+.contacto__form-module .hs-form-booleancheckbox {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.contacto__form-module .hs-form-booleancheckbox input[type="checkbox"],
+.contacto__form-module .legal-consent-container input[type="checkbox"] {
+  accent-color: var(--primary-color, #E0001A);
+  flex-shrink: 0;
+  height: 15px;
+  width: 15px;
+}
+
+.contacto__form-module .hs-form-booleancheckbox label,
+.contacto__form-module .legal-consent-container label,
+.contacto__form-module .legal-consent-container p {
+  color: #6b7280;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ── Botón submit ────────────────────────────────────────── */
+
+.contacto__form-module .hs-submit,
+.contacto__form-module .hs_submit {
+  margin-top: 0.25rem;
+}
+
+.contacto__form-module .hs-button,
+.contacto__form-module input[type="submit"] {
+  background-color: var(--primary-color, #E0001A);
+  border: none;
+  border-radius: 6px;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.875rem 1.5rem;
+  transition: background-color 0.2s ease;
+  width: 100%;
+}
+
+.contacto__form-module .hs-button:hover,
+.contacto__form-module input[type="submit"]:hover {
+  background-color: #b5001a;
+}
+
+/* Mensajes de error */
+.contacto__form-module .hs-error-msg {
+  color: var(--primary-color, #E0001A);
+  font-size: 0.8125rem;
+  margin-top: 0.25rem;
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .contacto__form-module {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .contacto__form-module .hs-form .form-columns-2 {
+    flex-direction: column;
+    gap: 0;
+  }
+}

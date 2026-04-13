@@ -3,41 +3,38 @@
   label: Footer
 -->
 <footer class="footer">
-  {% dnd_area "footer"
-    label="Footer",
-    class="footer__container content-wrapper"
-  %}
+  <div class="footer__inner content-wrapper">
 
-    {# Social follow and copyright #}
+    {# ── Row 1: Logos (left) + Address (right) ── #}
+    <div class="footer__main">
 
-    {% dnd_section %}
-      {% dnd_column %}
-        {% dnd_row %}
-          {% dnd_module path="../../modules/social-follow" %}
-            {% module_attribute "social_link" is_json=True %}
-              [
-                {"social_account": "facebook-f"},
-                {"social_account": "linkedin-in"},
-                {"social_account": "twitter"},
-                {"social_account": "instagram"}
-              ]
-            {% end_module_attribute %}
-          {% end_dnd_module %}
-        {% end_dnd_row %}
-        {% dnd_row
-          margin={
-            "top": 12,
-            "bottom": 12
-          }
-        %}
-          {% dnd_module
-            path="@hubspot/rich_text",
-            html='<div style="text-align: center; font-size: 0.7rem;"><span>© {{ year }} All rights reserved.</span></div>'
-          %}
-          {% end_dnd_module %}
-        {% end_dnd_row %}
-      {% end_dnd_column %}
-    {% end_dnd_section %}
+      <div class="footer__logos">
+        <img
+          class="footer__logo footer__logo--solare"
+          src="{{ get_asset_url('../../images/logo-real-solare-blanco-footer.png') }}"
+          alt="Real Solare"
+        >
+        <img
+          class="footer__logo footer__logo--vinte"
+          src="{{ get_asset_url('../../images/logo-vinte-footer.png') }}"
+          alt="Vinte"
+        >
+      </div>
 
-  {% end_dnd_area %}
+      <address class="footer__address">
+        © {{ year }} , Corporativo Vinte © Vinte 2022. Todos los derechos reservados.
+        PROMOTORA DE VIVIENDAS INTEGRALES SA DE CV,
+        AVENIDA VIA REAL MZ. 16 LT. 1 LOCAL 1,
+        FRACCIONAMIENTO REAL DEL SOL, TECAMAC, MEXICO 55770,
+        México, Teléfono: 5550107360.
+      </address>
+
+    </div>
+
+    {# ── Row 2: Legal / copyright ── #}
+    <div class="footer__legal">
+      <span>© 2024 Real Solare – Comunidad Vinte. Exclusividad Garantizada.</span>
+    </div>
+
+  </div>
 </footer>

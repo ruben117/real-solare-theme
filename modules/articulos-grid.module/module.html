@@ -1,0 +1,78 @@
+{# ── Artículos Grid – Real Solare ─────────────────────────
+   Grid configurable de tarjetas de artículo.
+   Cada tarjeta: imagen → fecha → título → extracto → leer más
+#}
+{% set fallback_img = get_asset_url("../../images/grayscale-mountain.png") %}
+{% set cols        = module.columns      | default("3") %}
+{% set ratio       = module.image_ratio  | default("16/9") %}
+{% set radius      = module.image_radius | default(8) %}
+{% set read_more   = module.read_more_text | default("Leer más") %}
+
+<div
+  class="art-grid art-grid--cols-{{ cols }}"
+  style="--art-ratio: {{ ratio }}; --art-radius: {{ radius }}px;"
+>
+
+  {% for article in module.articles %}
+    {% set img_src = article.image.src if article.image.src else fallback_img %}
+    {% set href    = article.link.url.href | default("#") %}
+    {% if article.link.url.type == "EMAIL_ADDRESS" %}{% set href = "mailto:" ~ href %}{% endif %}
+
+    <article class="art-grid__card">
+
+      {# Imagen con enlace #}
+      <a
+        class="art-grid__img-link"
+        href="{{ href | escape_url }}"
+        tabindex="-1"
+        aria-hidden="true"
+        {% if article.link.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+      >
+        <div class="art-grid__img-wrap">
+          <img
+            class="art-grid__img"
+            src="{{ img_src | escape_url }}"
+            alt="{{ article.image.alt | escape_attr or article.title | escape_attr or '' }}"
+            loading="{{ 'eager' if loop.first else 'lazy' }}"
+          >
+        </div>
+      </a>
+
+      {# Contenido #}
+      <div class="art-grid__body">
+
+        {% if article.date %}
+          <p class="art-grid__date">{{ article.date | escape_html }}</p>
+        {% endif %}
+
+        <h3 class="art-grid__title">
+          <a
+            href="{{ href | escape_url }}"
+            {% if article.link.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+          >{{ article.title | escape_html }}</a>
+        </h3>
+
+        {% if article.excerpt %}
+          <p class="art-grid__excerpt">{{ article.excerpt | escape_html }}</p>
+        {% endif %}
+
+        <a
+          class="art-grid__read-more"
+          href="{{ href | escape_url }}"
+          {% if article.link.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+        >
+          {{ read_more | escape_html }}
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+
+      </div>{# /.art-grid__body #}
+
+    </article>
+  {% endfor %}
+
+</div>

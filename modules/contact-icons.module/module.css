@@ -1,0 +1,33 @@
+/* ── Contact Icons ───────────────────────────────────────── */
+
+.contact-icons {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ci-gap, 8px);
+}
+
+.contact-icons__btn {
+  align-items: center;
+  background-color: var(--ci-bg, #E0001A);
+  border-radius: var(--ci-radius, 6px);
+  display: flex;
+  flex-shrink: 0;
+  height: var(--ci-btn-size, 50px);
+  justify-content: center;
+  text-decoration: none;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+  width: var(--ci-btn-size, 50px);
+}
+
+.contact-icons__btn:hover {
+  opacity: 0.85;
+  transform: translateY(-2px);
+}
+
+.contact-icons__img {
+  display: block;
+  height: var(--ci-icon-size, 22px);
+  object-fit: contain;
+  width: var(--ci-icon-size, 22px);
+}

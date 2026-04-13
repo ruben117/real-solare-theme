@@ -1,0 +1,88 @@
+[
+  {
+    "id": "items",
+    "name": "items",
+    "label": "Íconos de contacto",
+    "type": "group",
+    "occurrence": { "min": 1, "max": 6, "default": 3 },
+    "children": [
+      {
+        "id": "icon",
+        "name": "icon",
+        "label": "Ícono (PNG/SVG blanco)",
+        "type": "image",
+        "required": false,
+        "default": { "alt": "", "loading": "lazy" }
+      },
+      {
+        "id": "link",
+        "name": "link",
+        "label": "Enlace",
+        "type": "link",
+        "default": {
+          "url": { "href": "#", "type": "EXTERNAL" },
+          "open_in_new_tab": false
+        }
+      },
+      {
+        "id": "label",
+        "name": "etiqueta",
+        "label": "Etiqueta (accesibilidad)",
+        "type": "text",
+        "default": "Contacto"
+      }
+    ]
+  },
+  {
+    "id": "icon_size",
+    "name": "icon_size",
+    "label": "Tamaño del ícono (px)",
+    "type": "number",
+    "default": 22,
+    "min": 12,
+    "max": 60
+  },
+  {
+    "id": "btn_size",
+    "name": "btn_size",
+    "label": "Tamaño del botón (px)",
+    "type": "number",
+    "default": 50,
+    "min": 32,
+    "max": 96
+  },
+  {
+    "id": "gap",
+    "name": "gap",
+    "label": "Separación entre botones (px)",
+    "type": "number",
+    "default": 8,
+    "min": 0,
+    "max": 32
+  },
+  {
+    "id": "styles",
+    "name": "styles",
+    "label": "Estilos",
+    "type": "group",
+    "tab": "STYLE",
+    "children": [
+      {
+        "id": "bg_color",
+        "name": "bg_color",
+        "label": "Color de fondo del botón",
+        "type": "color",
+        "default": { "color": "#E0001A", "opacity": 100 }
+      },
+      {
+        "id": "border_radius",
+        "name": "border_radius",
+        "label": "Radio del borde (px)",
+        "type": "number",
+        "default": 6,
+        "min": 0,
+        "max": 50
+      }
+    ]
+  }
+]

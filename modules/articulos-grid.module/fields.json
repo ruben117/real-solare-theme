@@ -1,0 +1,93 @@
+[
+  {
+    "id": "articles",
+    "name": "articles",
+    "label": "Artículos",
+    "type": "group",
+    "occurrence": { "min": 1, "max": 12, "default": 3 },
+    "children": [
+      {
+        "id": "image",
+        "name": "image",
+        "label": "Imagen",
+        "type": "image",
+        "required": false,
+        "default": { "alt": "", "loading": "lazy" }
+      },
+      {
+        "id": "date",
+        "name": "date",
+        "label": "Fecha",
+        "type": "text",
+        "default": ""
+      },
+      {
+        "id": "title",
+        "name": "title",
+        "label": "Título",
+        "type": "text",
+        "default": "Título del artículo"
+      },
+      {
+        "id": "excerpt",
+        "name": "excerpt",
+        "label": "Extracto",
+        "type": "text",
+        "default": "Breve descripción del artículo que invita al lector a conocer más."
+      },
+      {
+        "id": "link",
+        "name": "link",
+        "label": "Enlace del artículo",
+        "type": "link",
+        "default": {
+          "url": { "href": "#", "type": "EXTERNAL" },
+          "open_in_new_tab": false
+        }
+      }
+    ]
+  },
+  {
+    "id": "read_more_text",
+    "name": "read_more_text",
+    "label": "Texto del enlace 'Leer más'",
+    "type": "text",
+    "default": "Leer más"
+  },
+  {
+    "id": "columns",
+    "name": "columns",
+    "label": "Columnas",
+    "type": "choice",
+    "display": "radio",
+    "choices": [
+      ["2", "2 columnas"],
+      ["3", "3 columnas"],
+      ["4", "4 columnas"]
+    ],
+    "default": "3"
+  },
+  {
+    "id": "image_ratio",
+    "name": "image_ratio",
+    "label": "Relación de aspecto de imagen",
+    "type": "choice",
+    "display": "select",
+    "choices": [
+      ["16/9", "16:9 — Paisaje"],
+      ["3/2",  "3:2"],
+      ["4/3",  "4:3"],
+      ["1/1",  "1:1 — Cuadrado"]
+    ],
+    "default": "16/9"
+  },
+  {
+    "id": "image_radius",
+    "name": "image_radius",
+    "label": "Radio de bordes de imagen (px)",
+    "type": "number",
+    "default": 8,
+    "min": 0,
+    "max": 24
+  }
+]
