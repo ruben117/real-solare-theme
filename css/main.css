@@ -8,10 +8,11 @@ Note: _macros.css needs to be imported into each stylesheet where macros are use
   --primary-color: #E0001A;
   --secondary-color: #152638;
   --accent-color: #FFEC01;
-  --text-color: #2D2D2D;
+  --text-color: #737491;
+  --heading-color: #171717;
   --font-family-base: 'Roboto', 'Cabin', sans-serif;
   --font-size-base: 16px;
-  --font-size-heading: clamp(1.25rem, 3.5vw, 3rem);
+  --font-size-heading: clamp(30px, 2.5vw, 52px);
   --font-size-subheading: 1.25rem;
 }
 
@@ -63,4 +64,20 @@ Helper classes with ability to override anything that comes before it
 p, ul, ol,li {
     font-size: var(--font-size-base, 16px);
     color: var(--text-color);
+}
+strong, b {
+  color: var(--heading-color);
+}
+.button, .button:hover, .button:focus, .button:active {
+    border: none !important;
+}
+.amenidades__heading-module h2{
+  color: var(--heading-color);
+  line-height: 1.1;
+}
+.body-container--home .form-title, 
+.body-container--home.submitted-message,
+.body-container--home form {
+    background-color: #ffffff;
+    border: none;
 }

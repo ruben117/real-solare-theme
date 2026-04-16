@@ -38,12 +38,13 @@
         </div>
       </a>
 
+      {# Fecha – inmediatamente debajo de la imagen #}
+      {% if article.date %}
+        <p class="art-grid__date">{{ article.date | escape_html }}</p>
+      {% endif %}
+
       {# Contenido #}
       <div class="art-grid__body">
-
-        {% if article.date %}
-          <p class="art-grid__date">{{ article.date | escape_html }}</p>
-        {% endif %}
 
         <h3 class="art-grid__title">
           <a

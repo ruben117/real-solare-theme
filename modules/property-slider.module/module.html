@@ -19,9 +19,11 @@
   data-slide-count="{{ slide_count }}"
 >
 
-  {# ── Viewport ── #}
-  <div class="prop-slider__viewport">
-    <div class="prop-slider__track" data-prop-slider-track>
+  {# ── Viewport + flechas de carrusel ── #}
+  <div class="prop-slider__viewport-wrap">
+
+    <div class="prop-slider__viewport">
+      <div class="prop-slider__track" data-prop-slider-track>
 
       {% for slide in module.slides %}
         {% set href = slide.link.url.href %}
@@ -88,7 +90,36 @@
       {% endfor %}
 
     </div>
-  </div>
+    </div>{# /.prop-slider__viewport #}
+
+    {# Flechas de navegación del carrusel #}
+    {% if slide_count > 1 %}
+      <button
+        class="prop-slider__nav prop-slider__nav--prev"
+        data-prop-slider-prev
+        aria-label="Propiedad anterior"
+        type="button"
+        disabled
+      >
+        {# Chevron left – Font Awesome style #}
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="14" height="14" fill="currentColor" aria-hidden="true">
+          <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"/>
+        </svg>
+      </button>
+      <button
+        class="prop-slider__nav prop-slider__nav--next"
+        data-prop-slider-next
+        aria-label="Siguiente propiedad"
+        type="button"
+      >
+        {# Chevron right – Font Awesome style #}
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="14" height="14" fill="currentColor" aria-hidden="true">
+          <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/>
+        </svg>
+      </button>
+    {% endif %}
+
+  </div>{# /.prop-slider__viewport-wrap #}
 
   {# ── Footer: dots (izq) + botones CTA (der) ── #}
   <div class="prop-slider__footer">

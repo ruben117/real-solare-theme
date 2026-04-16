@@ -91,11 +91,11 @@
 
 /* Flechas – círculos con borde rojo */
 
-.img-slider__arrow {
+.img-slider__arrow , .img-slider__arrow:focus{
   align-items: center;
   background-color: transparent;
   border: 2px solid var(--primary-color, #E0001A);
-  border-radius: 50%;
+  border-radius: 50% !important;
   color: var(--primary-color, #E0001A);
   cursor: pointer;
   display: flex;

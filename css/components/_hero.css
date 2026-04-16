@@ -1,28 +1,3 @@
-/* ============================================================
-   HERO BANNER – Real Solare
-
-   Estrategia de selectores:
-   • extra_classes en dnd_module genera un wrapper con esa clase
-     ej: <div class="hs_cos_wrapper hero__title-module">...</div>
-
-   • dnd_section y dnd_column NO aceptan css_class, por lo que
-     se apuntan con selectores estructurales usando :has() del
-     módulo ancla (.hero__title-module) que siempre vive en ellos.
-
-   Estructura renderizada por HubSpot DnD:
-   .dnd-section                          ← fondo imagen / overlay
-     └── .row-fluid
-           └── .dnd-column.span6         ← 50% ancho, padding top
-                 ├── .dnd-row
-                 │     └── .hero__title-module    (h1)
-                 ├── .dnd-row
-                 │     └── .hero__subtitle-module (p)
-                 ├── .dnd-row
-                 │     └── .hero__divider-module  (divisor + p)
-                 └── .dnd-row
-                       └── .hero__cta-module      (botón)
-   ============================================================ */
-
 /* ── Sección: tamaño completo de viewport ────────────────── */
 
 .dnd-section:has(.hero__title-module) {
@@ -31,22 +6,6 @@
 
 /* ── Overlay oscuro de izquierda a derecha ───────────────── */
 
-.dnd-section:has(.hero__title-module)::before {
-  background: linear-gradient(
-    to right,
-    rgba(21, 38, 56, 0.75) 0%,
-    rgba(21, 38, 56, 0.45) 55%,
-    rgba(21, 38, 56, 0.05) 100%
-  );
-  bottom: 0;
-  content: "";
-  left: 0;
-  pointer-events: none;
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 1;
-}
 
 /* El row-fluid debe quedar sobre el overlay */
 .dnd-section:has(.hero__title-module) > .row-fluid {
@@ -64,7 +23,7 @@
 
 .hero__title-module h1 {
   color: #ffffff;
-  font-size: clamp(2rem, 3vw, 3rem);
+  font-size: clamp(35px, 53px, 60px);
   font-weight: 800;
   line-height: 1.15;
   margin: 0 0 1.25rem;
@@ -74,7 +33,7 @@
 
 .hero__subtitle-module p {
   color: #ffffff;
-  font-size: clamp(0.9375rem, 1.5vw, 1.125rem);
+  font-size: clamp(14px, 1.3vw, 1.2rem);
   font-weight: 300;
   line-height: 1.6;
   margin: 0;
@@ -138,22 +97,25 @@
 
 @media (max-width: 767px) {
   .dnd-section:has(.hero__title-module) {
-    min-height: 100svh;
+    min-height: 80svh;
+    display: flex;
+    align-content: center;
+    align-items: center;
   }
 
   /* En mobile el gradiente cubre todo con opacidad uniforme */
   .dnd-section:has(.hero__title-module)::before {
-    background: rgba(21, 38, 56, 0.65);
+    background: rgba(21, 38, 56, 0.44);
   }
 
   /* La columna ocupa el ancho completo en mobile */
   .dnd-section:has(.hero__title-module) .dnd-column {
-    padding-bottom: 3rem;
+    padding-bottom: 0rem;
     width: 100% !important;
   }
 
   .hero__title-module h1 {
-    font-size: 1.875rem;
+    font-size: 35px;
   }
 
   .hero__subtitle-module p,

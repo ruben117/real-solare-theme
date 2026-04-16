@@ -15,7 +15,7 @@
    del viewport, así que background-color aquí ES naturalmente full-bleed. */
 .ubicacion__edge-module {
   background-color: #ffffff;
-  border-radius: 0px 10px 0px 0px;
+  border-radius: 0px;
   display: flex;
   align-items: center;
   justify-content: center;

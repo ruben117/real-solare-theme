@@ -19,7 +19,7 @@
         "name": "date",
         "label": "Fecha",
         "type": "text",
-        "default": ""
+        "default": "dic 2, 2025"
       },
       {
         "id": "title",

@@ -13,11 +13,60 @@
   user-select: none;
 }
 
+/* ── Viewport wrap (contexto para las flechas) ───────────── */
+
+.prop-slider__viewport-wrap {
+  position: relative;
+}
+
 /* ── Viewport ────────────────────────────────────────────── */
 
 .prop-slider__viewport {
   overflow: hidden;
   padding-bottom: 4px;
+}
+
+/* ── Flechas de navegación del carrusel ──────────────────── */
+
+.prop-slider__nav {
+  align-items: center;
+  background-color: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 50% !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+  color: #152638;
+  cursor: pointer;
+  display: flex;
+  height: 44px;
+  justify-content: center;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  width: 44px;
+  z-index: 5;
+}
+
+.prop-slider__nav:hover {
+  background-color: var(--primary-color, #E0001A);
+  border-color: var(--primary-color, #E0001A);
+  box-shadow: 0 4px 18px rgba(224, 0, 26, 0.28);
+  color: #ffffff;
+  transform: translateY(calc(-50% - 2px));
+}
+
+.prop-slider__nav--prev { left: -22px; }
+.prop-slider__nav--next { right: -22px; }
+
+.prop-slider__nav:disabled {
+  cursor: default;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+@media (max-width: 767px) {
+  .prop-slider__nav { display: none; }
 }
 
 /* ── Track ───────────────────────────────────────────────── */
@@ -207,17 +256,17 @@
   border-radius: 4px;
   cursor: pointer;
   display: inline-block;
-  font-size: 0.9375rem;
-  font-weight: 700;
+  font-size: var(--font-size-base);
+  font-weight: 700 !important;
   letter-spacing: 0.01em;
   line-height: 1;
-  padding: 0.75rem 1.5rem;
+  padding: 0.5rem 1rem;
   text-decoration: none;
   transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
   white-space: nowrap;
 }
 
-.prop-slider__btn:hover { transform: translateY(-1px); }
+.prop-slider__btn:hover { transform: translateY(-1px); text-decoration: none; }
 .prop-slider__btn:active { transform: translateY(0); }
 
 .prop-slider__btn--primary {
@@ -357,7 +406,7 @@
   background-color: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(6px);
   border: 1.5px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
+  border-radius: 50% !important;
   color: #ffffff;
   cursor: pointer;
   display: flex;

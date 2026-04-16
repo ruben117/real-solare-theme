@@ -230,12 +230,14 @@
   text-decoration: none;
   transition: background-color 0.2s ease, transform 0.15s ease;
   white-space: nowrap;
+  border: none;
 }
 
 .header__cta .button:hover,
 .header__cta .button:focus {
   background-color: #b5001a;
   transform: translateY(-1px);
+  border: none;
 }
 
 .header__cta .button:active {

@@ -33,32 +33,50 @@
   // ── Inicializar un slider ──────────────────────────────────
   function initSlider(sliderEl) {
     var track      = sliderEl.querySelector('[data-prop-slider-track]');
+    var viewport   = sliderEl.querySelector('.prop-slider__viewport');
     var dotsWrap   = sliderEl.querySelector('[data-prop-slider-dots]');
     var slides     = Array.from(sliderEl.querySelectorAll('.prop-slider__slide'));
     var dots       = dotsWrap ? Array.from(dotsWrap.querySelectorAll('[data-prop-slider-dot]')) : [];
     var cards      = Array.from(sliderEl.querySelectorAll('[data-lightbox-trigger]'));
+    var navPrev    = sliderEl.querySelector('[data-prop-slider-prev]');
+    var navNext    = sliderEl.querySelector('[data-prop-slider-next]');
 
     if (!track || slides.length < 1) return;
 
-    var currentIndex = 0;
-    var totalSlides  = slides.length;
+    var currentIndex  = 0;
+    var currentOffset = 0;
+    var totalSlides   = slides.length;
 
-    // ── Calcula el offset real por índice ───────────────────
+    // ── Máximo desplazamiento posible (sin dejar espacio vacío) ─
+    function getMaxOffset() {
+      return Math.max(0, track.scrollWidth - viewport.clientWidth);
+    }
+
+    // ── Calcula el offset ideal por índice ──────────────────
     function getOffsetLeft(index) {
       var firstLeft = slides[0].offsetLeft;
       return slides[index] ? slides[index].offsetLeft - firstLeft : 0;
+    }
+
+    // ── Actualizar estado disabled de las flechas ───────────
+    function updateNav() {
+      if (navPrev) navPrev.disabled = currentOffset <= 0;
+      if (navNext) navNext.disabled = currentOffset >= getMaxOffset() - 1;
     }
 
     // ── Ir al slide del slider ──────────────────────────────
     function goTo(index) {
       index = Math.max(0, Math.min(index, totalSlides - 1));
       currentIndex = index;
-      track.style.transform = 'translateX(-' + getOffsetLeft(index) + 'px)';
+      // Clampear para que el track nunca deje espacio vacío a la derecha
+      currentOffset = Math.min(getOffsetLeft(index), getMaxOffset());
+      track.style.transform = 'translateX(-' + currentOffset + 'px)';
       dots.forEach(function (dot, i) {
         var active = i === currentIndex;
         dot.classList.toggle('is-active', active);
         dot.setAttribute('aria-selected', active ? 'true' : 'false');
       });
+      updateNav();
     }
 
     // Dots click
@@ -67,6 +85,10 @@
         goTo(parseInt(dot.getAttribute('data-prop-slider-dot'), 10));
       });
     });
+
+    // Flechas del carrusel
+    if (navPrev) navPrev.addEventListener('click', function () { goTo(currentIndex - 1); });
+    if (navNext) navNext.addEventListener('click', function () { goTo(currentIndex + 1); });
 
     // ── Drag / Swipe del slider ─────────────────────────────
     var dragStart  = 0;

@@ -1,7 +1,7 @@
 /* ── Footer ──────────────────────────────────────────────── */
 
 .footer {
-  background-color: #ffffff;
+  background-color: #ffffff !important;
   border-top: 1px solid #d8dde6;
   margin-top: 0;
 }
@@ -41,26 +41,32 @@
 }
 
 .footer__logo--vinte {
-  width: 80px;
+  width: 120px;
 }
 
 /* Address */
 .footer__address {
   font-style: normal;
-  font-size: 0.6875rem;       /* ~11px */
+  font-size: 11px;
   line-height: 1.7;
   color: #9ca3af;
   text-align: right;
   max-width: 480px;
+  font-weight: 300;
 }
 
 /* ── Row 2: Legal ── */
 .footer__legal {
   border-top: 1px solid #e8ecf0;
   padding-top: 14px;
-  font-size: 0.6875rem;
+  font-size: 11px;
   color: #9ca3af;
   line-height: 1.5;
+  font-weight: 300;
+}
+.footer_legal span{
+  
+  color: #9ca3af;
 }
 
 /* ── Responsive ── */

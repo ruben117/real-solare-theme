@@ -22,7 +22,7 @@
 
 .art-grid__img-link {
   display: block;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   text-decoration: none;
 }
 
@@ -54,12 +54,12 @@
   flex-direction: column;
 }
 
-/* Fecha */
+/* Fecha – debajo de imagen, antes del cuerpo */
 .art-grid__date {
   color: var(--primary-color, #E0001A);
   font-size: 0.8125rem;
   font-weight: 600;
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.625rem;
 }
 
 /* Título */
@@ -71,7 +71,7 @@
 }
 
 .art-grid__title a {
-  color: var(--text-color, #2D2D2D);
+  color: var(--heading-color);
   text-decoration: none;
   transition: color 0.2s ease;
 }
