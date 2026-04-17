@@ -24,7 +24,7 @@
   /* Empieza al 30% del contenedor y desborda hacia abajo */
   top: 30%;
   width: 60%;
-  z-index: 1;
+  z-index: 2;
 }
 
 .dual-img__main .dual-img__img {
@@ -46,11 +46,11 @@
   right: 0;
   top: 0;
   width: 44%;
-  z-index: 2;
+  z-index: 1;
 }
 
 .dual-img__secondary .dual-img__img {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 4 / 6;
   display: block;
   height: auto;
   object-fit: cover;

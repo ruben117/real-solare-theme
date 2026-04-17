@@ -31,7 +31,7 @@
 
 .section-title__overline {
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: var(--font-weight-heading);
   letter-spacing: 8px;
   line-height: 1.4;
   margin: 0 0 0.5rem;
@@ -42,7 +42,7 @@
 
 .section-title__title {
   font-size: clamp(1.5rem, 3vw, 2.25rem);
-  font-weight: 800;
+  font-weight: var(--font-weight-heading);
   line-height: 1.18;
   margin: 0 0 2rem;
 }

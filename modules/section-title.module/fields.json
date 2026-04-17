@@ -69,7 +69,7 @@
             "name": "font",
             "type": "font",
             "default": {
-              "size": 36,
+              "size": 32,
               "size_unit": "px",
               "color": "#2D2D2D",
               "bold": true

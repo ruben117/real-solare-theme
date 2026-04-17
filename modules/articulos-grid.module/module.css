@@ -65,7 +65,7 @@
 /* Título */
 .art-grid__title {
   font-size: 1.1875rem;
-  font-weight: 800;
+  font-weight: var(--font-weight-heading);
   line-height: 1.25;
   margin: 0 0 0.625rem;
 }

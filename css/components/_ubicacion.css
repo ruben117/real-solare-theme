@@ -38,7 +38,7 @@
 .ubicacion__tech-module h2 {
   color: #ffffff;
   font-size: clamp(1.5rem, 2.5vw, 2rem);
-  font-weight: 800;
+  font-weight: var(--font-weight-heading);
   line-height: 1.2;
   margin: 0 0 1.25rem;
 }

@@ -20,7 +20,7 @@
 .patrimonio__text-module h2 {
   color: #ffffff;
   font-size: var(--font-size-heading);
-  font-weight: 800;
+  font-weight: 600;
   line-height: 1.15;
   margin: 0 0 1.25rem;
 }
