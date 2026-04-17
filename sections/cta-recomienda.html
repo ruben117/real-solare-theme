@@ -1,0 +1,35 @@
+<!--
+  templateType: section
+  label: CTA – Recomienda y Gana
+  isAvailableForNewContent: true
+  description: "Banner CTA Aliado Vinte – imagen a ancho completo. Reutilizable en cualquier página."
+-->
+
+{% dnd_section
+  background_color="#ffffff",
+  padding={
+    "default": { "top": 80, "bottom": 80 },
+    "mobile":  { "top": 30, "bottom": 30 }
+  }
+%}
+
+  {% dnd_column offset=0, width=12 %}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/linked_image",
+        label="Banner – Recomienda y Gana",
+        extra_classes="recomienda__banner-module",
+        offset=0, width=12,
+        img={
+          "src": get_asset_url("../images/cta-recomienda-y-gana.png"),
+          "alt": "Conviértete en Aliado Vinte – Recomienda y Gana hasta $5,000 por cada referido que compre",
+          "loading": "lazy",
+          "size_type": "auto_custom_max",
+          "max_width": 1200
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+
+{% end_dnd_section %}

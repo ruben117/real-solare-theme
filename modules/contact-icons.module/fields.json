@@ -38,7 +38,7 @@
     "name": "icon_size",
     "label": "Tamaño del ícono (px)",
     "type": "number",
-    "default": 22,
+    "default": 50,
     "min": 12,
     "max": 60
   },

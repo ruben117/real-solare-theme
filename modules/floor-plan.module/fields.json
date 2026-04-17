@@ -1,0 +1,44 @@
+[
+  {
+    "id": "image",
+    "name": "image",
+    "label": "Imagen de distribución",
+    "type": "image",
+    "responsive": true,
+    "resizable": true,
+    "show_loading": true,
+    "default": {
+      "src": "",
+      "alt": "Distribución del prototipo",
+      "loading": "lazy"
+    }
+  },
+  {
+    "id": "padding",
+    "name": "padding",
+    "label": "Padding interior (px)",
+    "type": "number",
+    "min": 0,
+    "max": 60,
+    "default": 20
+  },
+  {
+    "id": "border_color",
+    "name": "border_color",
+    "label": "Color del borde",
+    "type": "color",
+    "default": {
+      "color": "#BFBFBF",
+      "opacity": 100
+    }
+  },
+  {
+    "id": "border_radius",
+    "name": "border_radius",
+    "label": "Radio del borde (px)",
+    "type": "number",
+    "min": 0,
+    "max": 32,
+    "default": 16
+  }
+]

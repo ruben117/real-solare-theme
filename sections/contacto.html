@@ -42,10 +42,27 @@
       {% dnd_module
         path="../modules/contact-icons",
         btn_size=50,
-        icon_size=22,
+        icon_size=50,
         gap=8,
         extra_classes="contacto__icons-module",
-        offset=0, width=12
+        offset=0, width=12,
+        items=[
+          {
+            "etiqueta": "Teléfono",
+            "icon": { "src": get_asset_url("../images/icon-telefono.svg"), "alt": "Teléfono" },
+            "link": { "url": { "href": "5550107360", "type": "PHONE_NUMBER" }, "open_in_new_tab": false, "no_follow": false }
+          },
+          {
+            "etiqueta": "WhatsApp",
+            "icon": { "src": get_asset_url("../images/icon-whatsapp.svg"), "alt": "WhatsApp" },
+            "link": { "url": { "href": "5550107360", "type": "PHONE_NUMBER" }, "open_in_new_tab": true, "no_follow": false }
+          },
+          {
+            "etiqueta": "Ubicación",
+            "icon": { "src": get_asset_url("../images/icon-ubicacion.svg"), "alt": "Ubicación" },
+            "link": { "url": { "href": "#ubicacion", "type": "EXTERNAL" }, "open_in_new_tab": false, "no_follow": false }
+          }
+        ]
       %}
       {% end_dnd_module %}
     {% end_dnd_row %}

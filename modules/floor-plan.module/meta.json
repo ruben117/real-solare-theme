@@ -1,0 +1,14 @@
+{
+  "label": "Floor Plan",
+  "css_assets": [],
+  "external_js": [],
+  "global": false,
+  "host_template_types": ["PAGE", "BLOG_POST", "BLOG_LISTING"],
+  "icon": "../../images/module-icons/info-circle-solid.svg",
+  "js_assets": [],
+  "other_assets": [],
+  "smart_type": "NOT_SMART",
+  "tags": ["Real Solare"],
+  "is_available_for_new_content": true,
+  "categories": ["image"]
+}

@@ -1,7 +1,7 @@
 {# ── Contact Icons – Real Solare ──────────────────────────
    Fila de íconos cuadrados con fondo configurable y enlace.
 #}
-{% set icon_size = module.icon_size | default(22) %}
+{% set icon_size = module.icon_size | default(50) %}
 {% set btn_size  = module.btn_size  | default(50) %}
 {% set gap       = module.gap       | default(8) %}
 {% set bg_color  = module.styles.bg_color.color | default("#E0001A") %}
@@ -10,7 +10,7 @@
 <div
   class="contact-icons"
   style="
-    --ci-icon-size: {{ icon_size }}px;
+    --ci-icon-size: {{ icon_size }}px; 
     --ci-btn-size: {{ btn_size }}px;
     --ci-gap: {{ gap }}px;
     --ci-bg: {{ bg_color }};

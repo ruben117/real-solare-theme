@@ -13,7 +13,8 @@ Note: _macros.css needs to be imported into each stylesheet where macros are use
   --font-family-base: 'Roboto', 'Cabin', sans-serif;
   --font-size-base: 16px;
   --font-size-heading: clamp(30px, 2.5vw, 52px);
-  --font-size-subheading: 1.25rem;
+  --font-size-subheading: 40px;
+  --letter-spacing-base: 5px;
 }
 
 /* Generic
@@ -50,6 +51,7 @@ Specific pieces of UI that are stylized. Typically used for global partial styli
 {% include './components/_ubicacion.css' %}
 {% include './components/_contacto.css' %}
 {% include './components/_articulos.css' %}
+{% include './components/_prototipos.css' %}
 {% include './components/_default-modules.css' %}
 
 /* Utilities
@@ -77,7 +79,21 @@ strong, b {
 }
 .body-container--home .form-title, 
 .body-container--home.submitted-message,
-.body-container--home form {
+.body-container--home form,
+.body-container--prototipos .form-title,
+.body-container--prototipos.submitted-message,
+.body-container--prototipos form {
     background-color: #ffffff;
     border: none;
+}
+
+/* ══════════════════════════════════════════════════════════
+   BANNER RECOMIENDA Y GANA
+   ══════════════════════════════════════════════════════════ */
+
+.dnd-module:has(.recomienda__banner-module) img {
+  border-radius: 16px;
+  display: block;
+  height: auto;
+  width: 100%;
 }

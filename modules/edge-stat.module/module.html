@@ -1,0 +1,43 @@
+{# ── Edge Stat – Real Solare ───────────────────────────────
+   Tarjeta de certificación EDGE: ícono + etiqueta + valor.
+   El color de fondo y el ícono se derivan del campo "tipo".
+#}
+
+{% set tipo = module.tipo | default("energia") %}
+
+{% if tipo == "energia" %}
+  {% set bg_color = "#FFB04E" %}
+  {% set icon_src = get_asset_url("../../images/icon-energia.svg") %}
+  {% set etiqueta = "Energía" %}
+{% elif tipo == "agua" %}
+  {% set bg_color = "#36A0DE" %}
+  {% set icon_src = get_asset_url("../../images/icon-agua.svg") %}
+  {% set etiqueta = "Agua" %}
+{% else %}
+  {% set bg_color = "#94BA5A" %}
+  {% set icon_src = get_asset_url("../../images/icon-materiales.svg") %}
+  {% set etiqueta = "Materiales" %}
+{% endif %}
+
+<div
+  class="edge-stat edge-stat--{{ tipo }}"
+  style="background-color: {{ bg_color }};"
+>
+
+  {# Panel izquierdo: ícono con fondo ligeramente oscurecido #}
+  <div class="edge-stat__icon-wrap" aria-hidden="true">
+    <img
+      class="edge-stat__icon"
+      src="{{ icon_src }}"
+      alt="{{ etiqueta }}"
+      loading="lazy"
+    >
+  </div>
+
+  {# Panel derecho: etiqueta + valor #}
+  <div class="edge-stat__body">
+    <span class="edge-stat__label">{{ etiqueta }}</span>
+    <span class="edge-stat__value">{{ module.valor | default("0.00%") | escape_html }}</span>
+  </div>
+
+</div>

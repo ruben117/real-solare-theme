@@ -1,0 +1,53 @@
+<!--
+  templateType: section
+  label: Prototipos – Overview
+  isAvailableForNewContent: true
+  description: "Sección de precio y descripción general del prototipo con imagen de distribución y lightbox."
+-->
+
+{% dnd_section
+  background_color="#ffffff",
+  vertical_alignment="MIDDLE",
+  padding={
+    "default": { "top": 64, "bottom": 64 },
+    "mobile":  { "top": 40, "bottom": 40 }
+  },
+  gap= "40px"
+%}
+
+  {% dnd_column offset=0, width=12 %}
+    {% dnd_row %}
+
+      {# ── Col izquierda: etiqueta, precio y richtext ── #}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        label="Overview – Contenido",
+        extra_classes="proto-overview__content-module",
+        offset=0,
+        width=5,
+        html="<p class='overview-label'>Overview</p><h2>Desde $1,322,000</h2><p>*El precio corresponde a crédito Infonavit. El precio de la vivienda puede variar dependiendo el prototipo, tipo de financiamiento y gastos notariales. *El precio de departamento Piamonte corresponde a planta media. *El precio de departamento Alcalá corresponde a planta alta. *El mobiliario y decoración no se incluye con la vivienda.</p>"
+      %}
+      {% end_dnd_module %}
+
+      {# ── Col derecha: imagen de distribución con lightbox ── #}
+      {% dnd_module
+        path="../modules/floor-plan",
+        label="Overview – Distribución",
+        extra_classes="proto-overview__floorplan-module",
+        offset=5,
+        width=7,
+        padding=20,
+        border_radius=16,
+        border_color={ "color": "#BFBFBF", "opacity": 100 },
+        image={
+          "src": get_asset_url("../images/distribucion-protipo-alcala.jpg"),
+          "alt": "Distribución Modelo Alcalá",
+          "loading": "lazy"
+        }
+      %}
+      {% end_dnd_module %}
+
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+
+{% end_dnd_section %}

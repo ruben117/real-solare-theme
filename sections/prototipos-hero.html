@@ -1,0 +1,135 @@
+<!--
+  templateType: section
+  label: Prototipos – Hero Header
+  isAvailableForNewContent: true
+  description: "Header de página de prototipo: columna de texto (H1, etiqueta, descripción, CTA) + columna de imagen dual con desborde."
+-->
+
+{# ── Hero de prototipo ──────────────────────────────────────
+   Col izquierda (5): Heading → Label → Richtext → Botón CTA
+   Col derecha  (7): Dual Image (desborda hacia abajo del section)
+   NOTA: overflow visible se fuerza desde _prototipos.css
+#}
+
+{% dnd_section
+  background_color="#152638",
+  background_image={
+    "backgroundSize": "cover",
+    "backgroundPosition": "MIDDLE_CENTER",
+    "imageUrl": get_asset_url("../images/bgk-hero-prototipos.jpg")
+  },
+  vertical_alignment="MIDDLE",
+  padding={
+    "default": { "top": 180, "bottom": 60 },
+    "mobile":  { "top": 140, "bottom": 40 }
+  }
+%}
+
+  {# ── Columna izquierda: contenido textual ── #}
+  {% dnd_column offset=0, width=5 %}
+
+    {# Título H1 #}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        label="Hero Proto – Título",
+        extra_classes="protoheader__title-module",
+        html="<h1>Modelo Alcalá</h1>"
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {# Etiqueta / overline (debajo del título) #}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        label="Hero Proto – Etiqueta",
+        extra_classes="protoheader__label-module",
+        html="<p>Alcalá</p>"
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {# Descripción #}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        label="Hero Proto – Descripción",
+        extra_classes="protoheader__body-module",
+        html="<p>Compacta en tamaño, grande en posibilidades. Alcalá está diseñada para quienes buscan dar el siguiente paso hacia un patrimonio propio, con 2 recámaras que brindan el espacio ideal para descansar, trabajar o comenzar una nueva etapa en familia. Su distribución inteligente en 53 m² de construcción aprovecha cada rincón para ofrecer comodidad, funcionalidad y una vida práctica todos los días.</p>"
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {# Botón CTA rojo #}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/button",
+        label="Hero Proto – CTA",
+        extra_classes="protoheader__cta-module",
+        button_text="Recorrido Virtual 360°",
+        link={
+          "url": { "href": "#", "type": "EXTERNAL" },
+          "open_in_new_tab": false,
+          "no_follow": false
+        },
+        styles={
+          "background": {
+            "color": { "color": "#E0001A", "opacity": 100 }
+          },
+          "text": {
+            "font": {
+              "color": "#FFFFFF",
+              "size": 15,
+              "size_unit": "px",
+              "bold": true
+            }
+          },
+          "corner": { "radius": 4 },
+          "spacing": {
+            "spacing": {
+              "padding": {
+                "top":    { "value": 14, "units": "px" },
+                "bottom": { "value": 14, "units": "px" },
+                "left":   { "value": 28, "units": "px" },
+                "right":  { "value": 28, "units": "px" }
+              }
+            }
+          },
+          "alignment": {
+            "alignment": { "horizontal_align": "LEFT" }
+          }
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+  {% end_dnd_column %}
+
+  {# ── Columna derecha: dual image ── #}
+  {% dnd_column offset=5, width=7 %}
+
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/dual-image",
+        label="Hero Proto – Imágenes",
+        extra_classes="protoheader__dual-img-module",
+        animation="slide-up",
+        border_radius=12,
+        image_main={
+          "src": get_asset_url("../images/casas-alcala.jpg"),
+          "alt": "Modelo Alcalá – Vista exterior",
+          "loading": "eager"
+        },
+        image_secondary={
+          "src": get_asset_url("../images/casa-cantabria.jpg"),
+          "alt": "Modelo Alcalá – Interior",
+          "loading": "lazy"
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+  {% end_dnd_column %}
+
+{% end_dnd_section %}

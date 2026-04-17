@@ -1,0 +1,22 @@
+[
+  {
+    "id": "tipo",
+    "name": "tipo",
+    "label": "Tipo de certificación",
+    "type": "choice",
+    "display": "select",
+    "choices": [
+      ["energia",   "Energía"],
+      ["agua",      "Agua"],
+      ["materiales","Materiales"]
+    ],
+    "default": "energia"
+  },
+  {
+    "id": "valor",
+    "name": "valor",
+    "label": "Valor (ej. 31.00%)",
+    "type": "text",
+    "default": "0.00%"
+  }
+]

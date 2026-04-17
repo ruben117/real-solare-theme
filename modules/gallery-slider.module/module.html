@@ -1,0 +1,150 @@
+{# ── Gallery Slider – Real Solare ──────────────────────────
+   Slider de imágenes puras sin texto.
+   Mantiene: flechas prev/next, dots, drag/swipe, lightbox.
+#}
+
+{% set fallback_imgs = [
+  get_asset_url("../../images/prototipo-alcala-sala.jpg"),
+  get_asset_url("../../images/prototipo-alcala-comedor.jpg"),
+  get_asset_url("../../images/prototipo-alcala-cocina.jpg")
+] %}
+
+{% set slide_count = module.slides | length %}
+
+<div
+  class="gal-slider"
+  data-gal-slider
+  data-slide-count="{{ slide_count }}"
+>
+
+  {# ── Viewport + flechas ── #}
+  <div class="gal-slider__viewport-wrap">
+
+    <div class="gal-slider__viewport">
+      <div class="gal-slider__track" data-gal-slider-track>
+
+        {% for slide in module.slides %}
+          {% set fallback_src = fallback_imgs[loop.index0 % 3] %}
+          {% set img_src = slide.image.src if slide.image.src else fallback_src %}
+
+          <div class="gal-slider__slide" role="group" aria-label="Imagen {{ loop.index }} de {{ slide_count }}">
+            <div
+              class="gal-slider__card"
+              role="button"
+              tabindex="0"
+              data-gal-lightbox-trigger
+              data-lb-index="{{ loop.index0 }}"
+              data-lb-img="{{ img_src | escape_attr }}"
+              aria-label="Ver imagen {{ loop.index }} en pantalla completa"
+            >
+              <div class="gal-slider__img-wrap">
+                <img
+                  class="gal-slider__img"
+                  src="{{ img_src | escape_url }}"
+                  alt="{{ slide.image.alt | escape_attr or ('Imagen ' ~ loop.index) }}"
+                  loading="{{ 'eager' if loop.first else 'lazy' }}"
+                  {% if slide.image.width %}width="{{ slide.image.width | escape_attr }}"{% endif %}
+                  {% if slide.image.height %}height="{{ slide.image.height | escape_attr }}"{% endif %}
+                >
+              </div>
+
+              {# Hint visual: ícono expandir #}
+              <span class="gal-slider__expand-icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <polyline points="9 21 3 21 3 15"></polyline>
+                  <line x1="21" y1="3" x2="14" y2="10"></line>
+                  <line x1="3" y1="21" x2="10" y2="14"></line>
+                </svg>
+              </span>
+
+            </div>
+          </div>
+
+        {% endfor %}
+
+      </div>
+    </div>{# /.gal-slider__viewport #}
+
+    {# Flechas de navegación #}
+    {% if slide_count > 1 %}
+      <button class="gal-slider__nav gal-slider__nav--prev" data-gal-slider-prev aria-label="Imagen anterior" type="button" disabled>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="13" height="13" fill="currentColor" aria-hidden="true">
+          <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"/>
+        </svg>
+      </button>
+      <button class="gal-slider__nav gal-slider__nav--next" data-gal-slider-next aria-label="Siguiente imagen" type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="13" height="13" fill="currentColor" aria-hidden="true">
+          <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/>
+        </svg>
+      </button>
+    {% endif %}
+
+  </div>{# /.gal-slider__viewport-wrap #}
+
+  {# ── Footer: solo dots ── #}
+  {% if slide_count > 1 %}
+    <div class="gal-slider__footer">
+      <div class="gal-slider__dots" data-gal-slider-dots role="tablist" aria-label="Navegación de imágenes">
+        {% for slide in module.slides %}
+          <button
+            class="gal-slider__dot{% if loop.first %} is-active{% endif %}"
+            data-gal-slider-dot="{{ loop.index0 }}"
+            role="tab"
+            aria-selected="{{ 'true' if loop.first else 'false' }}"
+            aria-label="Ir a imagen {{ loop.index }}"
+            type="button"
+          ></button>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  {# ── Lightbox ── #}
+  <div
+    class="gal-slider__lightbox"
+    data-gal-lightbox
+    role="dialog"
+    aria-modal="true"
+    aria-label="Galería de imágenes"
+    aria-hidden="true"
+  >
+    <div class="gal-slider__lb-overlay" data-gal-lb-close></div>
+
+    <div class="gal-slider__lb-container">
+
+      <button class="gal-slider__lb-close" data-gal-lb-close aria-label="Cerrar" type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="gal-slider__lb-body">
+        <img class="gal-slider__lb-img" data-gal-lb-img src="" alt="" loading="eager">
+      </div>
+
+      <button class="gal-slider__lb-arrow gal-slider__lb-arrow--prev" data-gal-lb-prev aria-label="Anterior" type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      <button class="gal-slider__lb-arrow gal-slider__lb-arrow--next" data-gal-lb-next aria-label="Siguiente" type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+
+      <div class="gal-slider__lb-counter" aria-live="polite">
+        <span data-gal-lb-current>1</span> / <span data-gal-lb-total>{{ slide_count }}</span>
+      </div>
+
+    </div>
+  </div>
+
+</div>{# /.gal-slider #}

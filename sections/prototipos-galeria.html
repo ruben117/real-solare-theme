@@ -1,0 +1,33 @@
+<!--
+  templateType: section
+  label: Prototipos – Galería de imágenes
+  isAvailableForNewContent: true
+  description: "Slider de imágenes del prototipo sin texto, con flechas, dots y lightbox."
+-->
+
+{% dnd_section
+  background_color="#ffffff",
+  vertical_alignment="MIDDLE",
+  padding={
+    "default": { "top": 52, "bottom": 52 },
+    "mobile":  { "top": 32, "bottom": 32 }
+  }
+%}
+
+  {% dnd_column offset=0, width=12 %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/gallery-slider",
+        label="Galería – Slider de imágenes",
+        extra_classes="proto-galeria__slider-module",
+        slides=[
+          { "image": { "src": get_asset_url("../images/prototipo-alcala-sala.jpg"),    "alt": "Alcalá – Sala",    "loading": "eager" } },
+          { "image": { "src": get_asset_url("../images/prototipo-alcala-comedor.jpg"), "alt": "Alcalá – Comedor", "loading": "lazy"  } },
+          { "image": { "src": get_asset_url("../images/prototipo-alcala-cocina.jpg"),  "alt": "Alcalá – Cocina",  "loading": "lazy"  } }
+        ]
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+
+{% end_dnd_section %}

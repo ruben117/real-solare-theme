@@ -1,0 +1,47 @@
+[
+  {
+    "id": "image_main",
+    "name": "image_main",
+    "label": "Imagen principal (grande)",
+    "type": "image",
+    "required": true,
+    "default": {
+      "src": "",
+      "alt": "",
+      "loading": "eager"
+    }
+  },
+  {
+    "id": "image_secondary",
+    "name": "image_secondary",
+    "label": "Imagen secundaria (pequeña)",
+    "type": "image",
+    "default": {
+      "src": "",
+      "alt": "",
+      "loading": "lazy"
+    }
+  },
+  {
+    "id": "animation",
+    "name": "animation",
+    "label": "Animación de entrada",
+    "type": "choice",
+    "display": "select",
+    "choices": [
+      ["slide-up",   "Deslizar hacia arriba"],
+      ["slide-down", "Deslizar hacia abajo"],
+      ["fade",       "Aparecer (fade)"]
+    ],
+    "default": "slide-up"
+  },
+  {
+    "id": "border_radius",
+    "name": "border_radius",
+    "label": "Radio de borde (px)",
+    "type": "number",
+    "min": 0,
+    "max": 32,
+    "default": 12
+  }
+]

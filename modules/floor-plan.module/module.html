@@ -1,0 +1,81 @@
+{# ── Floor Plan – Real Solare ──────────────────────────────
+   Imagen de distribución/planta con borde, padding y lightbox.
+#}
+
+{% set fallback = get_asset_url("../../images/distribucion-protipo-alcala.jpg") %}
+{% set img_src  = module.image.src if module.image.src else fallback %}
+{% set pad      = module.padding       | default(20) %}
+{% set radius   = module.border_radius | default(16) %}
+{% set bd_color = module.border_color.color | default("#BFBFBF") %}
+
+<div
+  class="floor-plan"
+  style="
+    padding: {{ pad }}px;
+    border: 1.5px solid {{ bd_color }};
+    border-radius: {{ radius }}px;
+  "
+>
+  {# Imagen — clic abre lightbox #}
+  <button
+    class="floor-plan__trigger"
+    type="button"
+    aria-label="Ver distribución en pantalla completa"
+    data-fp-trigger
+    data-fp-img="{{ img_src | escape_attr }}"
+    data-fp-alt="{{ module.image.alt | escape_attr or 'Distribución del prototipo' }}"
+  >
+    <img
+      class="floor-plan__img"
+      src="{{ img_src | escape_url }}"
+      alt="{{ module.image.alt | escape_attr or 'Distribución del prototipo' }}"
+      loading="{{ module.image.loading or 'lazy' }}"
+      {% if module.image.width %}width="{{ module.image.width | escape_attr }}"{% endif %}
+      {% if module.image.height %}height="{{ module.image.height | escape_attr }}"{% endif %}
+    >
+
+    {# Hint visual: ícono de expandir #}
+    <span class="floor-plan__expand" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+        fill="none" stroke="currentColor" stroke-width="2.5"
+        stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 3 21 3 21 9"></polyline>
+        <polyline points="9 21 3 21 3 15"></polyline>
+        <line x1="21" y1="3" x2="14" y2="10"></line>
+        <line x1="3" y1="21" x2="10" y2="14"></line>
+      </svg>
+    </span>
+  </button>
+</div>
+
+{# ── Lightbox ────────────────────────────────────────────── #}
+<div
+  class="floor-plan__lightbox"
+  data-fp-lightbox
+  role="dialog"
+  aria-modal="true"
+  aria-label="Distribución del prototipo"
+  aria-hidden="true"
+>
+  <div class="floor-plan__lb-overlay" data-fp-close></div>
+
+  <div class="floor-plan__lb-container">
+
+    <button class="floor-plan__lb-close" data-fp-close aria-label="Cerrar" type="button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <img
+      class="floor-plan__lb-img"
+      data-fp-lb-img
+      src=""
+      alt=""
+      loading="eager"
+    >
+
+  </div>
+</div>

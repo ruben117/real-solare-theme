@@ -27,7 +27,7 @@
 
 .contact-icons__img {
   display: block;
-  height: var(--ci-icon-size, 22px);
+  height: var(--ci-icon-size, 50px);
   object-fit: contain;
-  width: var(--ci-icon-size, 22px);
+  width: var(--ci-icon-size, 50px);
 }

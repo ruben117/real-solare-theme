@@ -1,0 +1,82 @@
+<!--
+  templateType: section
+  label: Prototipos – Detalles
+  isAvailableForNewContent: true
+  description: "Sección de especificaciones del prototipo: heading, etiqueta roja y fila de íconos con detalles."
+-->
+
+{% dnd_section
+  background_color="#F4F5F7",
+  vertical_alignment="MIDDLE",
+  padding={
+    "default": { "top": 52, "bottom": 52 },
+    "mobile":  { "top": 36, "bottom": 36 }
+  }
+%}
+
+  {% dnd_column offset=0, width=12 %}
+
+    {# Título del prototipo (H2) #}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        label="Detalles – Título",
+        extra_classes="proto-detalles__title-module",
+        html="<h2>Modelo Alcalá</h2>"
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {# Etiqueta roja "DETALLES" #}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        label="Detalles – Etiqueta",
+        extra_classes="proto-detalles__label-module",
+        html="<p>Detalles</p>"
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {# Módulo de especificaciones #}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/proto-specs",
+        label="Detalles – Especificaciones",
+        extra_classes="proto-detalles__specs-module",
+        items=[
+          {
+            "etiqueta": "Recámaras",
+            "value": "2",
+            "icon": { "src": get_asset_url("../images/icon-recamaras.svg"),      "alt": "Recámaras" }
+          },
+          {
+            "etiqueta": "Baños",
+            "value": "1",
+            "icon": { "src": get_asset_url("../images/icon-banos.svg"),           "alt": "Baños" }
+          },
+          {
+            "etiqueta": "Estacionamientos",
+            "value": "1",
+            "icon": { "src": get_asset_url("../images/icon-estacionamiento.svg"), "alt": "Estacionamientos" }
+          },
+          {
+            "etiqueta": "Tipo",
+            "value": "Casa",
+            "icon": { "src": get_asset_url("../images/icon-tipo.svg"),            "alt": "Tipo" }
+          },
+          {
+            "etiqueta": "Terreno (m2)",
+            "value": "53 m²",
+            "icon": { "src": get_asset_url("../images/icon-terreno.svg"),         "alt": "Terreno" }
+          }
+        ],
+        icon_size=52,
+        icon_border_radius=8
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+  {% end_dnd_column %}
+
+{% end_dnd_section %}

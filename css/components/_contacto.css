@@ -12,7 +12,7 @@
 
 .contacto__heading-module p {
   color: #5a6a7a;
-  font-size: 0.9375rem;
+  font-size: var(--font-size-base);
   line-height: 1.65;
   margin: 0;
 }
@@ -24,20 +24,20 @@
 
 .contacto__btn-module a,
 a.btn-outline-dark {
-  border: 2px solid var(--secondary-color, #152638);
+  border: 2px solid var(--primary-color);
   border-radius: 4px;
   color: var(--secondary-color, #152638);
   display: inline-block;
-  font-size: 0.9375rem;
-  font-weight: 700;
-  padding: 0.75rem 2rem;
-  text-decoration: none;
+  font-size: var(--font-size-base);
+  font-weight: 700 !important;
+  padding: 10px 50px;
+  text-decoration: none !important;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .contacto__btn-module a:hover,
 a.btn-outline-dark:hover {
-  background-color: var(--secondary-color, #152638);
+  background-color: var(--primary-color);
   color: #ffffff;
 }
 

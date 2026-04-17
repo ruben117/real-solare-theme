@@ -1,0 +1,64 @@
+[
+  {
+    "id": "items",
+    "name": "items",
+    "label": "Especificaciones",
+    "type": "group",
+    "occurrence": {
+      "min": 1,
+      "max": 10,
+      "default": 5,
+      "sorting_label_field": "items.etiqueta"
+    },
+    "children": [
+      {
+        "id": "icon",
+        "name": "icon",
+        "label": "Ícono",
+        "type": "image",
+        "default": { "src": "", "alt": "" }
+      },
+      {
+        "id": "etiqueta",
+        "name": "etiqueta",
+        "label": "Etiqueta (ej. Recámaras)",
+        "type": "text",
+        "default": ""
+      },
+      {
+        "id": "value",
+        "name": "value",
+        "label": "Valor (ej. 2)",
+        "type": "text",
+        "default": ""
+      }
+    ],
+    "default": [
+      { "etiqueta": "Recámaras",        "value": "2",     "icon": { "src": "../../images/icon-recamaras.svg",      "alt": "Recámaras"        } },
+      { "etiqueta": "Baños",            "value": "1",     "icon": { "src": "../../images/icon-banos.svg",           "alt": "Baños"            } },
+      { "etiqueta": "Estacionamientos", "value": "1",     "icon": { "src": "../../images/icon-estacionamiento.svg", "alt": "Estacionamientos" } },
+      { "etiqueta": "Tipo",             "value": "Casa",  "icon": { "src": "../../images/icon-tipo.svg",            "alt": "Tipo"             } },
+      { "etiqueta": "Terreno (m2)",     "value": "53 m²", "icon": { "src": "../../images/icon-terreno.svg",         "alt": "Terreno"          } }
+    ]
+  },
+  {
+    "id": "icon_size",
+    "name": "icon_size",
+    "label": "Tamaño del ícono (px)",
+    "type": "number",
+    "min": 24,
+    "max": 80,
+    "default": 52,
+    "display_width": "half_width"
+  },
+  {
+    "id": "icon_border_radius",
+    "name": "icon_border_radius",
+    "label": "Radio borde ícono (px)",
+    "type": "number",
+    "min": 0,
+    "max": 24,
+    "default": 8,
+    "display_width": "half_width"
+  }
+]

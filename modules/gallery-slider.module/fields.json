@@ -1,0 +1,32 @@
+[
+  {
+    "label": "Imágenes",
+    "name": "slides",
+    "type": "group",
+    "occurrence": {
+      "min": 1,
+      "max": 20,
+      "default": 3,
+      "sorting_label_field": "slides.image"
+    },
+    "children": [
+      {
+        "label": "Imagen",
+        "name": "image",
+        "type": "image",
+        "responsive": true,
+        "resizable": true,
+        "show_loading": true,
+        "default": {
+          "loading": "lazy",
+          "alt": ""
+        }
+      }
+    ],
+    "default": [
+      { "image": { "loading": "lazy", "alt": "Sala comedor" } },
+      { "image": { "loading": "lazy", "alt": "Sala" } },
+      { "image": { "loading": "lazy", "alt": "Cocina" } }
+    ]
+  }
+]

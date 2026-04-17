@@ -1,0 +1,198 @@
+/* ── Prototipos Page ──────────────────────────────────────── */
+
+/* ── Overflow visible en el hero para que las imágenes
+   desborden hacia abajo del fondo oscuro ────────────────── */
+
+.body-container--prototipos .dnd-section:first-child,
+.body-container--prototipos .dnd-section:first-child .dnd-column,
+.body-container--prototipos .dnd-section:first-child .row-fluid,
+.body-container--prototipos .dnd-section:first-child [class^="span"],
+.body-container--prototipos .dnd-section:first-child [class*=" span"],
+.body-container--prototipos .dnd-section:first-child .dnd-row {
+  overflow: visible !important;
+}
+
+/* ── H1 – Título del prototipo ────────────────────────────── */
+
+.dnd-module:has(.protoheader__title-module) h1 {
+  color: #ffffff;
+  font-size: clamp(2rem, 3.8vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0 0 1.125rem;
+}
+
+/* ── Etiqueta/overline (aparece debajo del título) ────────── */
+
+.dnd-module:has(.protoheader__label-module) p {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  margin: 0 0 1.5rem;
+  text-transform: uppercase;
+}
+
+/* ── Descripción / richtext ───────────────────────────────── */
+
+.dnd-module:has(.protoheader__body-module) p {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  margin: 0 0 2rem;
+  max-width: 42ch;
+}
+
+/* ── Separador fino entre título y etiqueta ───────────────── */
+
+.dnd-module:has(.protoheader__title-module) {
+  position: relative;
+  padding-bottom: 1.25rem;
+}
+
+.dnd-module:has(.protoheader__title-module)::after {
+  background-color: rgba(255, 255, 255, 0.15);
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 1px;
+  left: 0;
+  position: absolute;
+  width: 48px;
+}
+
+/* ── Responsive Hero ─────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .dnd-module:has(.protoheader__body-module) p {
+    max-width: 100%;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════
+   SECCIÓN DETALLES
+   ══════════════════════════════════════════════════════════ */
+
+/* H2 – Nombre del prototipo */
+.dnd-module:has(.proto-detalles__title-module) h2 {
+  color: var(--heading-color, #171717);
+  font-size: 1.625rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 0.3rem;
+}
+
+/* Etiqueta roja "DETALLES" */
+.dnd-module:has(.proto-detalles__label-module) p {
+  color: var(--primary-color, #E0001A);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  margin: 0 0 1.25rem;
+  text-transform: uppercase;
+}
+
+/* ══════════════════════════════════════════════════════════
+   SECCIÓN CERTIFICACIÓN EDGE
+   ══════════════════════════════════════════════════════════ */
+
+/* Título "CERTIFICACIÓN EDGE" (etiqueta roja + hr) */
+.dnd-module:has(.cert-edge__title-module) p {
+  color: var(--primary-color, #E0001A);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  margin: 0 0 0.875rem;
+  text-transform: uppercase;
+}
+
+.dnd-module:has(.cert-edge__title-module) hr {
+  border: none;
+  border-top: 1px solid #E5E5E5;
+  margin: 0;
+}
+
+/* La fila de los 4 módulos debe ser flex para alineación uniforme */
+.dnd-row:has(.cert-edge__stat-module) {
+  align-items: stretch;
+  display: flex;
+  gap: 0;
+}
+
+/* Cada módulo dentro de la fila ocupa su columna completa */
+.dnd-row:has(.cert-edge__stat-module) .dnd-module {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+}
+
+/* Logo EDGE: centrado verticalmente, sin background */
+.dnd-module:has(.cert-edge__logo-module) {
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+  padding-right: 1.5rem;
+}
+
+.dnd-module:has(.cert-edge__logo-module) img {
+  display: block;
+  height: auto;
+  max-width: 200px;
+  width: 100%;
+}
+
+/* Tarjetas stat: llenan el ancho y alto de su celda */
+.dnd-module:has(.cert-edge__stat-module) {
+  width: 100%;
+}
+
+/* ══════════════════════════════════════════════════════════
+   SECCIÓN OVERVIEW
+   ══════════════════════════════════════════════════════════ */
+
+/* Etiqueta "OVERVIEW" con border-top */
+.overview-label {
+  border-bottom: 1.5px solid #E5E5E5;
+  color: var(--primary-color, #E0001A);
+  font-size: 0.6875rem;
+  font-weight: 300;
+  letter-spacing: var(--letter-spacing-base);
+  margin: 0px 0px 20px;
+  padding: 0px 0px 15px;
+  text-transform: uppercase;
+}
+
+/* Precio H2 */
+.dnd-module:has(.proto-overview__content-module) h2 {
+  color: var(--heading-color, #171717);
+  font-size: var(--font-size-subheading);
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0 0 1.25rem;
+}
+
+/* Texto de disclaimer */
+.dnd-module:has(.proto-overview__content-module) p:not(.overview-label) {
+  color: var(--text-color, #737491);
+  font-size: var(--font-size-base);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Floor-plan: alineación vertical centrada */
+.dnd-module:has(.proto-overview__floorplan-module) {
+  align-items: center;
+  display: flex;
+}
+
+.dnd-module:has(.cert-edge__stat-module) .edge-stat {
+  flex: 1;
+  height: 100%;
+}
+
+/* Gap entre tarjetas stat */
+.dnd-module:has(.cert-edge__stat-module) + .dnd-module:has(.cert-edge__stat-module) {
+  margin-left: 12px;
+}
+

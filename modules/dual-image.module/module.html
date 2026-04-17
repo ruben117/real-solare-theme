@@ -1,0 +1,42 @@
+{# ── Dual Image – Real Solare ──────────────────────────────
+   Dos imágenes apiladas con tamaños distintos.
+   La imagen principal va abajo-izquierda (grande, desborda hacia abajo).
+   La imagen secundaria va arriba-derecha (pequeña).
+   Animación CSS + IntersectionObserver.
+#}
+
+{% set fallback_main = get_asset_url("../../images/casas-alcala.jpg") %}
+{% set fallback_sec  = get_asset_url("../../images/casa-cantabria.jpg") %}
+
+{% set img_main = module.image_main.src      if module.image_main.src      else fallback_main %}
+{% set img_sec  = module.image_secondary.src if module.image_secondary.src else fallback_sec  %}
+{% set radius   = module.border_radius | default(12) %}
+{% set anim     = module.animation     | default("slide-up") %}
+
+<div
+  class="dual-img dual-img--{{ anim }}"
+  data-dual-img
+  style="--dual-radius: {{ radius }}px;"
+>
+
+  {# Imagen principal – grande, posición inferior izquierda, desborda #}
+  <div class="dual-img__main" data-dual-img-main>
+    <img
+      class="dual-img__img"
+      src="{{ img_main | escape_url }}"
+      alt="{{ module.image_main.alt | escape_attr or 'Imagen principal del prototipo' }}"
+      loading="{{ module.image_main.loading or 'eager' }}"
+    >
+  </div>
+
+  {# Imagen secundaria – pequeña, posición superior derecha #}
+  <div class="dual-img__secondary" data-dual-img-secondary>
+    <img
+      class="dual-img__img"
+      src="{{ img_sec | escape_url }}"
+      alt="{{ module.image_secondary.alt | escape_attr or 'Imagen interior del prototipo' }}"
+      loading="{{ module.image_secondary.loading or 'lazy' }}"
+    >
+  </div>
+
+</div>

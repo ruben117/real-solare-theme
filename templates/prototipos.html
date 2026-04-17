@@ -1,0 +1,45 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Prototipos
+  screenshotPath: ../images/template-previews/home.png
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+
+{% dnd_area "dnd_area"
+  label="Main section",
+  class="body-container body-container--prototipos"
+%}
+
+  {# Hero – Header de prototipo (título + dual image) #}
+
+  {% include_dnd_partial path="../sections/prototipos-hero.html" %}
+
+  {# Detalles – Especificaciones del prototipo #}
+
+  {% include_dnd_partial path="../sections/prototipos-detalles.html" %}
+
+  {# Certificación EDGE #}
+
+  {% include_dnd_partial path="../sections/prototipos-certificacion.html" %}
+
+  {# Galería de imágenes del prototipo #}
+
+  {% include_dnd_partial path="../sections/prototipos-galeria.html" %}
+
+  {# Overview – Precio y distribución #}
+
+  {% include_dnd_partial path="../sections/prototipos-overview.html" %}
+
+  {# Contacto – CTA + Formulario #}
+
+  {% include_dnd_partial path="../sections/contacto.html" %}
+
+  {# Banner – Recomienda y Gana #}
+
+  {% include_dnd_partial path="../sections/cta-recomienda.html" %}
+
+{% end_dnd_area %}
+{% endblock body %}

@@ -1,0 +1,134 @@
+/* ── Dual Image – Real Solare ─────────────────────────────
+   Imagen principal: inferior-izquierda, grande, desborda el section.
+   Imagen secundaria: superior-derecha, pequeña.
+   ──────────────────────────────────────────────────────── */
+
+/* ── Contenedor ──────────────────────────────────────────── */
+
+.dual-img {
+  overflow: visible;
+  position: relative;
+  /* Altura fija que establece el espacio visual "visible" dentro del section.
+     Las imágenes se posicionan absolutamente y desbordan hacia abajo. */
+  height: 440px;
+}
+
+/* ── Imagen principal ─────────────────────────────────────── */
+
+.dual-img__main {
+  border-radius: var(--dual-radius, 12px);
+  box-shadow: 0 24px 72px rgba(0, 0, 0, 0.55);
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  /* Empieza al 30% del contenedor y desborda hacia abajo */
+  top: 30%;
+  width: 60%;
+  z-index: 1;
+}
+
+.dual-img__main .dual-img__img {
+  aspect-ratio: 3 / 4;
+  display: block;
+  height: auto;
+  object-fit: cover;
+  object-position: center top;
+  width: 100%;
+}
+
+/* ── Imagen secundaria ────────────────────────────────────── */
+
+.dual-img__secondary {
+  border-radius: var(--dual-radius, 12px);
+  box-shadow: 0 12px 44px rgba(0, 0, 0, 0.42);
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 44%;
+  z-index: 2;
+}
+
+.dual-img__secondary .dual-img__img {
+  aspect-ratio: 4 / 3;
+  display: block;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+}
+
+/* ══════════════════════════════════════════════════════════
+   ANIMACIONES DE ENTRADA
+   Estado inicial: invisible. IntersectionObserver añade .is-visible.
+   ══════════════════════════════════════════════════════════ */
+
+/* Slide-up (default) */
+.dual-img--slide-up .dual-img__main {
+  opacity: 0;
+  transform: translateY(44px);
+  transition:
+    opacity  0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.10s,
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.10s;
+}
+
+.dual-img--slide-up .dual-img__secondary {
+  opacity: 0;
+  transform: translateY(44px);
+  transition:
+    opacity  0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.32s,
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.32s;
+}
+
+/* Slide-down (secundaria baja desde arriba) */
+.dual-img--slide-down .dual-img__main {
+  opacity: 0;
+  transform: translateY(-36px);
+  transition:
+    opacity  0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.10s,
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.10s;
+}
+
+.dual-img--slide-down .dual-img__secondary {
+  opacity: 0;
+  transform: translateY(-36px);
+  transition:
+    opacity  0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.32s,
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.32s;
+}
+
+/* Fade */
+.dual-img--fade .dual-img__main {
+  opacity: 0;
+  transition: opacity 0.9s ease 0.10s;
+}
+
+.dual-img--fade .dual-img__secondary {
+  opacity: 0;
+  transition: opacity 0.9s ease 0.36s;
+}
+
+/* ── Estado visible (añadido por JS) ─────────────────────── */
+
+.dual-img.is-visible .dual-img__main,
+.dual-img.is-visible .dual-img__secondary {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+
+@media (max-width: 991px) {
+  .dual-img {
+    height: 360px;
+  }
+}
+
+@media (max-width: 767px) {
+  .dual-img {
+    height: 300px;
+  }
+
+  .dual-img__main  { width: 62%; top: 22%; }
+  .dual-img__secondary { width: 42%; }
+}
