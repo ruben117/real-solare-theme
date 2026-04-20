@@ -72,7 +72,7 @@
 /* ── Imagen horizontal (4:3) ─────────────────────────────── */
 
 .gal-slider__img-wrap {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
   width: 100%;
 }
