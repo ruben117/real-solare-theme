@@ -1,0 +1,97 @@
+[
+  {
+    "label": "Prototipos",
+    "name": "items",
+    "type": "group",
+    "occurrence": {
+      "default": 4,
+      "min": 1,
+      "max": 8,
+      "sorting_label_field": "items.nombre"
+    },
+    "children": [
+      {
+        "label": "Imagen",
+        "name": "imagen",
+        "type": "image",
+        "responsive": true,
+        "resizable": true,
+        "show_loading": true,
+        "default": {
+          "loading": "lazy"
+        }
+      },
+      {
+        "label": "Nombre del prototipo",
+        "name": "nombre",
+        "type": "text",
+        "default": "Piamonte"
+      },
+      {
+        "label": "Precio (ej: $1,099,000*)",
+        "name": "precio",
+        "type": "text",
+        "default": "$1,099,000*"
+      },
+      {
+        "label": "Enlace (opcional)",
+        "name": "link",
+        "type": "link",
+        "supported_types": ["EXTERNAL", "CONTENT"],
+        "default": {
+          "url": { "href": "", "type": "EXTERNAL" },
+          "open_in_new_tab": false,
+          "no_follow": false
+        }
+      }
+    ],
+    "default": [
+      {
+        "imagen": {
+          "src": "{{ get_asset_url('../images/lp-prototipo-piamonte.jpg') }}",
+          "alt": "Prototipo Piamonte",
+          "loading": "lazy"
+        },
+        "nombre": "Piamonte",
+        "precio": "$1,099,000*",
+        "link": { "url": { "href": "", "type": "EXTERNAL" }, "open_in_new_tab": false }
+      },
+      {
+        "imagen": {
+          "src": "{{ get_asset_url('../images/lp-prototipo-alcala.jpg') }}",
+          "alt": "Prototipo Alcalá",
+          "loading": "lazy"
+        },
+        "nombre": "Alcalá",
+        "precio": "$1,322,000*",
+        "link": { "url": { "href": "", "type": "EXTERNAL" }, "open_in_new_tab": false }
+      },
+      {
+        "imagen": {
+          "src": "{{ get_asset_url('../images/lp-prototipo-cordoba.jpg') }}",
+          "alt": "Prototipo Córdoba",
+          "loading": "lazy"
+        },
+        "nombre": "Córdoba",
+        "precio": "$1,879,000*",
+        "link": { "url": { "href": "", "type": "EXTERNAL" }, "open_in_new_tab": false }
+      },
+      {
+        "imagen": {
+          "src": "{{ get_asset_url('../images/lp-prototipo-cantabria.jpg') }}",
+          "alt": "Prototipo Cantabria",
+          "loading": "lazy"
+        },
+        "nombre": "Cantabria",
+        "precio": "$2,199,000*",
+        "link": { "url": { "href": "", "type": "EXTERNAL" }, "open_in_new_tab": false }
+      }
+    ]
+  },
+  {
+    "label": "Texto disclaimer",
+    "name": "disclaimer",
+    "type": "text",
+    "default": "*El precio corresponde a precio de contado. El precio de la vivienda puede variar dependiendo el prototipo, tipo de financiamiento y gastos notariales."
+  }
+]

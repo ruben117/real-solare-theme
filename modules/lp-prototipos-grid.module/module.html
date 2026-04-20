@@ -1,0 +1,53 @@
+{# ── LP Prototipos Grid ────────────────────────────────────
+   Grid de 4 tarjetas: imagen con gradiente + nombre overlay,
+   badge "Desde" + precio grande, disclaimer al pie.
+#}
+
+<div class="lp-proto-grid">
+  {% for item in module.items %}
+  <div class="lp-proto-grid__item">
+
+    {# Imagen con overlay de gradiente y nombre #}
+    {% if item.link and item.link.url.href %}
+      <a class="lp-proto-grid__img-wrap"
+         href="{{ item.link.url.href }}"
+         {% if item.link.open_in_new_tab %}target="_blank" rel="noopener"{% endif %}
+         {% if item.link.no_follow %}rel="nofollow"{% endif %}
+         aria-label="{{ item.nombre }}">
+    {% else %}
+      <div class="lp-proto-grid__img-wrap">
+    {% endif %}
+
+      {% if item.imagen.src %}
+        <img
+          src="{{ item.imagen.src }}"
+          alt="{{ item.imagen.alt or item.nombre }}"
+          loading="{{ item.imagen.loading or 'lazy' }}"
+          class="lp-proto-grid__img"
+        >
+      {% endif %}
+
+      <div class="lp-proto-grid__overlay" aria-hidden="true">
+        <span class="lp-proto-grid__name">{{ item.nombre }}</span>
+      </div>
+
+    {% if item.link and item.link.url.href %}
+      </a>
+    {% else %}
+      </div>
+    {% endif %}
+
+    {# Badge + Precio #}
+    <div class="lp-proto-grid__body">
+      <span class="lp-proto-grid__desde">Desde</span>
+      <p class="lp-proto-grid__price">{{ item.precio }}</p>
+    </div>
+
+  </div>
+  {% endfor %}
+</div>
+
+{# Disclaimer legal #}
+{% if module.disclaimer %}
+<p class="lp-proto-grid__disclaimer">{{ module.disclaimer }}</p>
+{% endif %}

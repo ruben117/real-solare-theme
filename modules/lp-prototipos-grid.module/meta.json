@@ -1,0 +1,14 @@
+{
+  "label": "LP – Grid de Prototipos",
+  "css_assets": [],
+  "external_js": [],
+  "global": false,
+  "host_template_types": ["PAGE", "LANDING_PAGE"],
+  "icon": "custom",
+  "js_assets": [],
+  "other_assets": [],
+  "smart_type": "NOT_SMART",
+  "tags": ["landing", "prototipos", "grid"],
+  "is_available_for_new_content": true,
+  "categories": []
+}

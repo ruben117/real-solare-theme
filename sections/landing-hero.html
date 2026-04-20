@@ -1,0 +1,108 @@
+<!--
+  templateType: section
+  label: Landing – Hero con Formulario
+  isAvailableForNewContent: true
+  description: "Hero de landing page: overline, logo, heading, badge, descripción e imagen en col izquierda; formulario HubSpot en col derecha."
+-->
+
+{% dnd_section
+  background_color="#ffffff",
+  vertical_alignment="TOP",
+  padding={
+    "default": { "top": 80, "bottom": 0 },
+    "mobile":  { "top": 60, "bottom": 40 }
+  }
+%}
+
+  {# ── Columna izquierda: contenido de marketing ── #}
+  {% dnd_column offset=0, width=6 %}
+
+    {# Logo Aliado Vinte #}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/linked_image",
+        label="Landing – Logo",
+        extra_classes="landing-hero__logo-module",
+        img={
+          "src": get_asset_url("../images/lp-aliado-vinte.png"),
+          "alt": "Aliado Vinte",
+          "loading": "eager",
+          "width": 400
+        },
+        open_in_new_tab=false,
+        link=""
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {# Heading principal #}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        label="Landing – Heading",
+        extra_classes="landing-hero__heading-module",
+        html="<h1>¡Refiere y gana!</h1>"
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {# Badge/pill "Sin límite de referidos" #}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        label="Landing – Badge",
+        extra_classes="landing-hero__badge-module",
+        html="<p><span class='landing-badge'>Sin límite de referidos</span></p>"
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {# Descripción #}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        label="Landing – Descripción",
+        extra_classes="landing-hero__body-module",
+        html="<p>Con Aliado Vinte, cada referido que concrete la compra de su hogar se convierte en una recompensa para ti. Súmate, comparte la oportunidad de vivir en Real Solare y recibe hasta <strong>$5,000</strong> por cada compra realizada.</p>"
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {# Imagen hero (mujer) #}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/linked_image",
+        label="Landing – Imagen Hero",
+        extra_classes="landing-hero__img-module",
+        img={
+          "src": get_asset_url("../images/lp-hero-alido-vinte-mujer.png"),
+          "alt": "Aliado Vinte – Refiere y Gana",
+          "loading": "lazy",
+        "size_type": "auto_custom_max"
+        },
+        open_in_new_tab=false,
+        link=""
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+  {% end_dnd_column %}
+
+  {# ── Columna derecha: Formulario HubSpot ── #}
+  {% dnd_column offset=6, width=6 %}
+
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/form",
+        label="Landing – Formulario Aliado Vinte",
+        title="DATOS DEL ALIADO VINTE",
+        form={ "form_id": "" },
+        extra_classes="contacto__form-module landing-hero__form-module",
+        offset=0, width=12
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+  {% end_dnd_column %}
+
+{% end_dnd_section %}

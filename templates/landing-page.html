@@ -1,7 +1,7 @@
 <!--
   templateType: page
   isAvailableForNewContent: true
-  label: Landing page
+  label: Landing Page
   screenshotPath: ../images/template-previews/landing-page.png
 -->
 {% extends "./layouts/base.html" %}
@@ -12,30 +12,18 @@
 
 {% block body %}
 {% dnd_area "dnd_area"
-  label="Main section",
+  label="Contenido principal",
   class="body-container body-container--landing-page"
 %}
 
-  {# Hero banner #}
+  {# Hero: overline + logo + heading + badge + descripción + imagen + formulario #}
+  {% include_dnd_partial path="../sections/landing-hero.html" %}
 
-  {% include_dnd_partial
-    path="../sections/hero-banner.html"
-    context={
-      "content": "<h1>Download your free eBook</h1><p>Use this space to tell everyone what your eBook is all about.</p>"
-    }
-  %}
+  {# ¿Cómo funciona?: 4 pasos numerados en fondo oscuro #}
+  {% include_dnd_partial path="../sections/landing-steps.html" %}
 
-  {# Three column image with text #}
-
-  {% include_dnd_partial
-    path="../sections/multi-column-content.html",
-    context={
-      "background_color": "#FFFFFF"
-    }
-  %}
+  {# Grid de prototipos: 4 tarjetas con imagen, badge y precio #}
+  {% include_dnd_partial path="../sections/landing-prototipos.html" %}
 
 {% end_dnd_area %}
 {% endblock body %}
-
-{% block footer %}
-{% endblock footer %}

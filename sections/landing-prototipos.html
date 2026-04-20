@@ -1,0 +1,73 @@
+<!--
+  templateType: section
+  label: Landing – Grid de Prototipos
+  isAvailableForNewContent: true
+  description: "Grid de 4 prototipos: imagen con gradiente overlay, nombre, badge Desde y precio. Fondo blanco."
+-->
+
+{% dnd_section
+  background_color="#ffffff",
+  vertical_alignment="MIDDLE",
+  padding={
+    "default": { "top": 72, "bottom": 72 },
+    "mobile":  { "top": 48, "bottom": 48 }
+  }
+%}
+
+  {% dnd_column offset=0, width=12 %}
+
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/lp-prototipos-grid",
+        label="Landing – Grid Prototipos",
+        extra_classes="lp-prototipos__grid-module",
+        items=[
+          {
+            "imagen": {
+              "src": get_asset_url("../images/lp-prototipo-piamonte.jpg"),
+              "alt": "Prototipo Piamonte",
+              "loading": "eager"
+            },
+            "nombre": "Piamonte",
+            "precio": "$1,099,000*",
+            "link": { "url": { "href": "", "type": "EXTERNAL" }, "open_in_new_tab": false, "no_follow": false }
+          },
+          {
+            "imagen": {
+              "src": get_asset_url("../images/lp-prototipo-alcala.jpg"),
+              "alt": "Prototipo Alcalá",
+              "loading": "lazy"
+            },
+            "nombre": "Alcalá",
+            "precio": "$1,322,000*",
+            "link": { "url": { "href": "", "type": "EXTERNAL" }, "open_in_new_tab": false, "no_follow": false }
+          },
+          {
+            "imagen": {
+              "src": get_asset_url("../images/lp-prototipo-cordoba.jpg"),
+              "alt": "Prototipo Córdoba",
+              "loading": "lazy"
+            },
+            "nombre": "Córdoba",
+            "precio": "$1,879,000*",
+            "link": { "url": { "href": "", "type": "EXTERNAL" }, "open_in_new_tab": false, "no_follow": false }
+          },
+          {
+            "imagen": {
+              "src": get_asset_url("../images/lp-prototipo-cantabria.jpg"),
+              "alt": "Prototipo Cantabria",
+              "loading": "lazy"
+            },
+            "nombre": "Cantabria",
+            "precio": "$2,199,000*",
+            "link": { "url": { "href": "", "type": "EXTERNAL" }, "open_in_new_tab": false, "no_follow": false }
+          }
+        ],
+        disclaimer="*El precio corresponde a precio de contado. El precio de la vivienda puede variar dependiendo el prototipo, tipo de financiamiento y gastos notariales."
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+  {% end_dnd_column %}
+
+{% end_dnd_section %}

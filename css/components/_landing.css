@@ -1,0 +1,171 @@
+/* ── Landing Page ─────────────────────────────────────────── */
+
+.header--no-navigation {
+  background-color: #445160 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+/* ══════════════════════════════════════════════════════════
+   HERO LANDING
+   ══════════════════════════════════════════════════════════ */
+
+/* Logo */
+.landing-hero__logo-module {
+  margin: 0 0 1.75rem;
+}
+
+.landing-hero__logo-module img {
+  display: block;
+  height: auto;
+  max-width: 280px;
+  width: 100%;
+}
+
+/* H1 */
+.landing-hero__heading-module h1 {
+  color: var(--secondary-color);
+  font-size: 2rem;
+  font-weight: var(--font-weight-heading-black);
+  line-height: 1.1;
+  margin: 0 0 1rem;
+}
+
+/* Badge/pill */
+.landing-hero__badge-module p {
+  margin: 0 0 1.5rem;
+}
+
+.landing-badge {
+  border: 2px solid #E99700;
+  border-radius: 999px;
+  color: var(--heading-color);
+  display: inline-block;
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  padding: 0.35rem 1.25rem;
+  text-decoration: none !important;
+}
+
+/* Body text */
+.landing-hero__body-module p {
+  color: var(--text-color);
+  font-size: var(--font-size-base);
+  line-height: 1.8;
+  margin: 0 0 1rem;
+  max-width: 48ch;
+}
+
+/* Imagen hero (mujer) */
+.landing-hero__img-module img {
+  display: block;
+  height: auto;
+  max-width: 380px;
+  width: 100%;
+}
+
+/* ── Formulario: secciones internas del form HubSpot ─────── */
+/* Etiquetas de grupo: "DATOS DEL ALIADO VINTE", "DATOS DEL REFERIDO" */
+
+.landing-hero__form-module .hs-richtext p,
+.landing-hero__form-module .hs-richtext h3,
+.landing-hero__form-module .hs-richtext h4 {
+  color: var(--primary-color, #E0001A);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  margin: 1.5rem 0 0.875rem;
+  text-transform: uppercase;
+}
+
+/* Primera etiqueta sin margen superior */
+.landing-hero__form-module .hs-richtext:first-child p,
+.landing-hero__form-module .hs-richtext:first-child h3,
+.landing-hero__form-module .hs-richtext:first-child h4 {
+  margin-top: 0;
+}
+
+/* ── Responsive Hero ─────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .header__container {
+    justify-content: center;
+  }
+  .landing-hero__heading-module h1{
+    text-align:center;
+  }
+  .landing-hero__body-module p {
+    max-width: 100%;
+  }
+
+  .landing-hero__img-module img {
+    max-width: 260px;
+    margin: 0 auto;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════
+   SECCIÓN PASOS – ¿Cómo funciona?
+   ══════════════════════════════════════════════════════════ */
+
+/* Número rojo cuadrado */
+.lp-step__num {
+  align-items: center;
+  background-color: var(--primary-color, #E0001A);
+  color: #ffffff;
+  display: flex;
+  font-size: 1rem;
+  font-weight: 700;
+  height: 64px;
+  justify-content: center;
+  line-height: 1;
+  margin-bottom: 1.25rem;
+  width: 64px;
+}
+
+/* Texto del paso */
+.lp-steps__col-module p {
+  color: #FFFFFF;
+  font-size: 1rem;
+  line-height: 1.1;
+  margin: 0;
+  max-width: 80%;
+}
+
+.lp-steps__col-module strong {
+  color: #ffffff;
+}
+
+/* Disclaimer legal */
+.lp-steps__disclaimer-module p {
+  color: #ffffff;
+  font-size: var(--font-size-disclaimer);
+  line-height: 1;
+  margin: 34px auto 0;
+  padding-top: 0;
+  text-align: center;
+}
+
+/* ── Responsive Steps ────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  /* Cada paso ocupa ancho completo y centra el contenido */
+  .lp-steps__col-module {
+    text-align: center;
+  }
+
+  /* Número centrado horizontalmente */
+  .lp-step__num {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .lp-steps__col-module p {
+    max-width: 100%;
+    padding-bottom:40px;
+  }
+
+
+  /* Disclaimer sigue centrado en móvil */
+  .lp-steps__disclaimer-module p {
+    text-align: center;
+  }
+}

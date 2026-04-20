@@ -12,6 +12,7 @@ Note: _macros.css needs to be imported into each stylesheet where macros are use
   --heading-color: #171717;
   --font-family-base: 'Roboto', 'Cabin', sans-serif;
   --font-size-base: 16px;
+  --font-size-disclaimer:10px;
   --font-size-heading: clamp(30px, 2.5vw, 52px);
   --font-size-subheading: 40px;
   --letter-spacing-base: 5px;
@@ -59,6 +60,7 @@ Specific pieces of UI that are stylized. Typically used for global partial styli
 {% include './components/_contacto.css' %}
 {% include './components/_articulos.css' %}
 {% include './components/_prototipos.css' %}
+{% include './components/_landing.css' %}
 {% include './components/_default-modules.css' %}
 
 /* Utilities
@@ -122,12 +124,15 @@ strong, b {
   font-weight: var(--font-weight-heading);
   line-height: 1.1;
 }
-.body-container--home .form-title, 
+.body-container--home .form-title,
 .body-container--home.submitted-message,
 .body-container--home form,
 .body-container--prototipos .form-title,
 .body-container--prototipos.submitted-message,
-.body-container--prototipos form {
+.body-container--prototipos form,
+.body-container--landing-page .form-title,
+.body-container--landing-page.submitted-message,
+.body-container--landing-page form {
     background-color: #ffffff;
     border: none;
 }

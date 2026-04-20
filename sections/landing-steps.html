@@ -1,0 +1,93 @@
+<!--
+  templateType: section
+  label: Landing – ¿Cómo funciona?
+  isAvailableForNewContent: true
+  description: "Sección de pasos numerados: título con divisor y 4 columnas con número rojo + descripción. Fondo azul oscuro."
+-->
+
+{% dnd_section
+  background_color="#152638",
+  vertical_alignment="MIDDLE",
+  padding={
+    "default": { "top": 80, "bottom": 80 },
+    "mobile":  { "top": 60, "bottom": 60 }
+  }
+%}
+
+  {% dnd_column offset=0, width=12 %}
+
+    {# ── Título con divisor rojo ── #}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/section-title",
+        label="Steps – Título",
+        overline="",
+        overline_position="above",
+        title="¿Cómo funciona?",
+        show_divider=true,
+        white_text=true,
+        extra_classes="lp-steps__title-module"
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {# ── Fila de 4 pasos ── #}
+    {% dnd_row %}
+
+      {# Paso 1 #}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        label="Paso 1",
+        extra_classes="lp-steps__col-module",
+        offset=0, width=3,
+        html="<span class='lp-step__num'>1</span><p>Regístrate en el formulario como <strong>Aliado Vinte*</strong></p>"
+      %}
+      {% end_dnd_module %}
+
+      {# Paso 2 #}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        label="Paso 2",
+        extra_classes="lp-steps__col-module",
+        offset=3, width=3,
+        html="<span class='lp-step__num'>2</span><p>Recomienda a quien creas que desea adquirir una vivienda*</p>"
+      %}
+      {% end_dnd_module %}
+
+      {# Paso 3 #}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        label="Paso 3",
+        extra_classes="lp-steps__col-module",
+        offset=6, width=3,
+        html="<span class='lp-step__num'>3</span><p>Invítalo a visitarnos y conocer nuestro proyecto.</p>"
+      %}
+      {% end_dnd_module %}
+
+      {# Paso 4 #}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        label="Paso 4",
+        extra_classes="lp-steps__col-module",
+        offset=9, width=3,
+        html="<span class='lp-step__num'>4</span><p>Si adquiere vivienda con nosotros <strong>¡YA GANASTE!*</strong></p>"
+      %}
+      {% end_dnd_module %}
+
+    {% end_dnd_row %}
+
+    {# ── Disclaimer legal ── #}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        label="Steps – Disclaimer",
+        extra_classes="lp-steps__disclaimer-module",
+        offset=0, width=12,
+        html="<p>*Aplica para todo el público que desee inscribirse al programa Aliado Vinte. Sin límite de referidos. El monto por referido es de $3,000 para Piamonte y Alcalá y $5,000 para Córdoba y Cantabria y se entrega en monedero electrónico. El monto se paga 30 días después de la firma de escrituras de tu referido. Para hacer válido el pago deberá presentar su INE al momento de recibir el pago. El pago por referido es único e intransferible. Esta promoción no genera ninguna relación laboral con la empresa.</p>"
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+  {% end_dnd_column %}
+
+{% end_dnd_section %}

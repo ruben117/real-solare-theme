@@ -203,5 +203,8 @@
   .dnd-module:has(.cert-edge__stat-module) + .dnd-module:has(.cert-edge__stat-module) {
     margin-left: 0;
   }
+  .dnd-module:has(.proto-overview__content-module) p:not(.overview-label) {
+    margin-bottom: 30px;
+  }
 }
 

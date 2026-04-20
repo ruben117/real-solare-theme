@@ -1,0 +1,132 @@
+/* ── LP Prototipos Grid ──────────────────────────────────── */
+
+/* ── Grid contenedor ─────────────────────────────────────── */
+
+.lp-proto-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 0;
+}
+
+/* ── Tarjeta ─────────────────────────────────────────────── */
+
+.lp-proto-grid__item {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Imagen con gradiente overlay ───────────────────────── */
+
+.lp-proto-grid__img-wrap {
+  border-radius: 12px;
+  display: block;
+  overflow: hidden;
+  position: relative;
+  text-decoration: none;
+}
+
+.lp-proto-grid__img {
+  aspect-ratio: 4 / 3;
+  display: block;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  width: 100%;
+}
+
+/* Gradiente: transparente desde el 50% hacia azul oscuro en el fondo */
+.lp-proto-grid__overlay {
+  align-items: flex-end;
+  background: linear-gradient(
+    to bottom,
+    transparent 45%,
+    rgba(21, 38, 56, 0.92) 100%
+  );
+  bottom: 0;
+  display: flex;
+  left: 0;
+  padding: 0 16px 14px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+/* Hover: leve zoom en la imagen (aplica tanto en <a> como en <div>) */
+.lp-proto-grid__img-wrap:hover .lp-proto-grid__img {
+  transform: scale(1.05);
+}
+
+/* Nombre del prototipo sobre el gradiente */
+.lp-proto-grid__name {
+  color: #ffffff;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* ── Cuerpo: badge + precio ──────────────────────────────── */
+
+.lp-proto-grid__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 14px 4px 0;
+}
+
+/* Badge "Desde" — pill con borde rojo */
+.lp-proto-grid__desde {
+  align-self: flex-start;
+  border: 1.5px solid var(--primary-color, #E0001A);
+  border-radius: 999px;
+  color: var(--primary-color, #E0001A);
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.3rem 0.9rem;
+}
+
+/* Precio grande */
+.lp-proto-grid__price {
+  color: var(--heading-color, #171717);
+  font-size: clamp(1.25rem, 2vw, 1.625rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0;
+}
+
+/* ── Disclaimer al pie ───────────────────────────────────── */
+
+.lp-proto-grid__disclaimer {
+  color: var(--text-color, #737491);
+  font-size: var(--font-size-disclaimer);
+  line-height: 1.55;
+  margin: 2rem auto 0;
+  text-align: center;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+
+@media (max-width: 991px) {
+  .lp-proto-grid {
+    gap: 16px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .lp-proto-grid {
+    gap: 14px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .lp-proto-grid__price {
+    font-size: 1.125rem;
+  }
+
+  .lp-proto-grid__name {
+    font-size: 0.9375rem;
+  }
+}
