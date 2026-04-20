@@ -48,18 +48,17 @@
 }
 
 .proto-specs__label {
-  color: #9ca3af;
-  font-size: 0.6875rem;
+  color: #000000;
+  font-size: var(--font-size-base);
   font-weight: 500;
   letter-spacing: 0.06em;
   line-height: 1.3;
-  text-transform: uppercase;
 }
 
 .proto-specs__value {
-  color: var(--heading-color, #171717);
+  color: var(--primary-color);
   font-size: 1.375rem;
-  font-weight: 700;
+  font-weight: var(--font-weight-heading);
   line-height: 1.15;
 }
 

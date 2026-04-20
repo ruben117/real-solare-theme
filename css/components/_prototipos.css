@@ -16,49 +16,31 @@
 
 .dnd-module:has(.protoheader__title-module) h1 {
   color: #ffffff;
-  font-size: clamp(2rem, 3.8vw, 3.25rem);
+  font-size: clamp(2rem, 3vw, 2.5rem);
   font-weight: var(--font-weight-heading);
   line-height: 1.1;
-  margin: 0 0 1.125rem;
+  margin: 0px 0px 50px;
 }
 
 /* ── Etiqueta/overline (aparece debajo del título) ────────── */
 
 .dnd-module:has(.protoheader__label-module) p {
-  color: rgba(255, 255, 255, 0.45);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  margin: 0 0 1.5rem;
+  color: rgb(255, 255, 255);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-thin);
+  letter-spacing: 7px;
+  margin: 0 0 10px;
   text-transform: uppercase;
 }
 
 /* ── Descripción / richtext ───────────────────────────────── */
 
 .dnd-module:has(.protoheader__body-module) p {
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 0.9375rem;
-  line-height: 1.75;
-  margin: 0 0 2rem;
-  max-width: 42ch;
-}
-
-/* ── Separador fino entre título y etiqueta ───────────────── */
-
-.dnd-module:has(.protoheader__title-module) {
-  position: relative;
-  padding-bottom: 1.25rem;
-}
-
-.dnd-module:has(.protoheader__title-module)::after {
-  background-color: rgba(255, 255, 255, 0.15);
-  bottom: 0;
-  content: "";
-  display: block;
-  height: 1px;
-  left: 0;
-  position: absolute;
-  width: 48px;
+  color: rgb(255, 255, 255);
+  font-size: var(--font-size-base);
+  line-height: 1.4;
+  margin: 0 0 1.2rem;
+  max-width: 45ch;
 }
 
 /* ── Responsive Hero ─────────────────────────────────────── */
@@ -77,7 +59,7 @@
 .dnd-module:has(.proto-detalles__title-module) h2 {
   color: var(--heading-color, #171717);
   font-size: 1.625rem;
-  font-weight: 700;
+  font-weight: var(--font-weight-base);
   line-height: 1.2;
   margin: 0 0 0.3rem;
 }
@@ -116,6 +98,7 @@
 .dnd-row:has(.cert-edge__stat-module) {
   align-items: stretch;
   display: flex;
+  flex-wrap: wrap;
   gap: 0;
 }
 
@@ -140,6 +123,7 @@
   height: auto;
   max-width: 200px;
   width: 100%;
+  margin: 43px 0px;
 }
 
 /* Tarjetas stat: llenan el ancho y alto de su celda */
@@ -188,11 +172,36 @@
 
 .dnd-module:has(.cert-edge__stat-module) .edge-stat {
   flex: 1;
-  height: 100%;
+  height: 90px;
 }
 
-/* Gap entre tarjetas stat */
+/* Gap entre tarjetas stat (desktop) */
 .dnd-module:has(.cert-edge__stat-module) + .dnd-module:has(.cert-edge__stat-module) {
   margin-left: 12px;
+}
+
+/* ── Responsive EDGE ─────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  /* Wrap y gap entre tarjetas */
+  .dnd-row:has(.cert-edge__stat-module) {
+    gap: 12px;
+  }
+
+  /* Logo: ancho completo, sin padding lateral */
+  .dnd-module:has(.cert-edge__logo-module) {
+    padding-right: 0;
+    width: 100% !important;
+  }
+
+  /* Cada stat ocupa el 50% menos el gap */
+  .dnd-row:has(.cert-edge__stat-module) .dnd-module {
+    width: calc(50% - 6px);
+  }
+
+  /* Quita el margin-left fijo en móvil (lo gestiona el gap del flex) */
+  .dnd-module:has(.cert-edge__stat-module) + .dnd-module:has(.cert-edge__stat-module) {
+    margin-left: 0;
+  }
 }
 

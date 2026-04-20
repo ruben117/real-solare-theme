@@ -48,6 +48,9 @@ Base HTML elements are styled in this section (<body>, <h1>, <a>, <p>, <button> 
 Specific pieces of UI that are stylized. Typically used for global partial styling
 */
 
+
+{% include './utilities/_helper.css' %}
+
 {% include './components/_header.css' %}
 {% include './components/_footer.css' %}
 {% include './components/_hero.css' %}
@@ -62,8 +65,6 @@ Specific pieces of UI that are stylized. Typically used for global partial styli
 Helper classes with ability to override anything that comes before it
 */
 
-{% include './utilities/_helper.css' %}
-
 *,html,body {
   font-family: "Barlow", sans-serif !important;
 }
@@ -77,6 +78,45 @@ strong, b {
 .button, .button:hover, .button:focus, .button:active {
     border: none !important;
 }
+
+.header__cta .button,
+.body-container--home .button,
+.body-container--prototipos .button {
+  background-color: var(--primary-color);
+  border-radius: 0px;
+  color: #ffffff !important;
+  display: inline-block;
+  font-size: var(--font-size-base);
+  letter-spacing: 0.01em;
+  padding: 8px 30px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+  white-space: nowrap;
+  border: none;
+}
+
+.header__cta .button:hover,
+.body-container--home .button:hover,
+.body-container--prototipos .button:hover {
+  background-color: #b5001a;
+  transform: translateY(-1px);
+  border: none;
+}
+.header__cta .button:focus,
+.body-container--home .button:focus,
+.body-container--prototipos .button:focus {
+  background-color: #b5001a;
+  transform: translateY(-1px);
+  border: none;
+}
+
+.body-container--home .button:active {
+  transform: translateY(0);
+}
+
+
+
+
 .amenidades__heading-module h2{
   color: var(--heading-color);
   font-weight: var(--font-weight-heading);

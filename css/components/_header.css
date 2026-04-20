@@ -219,30 +219,9 @@
 }
 
 .header__cta .button {
-  background-color: #E0001A;
-  border-radius: 4px;
-  color: #ffffff !important;
-  display: inline-block;
-  font-size: 0.9375rem;
   font-weight: 700;
-  letter-spacing: 0.01em;
-  padding: 0.6875rem 1.5rem;
-  text-decoration: none;
-  transition: background-color 0.2s ease, transform 0.15s ease;
-  white-space: nowrap;
-  border: none;
 }
 
-.header__cta .button:hover,
-.header__cta .button:focus {
-  background-color: #b5001a;
-  transform: translateY(-1px);
-  border: none;
-}
-
-.header__cta .button:active {
-  transform: translateY(0);
-}
 
 /* ── Hamburger (solo mobile) ─────────────────────────────── */
 
