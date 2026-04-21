@@ -1,0 +1,10 @@
+[
+  {
+    "name": "anchor_id",
+    "label": "Anchor ID",
+    "required": true,
+    "type": "text",
+    "default": "inicio",
+    "inline_help_text": "ID único para esta sección (sin espacios ni caracteres especiales). Úsalo en enlaces como #inicio"
+  }
+]

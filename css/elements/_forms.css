@@ -58,7 +58,7 @@ form .inputs-list {
 
 form .inputs-list > li {
   display: block;
-  margin: 0.7rem 0;
+  margin: 0;
 }
 
 form .inputs-list input,

@@ -1,3 +1,11 @@
 *, *:before, *:after {
   box-sizing: border-box;
 }
+
+/* Scroll suave global — el módulo section-anchor complementa
+   esto con un offset exacto del header vía --header-height */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}

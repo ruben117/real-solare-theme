@@ -1,0 +1,17 @@
+/* ── Section Anchor ──────────────────────────────────────── */
+
+/*
+  El div de anclaje es invisible (height 0).
+  scroll-margin-top le dice al navegador que deje ese espacio
+  libre encima del elemento al hacer scroll — evita que el
+  header fijo tape el contenido destino.
+  El valor lo calcula el JS y lo expone como --header-height.
+*/
+
+.section-anchor {
+  display: block;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+  scroll-margin-top: var(--header-height, 100px);
+}

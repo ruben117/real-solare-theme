@@ -1,0 +1,9 @@
+{
+  "label": "Section Anchor",
+  "css_assets": [],
+  "js_assets": [],
+  "global": false,
+  "host_template_types": ["PAGE"],
+  "is_available_for_new_content": true,
+  "inline_help_text": "Agrega un ID de ancla para navegación scroll-to en la página."
+}

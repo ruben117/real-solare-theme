@@ -67,7 +67,7 @@ a.btn-outline-dark:hover {
 /* ── Campos ─────────────────────────────────────────────── */
 
 .contacto__form-module .hs-form-field {
-  margin-bottom: 1rem;
+  margin-bottom: 10px;
 }
 
 .contacto__form-module .hs-form-field > label {
@@ -97,6 +97,13 @@ a.btn-outline-dark:hover {
   border-color: var(--secondary-color, #152638);
   box-shadow: 0 0 0 3px rgba(21, 38, 56, 0.08);
   outline: none;
+}
+
+form .legal-consent-container .hs-richtext,
+form .legal-consent-container .hs-richtext p {
+    font-size: 10px;
+    margin: 0px 0px 10px;
+    line-height: 1.1;
 }
 
 /* Dropdown chevron */
@@ -137,16 +144,21 @@ a.btn-outline-dark:hover {
   accent-color: var(--primary-color, #E0001A);
   flex-shrink: 0;
   height: 15px;
-  width: 15px;
+  width: 17px !important;
+  margin: 0;
+}
+.legal-consent-container .hs-form-booleancheckbox-display>span {
+  margin-left: 10px !important;
 }
 
 .contacto__form-module .hs-form-booleancheckbox label,
 .contacto__form-module .legal-consent-container label,
 .contacto__form-module .legal-consent-container p {
   color: #6b7280;
-  font-size: 0.8125rem;
-  line-height: 1.4;
-  margin: 0;
+  font-size: 14px;
+  line-height: 1;
+  margin: 0 !important;
+  gap: 0;
 }
 
 /* ── Botón submit ────────────────────────────────────────── */
@@ -178,7 +190,7 @@ a.btn-outline-dark:hover {
 /* Mensajes de error */
 .contacto__form-module .hs-error-msg {
   color: var(--primary-color, #E0001A);
-  font-size: 0.8125rem;
+  font-size:11px;
   margin-top: 0.25rem;
 }
 

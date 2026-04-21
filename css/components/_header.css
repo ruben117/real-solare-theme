@@ -106,8 +106,8 @@
   justify-content: space-between;
   max-width: 1280px;
   min-height: 70px;
-  padding-bottom: 0.75rem;
-  padding-top: 0.75rem;
+  padding-bottom: 0;
+  padding-top: 0;
 }
 
 /* ── Logo ────────────────────────────────────────────────── */
@@ -123,6 +123,7 @@
   display: block;
   height: auto;
   max-width: 100%;
+  padding: 5px;
 }
 
 /* Texto del logo si no hay imagen */
@@ -130,6 +131,11 @@
   color: #ffffff;
   font-size: 1.1rem;
   font-weight: 700;
+}
+
+.menu .menu__link:hover, .menu .menu__link:focus, .header__language-switcher-label-current:hover, .header__language-switcher-label-current:focus, .header__language-switcher .lang_list_class li:hover a, .header__language-switcher .lang_list_class li a:focus,
+.menu .menu__link:active, .header__language-switcher-label-current:active, .header__language-switcher .lang_list_class li a:active {
+    color: #ffffff !important;
 }
 
 /* ── Navegación ──────────────────────────────────────────── */
@@ -159,11 +165,11 @@
 }
 
 .header__nav .menu__link {
-  color: #ffffff;
+  color: rgb(255 255 255 / 79%);
   display: block;
-  font-size: 0.9375rem;
+  font-size: 14px;
   font-weight: 500;
-  padding: 0.5rem 1rem;
+  padding: 0px 10px;
   text-decoration: none;
   transition: color 0.2s ease;
   white-space: nowrap;
@@ -180,20 +186,24 @@
 
 /* Submenú dropdown */
 .header__nav .menu__submenu {
-  background-color: #152638;
+  background-color: transparent !important;
+  border: none !important;
   border-top: 2px solid #E0001A;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
   left: 0;
   list-style: none;
   min-width: 200px;
   opacity: 0;
-  padding: 0.5rem 0;
+  padding: 0.5rem 0 0;
   pointer-events: none;
   position: absolute;
   top: 100%;
   transition: opacity 0.2s ease, transform 0.2s ease;
   transform: translateY(-4px);
   z-index: 100;
+}
+.menu__submenu .menu__link:hover, .menu__submenu .menu__link:focus, .header__language-switcher .lang_list_class li:hover, .menu__submenu--level-2 > .menu__item:first-child:hover:before, .menu__submenu--level-2 > .menu__item:first-child.focus:before {
+    background-color: var(--secondary-color) !important;
 }
 
 .header__nav .menu__item--has-submenu:hover > .menu__submenu,
@@ -204,8 +214,8 @@
 }
 
 .header__nav .menu__submenu .menu__link {
-  font-size: 0.875rem;
-  padding: 0.5rem 1.25rem;
+  font-size: 14px;
+  padding: 0px 9px;
 }
 
 /* ── CTA del header ──────────────────────────────────────── */
