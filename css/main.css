@@ -116,7 +116,10 @@ strong, b {
   transform: translateY(0);
 }
 
-
+.body-container--prototipos .button{
+  font-size: 1rem;
+  font-weight: 700;
+}
 
 
 .amenidades__heading-module h2{
