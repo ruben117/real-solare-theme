@@ -57,17 +57,17 @@
 /* Fecha – debajo de imagen, antes del cuerpo */
 .art-grid__date {
   color: var(--primary-color, #E0001A);
-  font-size: 0.8125rem;
+  font-size: 13px;
   font-weight: 600;
-  margin: 0 0 0.625rem;
+  margin: 0px 0px 10px;
 }
 
 /* Título */
 .art-grid__title {
-  font-size: 1.1875rem;
-  font-weight: var(--font-weight-heading);
-  line-height: 1.25;
-  margin: 0 0 0.625rem;
+  font-size: 20px;
+    font-weight: var(--font-weight-heading);
+    line-height: 1.15;
+    margin: 0 0 .625rem;
 }
 
 .art-grid__title a {
@@ -82,10 +82,10 @@
 
 /* Extracto */
 .art-grid__excerpt {
-  color: #6b7280;
+  color: var(--text-color);
   flex: 1;
-  font-size: 0.9375rem;
-  line-height: 1.65;
+  font-size: var(--font-size-base);
+  line-height: 1.1;
   margin: 0 0 1rem;
 }
 

@@ -25,7 +25,7 @@
         .replace(/position:[^;]+;/, '')
         .replace(/top:[^;]+;/, '')
         .replace(/width:[^;]+;/, '');
-      window.scrollTo(0, scrollY);
+      window.scrollTo({ top: scrollY, left: 0, behavior: 'instant' });
     }
   }
 

@@ -24,7 +24,9 @@
         .replace(/position:[^;]+;/, '')
         .replace(/top:[^;]+;/, '')
         .replace(/width:[^;]+;/, '');
-      window.scrollTo(0, scrollY);
+      /* 'instant' bypasea scroll-behavior:smooth del CSS —
+         la restauración de posición debe ser inmediata, no animada */
+      window.scrollTo({ top: scrollY, left: 0, behavior: 'instant' });
     }
   }
 
