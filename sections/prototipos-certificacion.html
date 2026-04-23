@@ -2,7 +2,7 @@
   templateType: section
   label: Prototipos – Certificación EDGE
   isAvailableForNewContent: true
-  description: "Sección de certificación EDGE: título con separador + logo EDGE + 3 tarjetas de estadísticas (energía, agua, materiales)."
+  description: "Sección de certificación EDGE: título con separador, logo EDGE y 4 tarjetas de estadísticas en grid."
 -->
 
 {% dnd_section
@@ -15,25 +15,25 @@
 %}
   {% dnd_column width=12, offset=0 %}
 
-    {# ── Fila 1: Título ── #}
-    {% dnd_row %}      
+    {# ── Fila 1: Título + separador ── #}
+    {% dnd_row %}
       {% dnd_module
         path="@hubspot/rich_text",
         label="Cert. EDGE – Título",
         extra_classes="cert-edge__title-module",
-        html="<p>Certificación Edge</p><hr>",
-        offset=0, 
-        width=12,
+        offset=0, width=12,
+        html="<p>Certificación Edge</p><hr>"
       %}
       {% end_dnd_module %}
     {% end_dnd_row %}
-    
-    {# ── Fila 2: 4 columnas ── #}
+
+    {# ── Fila 2: Logo EDGE ── #}
     {% dnd_row %}
       {% dnd_module
         path="@hubspot/linked_image",
         label="Cert. EDGE – Logo",
         extra_classes="cert-edge__logo-module",
+        offset=0, width=3,
         img={
           "src": get_asset_url("../images/certificacion-edge.png"),
           "alt": "Certificación EDGE – Excellence In Design For Greater Efficiencies",
@@ -42,41 +42,27 @@
           "max_width": 260,
           "max_height": 120
         }
-        offset=0,
-        width=3,
       %}
       {% end_dnd_module %}
+    {% end_dnd_row %}
 
-      {% dnd_module path="../modules/edge-stat",
-        offset=3, width=3,
-        label="Cert. EDGE – Energía",
-        extra_classes="cert-edge__stat-module",
-        tipo="energia",
-        valor="31.00%"
+    {# ── Fila 3: 4 tarjetas EDGE (módulo único) ── #}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/edge-stat",
+        label="Cert. EDGE – Stats",
+        extra_classes="cert-edge__stats-module",
+        offset=0, width=12,
+        items=[
+          { "tipo": "energia",      "valor": 31   },
+          { "tipo": "agua",         "valor": 44   },
+          { "tipo": "co2",          "valor": 1.62 },
+          { "tipo": "nivel_ahorro", "valor": 75   }
+        ]
       %}
-      {% end_dnd_module %}
-
-      {% dnd_module path="../modules/edge-stat",
-        offset=6, width=3,
-        label="Cert. EDGE – Agua",
-        extra_classes="cert-edge__stat-module",
-        tipo="agua",
-        valor="44.00%"
-        %}
-      {% end_dnd_module %}
-
-      {% dnd_module path="../modules/edge-stat",
-        offset=9, width=3,
-        label="Cert. EDGE – Materiales",
-        extra_classes="cert-edge__stat-module",
-        tipo="materiales",
-        valor="24.10%" 
-        %}
       {% end_dnd_module %}
     {% end_dnd_row %}
 
   {% end_dnd_column %}
 
 {% end_dnd_section %}
-
-

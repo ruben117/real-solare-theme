@@ -114,13 +114,15 @@ form input[type=file] {
 form .hs-richtext,
 form .hs-richtext p {
   font-size: 0.875rem;
-  margin: 0 0 1.4rem;
+  margin: 30px 0px 0px;
 }
 
 form .hs-richtext img {
   max-width: 100% !important;
 }
-
+.hs-fieldtype-date .input .hs-dateinput:before{
+  display:none;
+}
 /* GDPR */
 
 .legal-consent-container .hs-form-booleancheckbox-display > span,

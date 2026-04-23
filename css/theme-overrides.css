@@ -395,7 +395,7 @@ form textarea {
 }
 
 .fn-date-picker td.is-today .pika-button {
-  color: {{ primary_color }};
+  color: #ffffff;
 }
 
 /* Submit button */

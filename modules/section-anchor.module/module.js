@@ -44,19 +44,43 @@
 
     e.preventDefault();
 
-    var headerHeight = parseFloat(
-      getComputedStyle(document.documentElement)
-        .getPropertyValue('--header-height')
-    ) || 100;
-
-    var top = target.getBoundingClientRect().top + window.scrollY - headerHeight;
-
-    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
-
-    /* Actualizar la URL sin disparar un segundo scroll */
-    if (history.pushState) {
-      history.pushState(null, '', '#' + targetId);
+    /* ── Cerrar menú móvil si está abierto ─────────────────
+       En iOS Safari, window.scrollTo es ignorado si se llama
+       sincrónicamente dentro de un evento touch sobre un
+       contenedor con overflow-y: auto (como el nav móvil).
+       Cerrarlo aquí elimina ese contexto de scroll antes de
+       llamar a window.scrollTo.
+    ─────────────────────────────────────────────────────── */
+    var mobileNav  = document.getElementById('header-nav');
+    var hamburger  = document.getElementById('header-hamburger');
+    if (mobileNav && mobileNav.classList.contains('is-open')) {
+      mobileNav.classList.remove('is-open');
+      if (hamburger) {
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', 'Abrir menú');
+      }
     }
+
+    /* ── Diferir el scroll al siguiente frame ──────────────
+       requestAnimationFrame garantiza que el scroll se calcula
+       DESPUÉS de que el navegador haya procesado los cambios
+       del cierre del menú, evitando el problema de iOS Safari.
+    ─────────────────────────────────────────────────────── */
+    requestAnimationFrame(function () {
+      var headerHeight = parseFloat(
+        getComputedStyle(document.documentElement)
+          .getPropertyValue('--header-height')
+      ) || 100;
+
+      var top = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+
+      /* Actualizar la URL sin disparar un segundo scroll */
+      if (history.pushState) {
+        history.pushState(null, '', '#' + targetId);
+      }
+    });
   });
 
 })();

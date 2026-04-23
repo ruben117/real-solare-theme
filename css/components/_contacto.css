@@ -61,7 +61,7 @@ a.btn-outline-dark:hover {
   margin: 0;
   text-transform: uppercase;
   padding: 0px 0px 16px;
-
+  margin-bottom: 0 !important;
 }
 
 /* ── Campos ─────────────────────────────────────────────── */
@@ -75,14 +75,14 @@ a.btn-outline-dark:hover {
   display: block;
   font-size: var(--font-size-base);
   font-weight: 500;
-  margin-bottom: 0.375rem;
+  margin-bottom: 0px;
 }
 
 .contacto__form-module input.hs-input,
 .contacto__form-module select.hs-input,
 .contacto__form-module textarea.hs-input {
-  background-color: #f4f6f8;
-  border: 1px solid #e2e8f0;
+  background-color: #F4F5F7;
+  border: 1px solid #F4F5F7;
   border-radius: 4px;
   color: var(--text-color, #2D2D2D);
   font-size: var(--font-size-base);

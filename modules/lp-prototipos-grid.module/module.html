@@ -37,6 +37,18 @@
       </div>
     {% endif %}
 
+    {# Overview: iconos de especificaciones #}
+    {% if item.imagen_overview.src %}
+    <div class="lp-proto-grid__overview">
+      <img
+        src="{{ item.imagen_overview.src }}"
+        alt="{{ item.imagen_overview.alt or (item.nombre ~ ' – especificaciones') }}"
+        loading="lazy"
+        class="lp-proto-grid__overview-img"
+      >
+    </div>
+    {% endif %}
+
     {# Badge + Precio #}
     <div class="lp-proto-grid__body">
       <span class="lp-proto-grid__desde">Desde</span>

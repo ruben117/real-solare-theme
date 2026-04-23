@@ -65,10 +65,6 @@
   pointer-events: none;
 }
 
-@media (max-width: 767px) {
-  .prop-slider__nav { display: none; }
-}
-
 /* ── Track ───────────────────────────────────────────────── */
 
 .prop-slider__track {
@@ -501,7 +497,7 @@
     gap: 1rem;
   }
 
-  .prop-slider__ctas { width: 100%; }
+  .prop-slider__ctas { width: 100%; flex-direction: column;}
 
   .prop-slider__btn {
     flex: 1;

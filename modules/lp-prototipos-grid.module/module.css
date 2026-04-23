@@ -66,6 +66,18 @@
   line-height: 1.2;
 }
 
+/* ── Overview: imagen de especificaciones ────────────────── */
+
+.lp-proto-grid__overview {
+  padding: 10px 4px 0;
+}
+
+.lp-proto-grid__overview-img {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
 /* ── Cuerpo: badge + precio ──────────────────────────────── */
 
 .lp-proto-grid__body {

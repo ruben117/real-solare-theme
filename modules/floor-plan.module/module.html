@@ -1,11 +1,12 @@
 {# ── Floor Plan – Real Solare ──────────────────────────────
-   Imagen de distribución/planta con borde, padding y lightbox.
+   Soporte para 1 o varios planos con navegación prev/next.
+   Al hacer clic en la imagen se abre el lightbox.
 #}
 
-{% set fallback = get_asset_url("../../images/distribucion-protipo-alcala.jpg") %}
-{% set img_src  = module.image.src if module.image.src else fallback %}
-{% set pad      = module.padding       | default(20) %}
-{% set radius   = module.border_radius | default(16) %}
+{% set imgs   = module.images %}
+{% set count  = imgs | length %}
+{% set pad    = module.padding       | default(20) %}
+{% set radius = module.border_radius | default(16) %}
 {% set bd_color = module.border_color.color | default("#BFBFBF") %}
 
 <div
@@ -15,40 +16,85 @@
     border: 1.5px solid {{ bd_color }};
     border-radius: {{ radius }}px;
   "
+  data-fp-root
 >
-  {# Imagen — clic abre lightbox #}
-  <button
-    class="floor-plan__trigger"
-    type="button"
-    aria-label="Ver distribución en pantalla completa"
-    data-fp-trigger
-    data-fp-img="{{ img_src | escape_attr }}"
-    data-fp-alt="{{ module.image.alt | escape_attr or 'Distribución del prototipo' }}"
-  >
-    <img
-      class="floor-plan__img"
-      src="{{ img_src | escape_url }}"
-      alt="{{ module.image.alt | escape_attr or 'Distribución del prototipo' }}"
-      loading="{{ module.image.loading or 'lazy' }}"
-      {% if module.image.width %}width="{{ module.image.width | escape_attr }}"{% endif %}
-      {% if module.image.height %}height="{{ module.image.height | escape_attr }}"{% endif %}
-    >
 
-    {# Hint visual: ícono de expandir #}
-    <span class="floor-plan__expand" aria-hidden="true">
+  {# ── Slides ──────────────────────────────────────────────── #}
+  <div class="floor-plan__slides" data-fp-slides>
+    {% for item in imgs %}
+      {% set img = item.src %}
+      <div
+        class="floor-plan__slide{% if loop.first %} is-active{% endif %}"
+        data-fp-slide
+      >
+        <button
+          class="floor-plan__trigger"
+          type="button"
+          aria-label="Ver distribución en pantalla completa"
+          data-fp-trigger
+          data-fp-img="{{ img.src | default('') | escape_attr }}"
+          data-fp-alt="{{ img.alt | default('Distribución del prototipo') | escape_attr }}"
+        >
+          {% if img.src %}
+            <img
+              class="floor-plan__img"
+              src="{{ img.src | escape_url }}"
+              alt="{{ img.alt | default('Distribución del prototipo') | escape_attr }}"
+              loading="{{ img.loading | default('lazy') }}"
+              {% if img.width %}width="{{ img.width | escape_attr }}"{% endif %}
+              {% if img.height %}height="{{ img.height | escape_attr }}"{% endif %}
+            >
+          {% endif %}
+
+          {# Hint visual: ícono de expandir #}
+          <span class="floor-plan__expand" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <polyline points="9 21 3 21 3 15"></polyline>
+              <line x1="21" y1="3" x2="14" y2="10"></line>
+              <line x1="3" y1="21" x2="10" y2="14"></line>
+            </svg>
+          </span>
+        </button>
+      </div>
+    {% endfor %}
+  </div>
+
+  {# ── Nav: solo aparece cuando hay más de 1 plano ── #}
+  {% if count > 1 %}
+  <div class="floor-plan__nav" aria-label="Navegación de planos">
+    <button
+      class="floor-plan__nav-btn"
+      type="button"
+      data-fp-prev
+      aria-label="Plano anterior"
+    >
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
         fill="none" stroke="currentColor" stroke-width="2.5"
         stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="15 3 21 3 21 9"></polyline>
-        <polyline points="9 21 3 21 3 15"></polyline>
-        <line x1="21" y1="3" x2="14" y2="10"></line>
-        <line x1="3" y1="21" x2="10" y2="14"></line>
+        <polyline points="15 18 9 12 15 6"></polyline>
       </svg>
-    </span>
-  </button>
+    </button>
+    <button
+      class="floor-plan__nav-btn"
+      type="button"
+      data-fp-next
+      aria-label="Plano siguiente"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+        fill="none" stroke="currentColor" stroke-width="2.5"
+        stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+  </div>
+  {% endif %}
+
 </div>
 
-{# ── Lightbox ────────────────────────────────────────────── #}
+{# ── Lightbox ──────────────────────────────────────────────── #}
 <div
   class="floor-plan__lightbox"
   data-fp-lightbox
@@ -60,7 +106,6 @@
   <div class="floor-plan__lb-overlay" data-fp-close></div>
 
   <div class="floor-plan__lb-container">
-
     <button class="floor-plan__lb-close" data-fp-close aria-label="Cerrar" type="button">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
         fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -76,6 +121,5 @@
       alt=""
       loading="eager"
     >
-
   </div>
 </div>

@@ -1,43 +1,83 @@
-{# ── Edge Stat – Real Solare ───────────────────────────────
-   Tarjeta de certificación EDGE: ícono + etiqueta + valor.
-   El color de fondo y el ícono se derivan del campo "tipo".
+{# ── Edge Stats – Real Solare ───────────────────────────────
+   Un único módulo con 4 tarjetas de certificación EDGE.
+   Tipos: energia · agua · co2 · nivel_ahorro
 #}
 
-{% set tipo = module.tipo | default("energia") %}
+<div class="edge-stats">
 
-{% if tipo == "energia" %}
-  {% set bg_color = "#FFB04E" %}
-  {% set icon_src = get_asset_url("../../images/icon-energia.svg") %}
-  {% set etiqueta = "Energía" %}
-{% elif tipo == "agua" %}
-  {% set bg_color = "#36A0DE" %}
-  {% set icon_src = get_asset_url("../../images/icon-agua.svg") %}
-  {% set etiqueta = "Agua" %}
-{% else %}
-  {% set bg_color = "#94BA5A" %}
-  {% set icon_src = get_asset_url("../../images/icon-materiales.svg") %}
-  {% set etiqueta = "Materiales" %}
-{% endif %}
+  {% for item in module.items %}
 
-<div
-  class="edge-stat edge-stat--{{ tipo }}"
-  style="background-color: {{ bg_color }};"
->
+    {% set tipo = item.tipo | default("energia") %}
 
-  {# Panel izquierdo: ícono con fondo ligeramente oscurecido #}
-  <div class="edge-stat__icon-wrap" aria-hidden="true">
-    <img
-      class="edge-stat__icon"
-      src="{{ icon_src }}"
-      alt="{{ etiqueta }}"
-      loading="lazy"
-    >
-  </div>
+    {# — Color de fondo, icono y etiqueta por tipo — #}
+    {% if tipo == "energia" %}
+      {% set bg      = "#FFB04E" %}
+      {% set etiqueta = "Energía" %}
+      {% set icon_src = get_asset_url("../../images/icon-energia.svg") %}
 
-  {# Panel derecho: etiqueta + valor #}
-  <div class="edge-stat__body">
-    <span class="edge-stat__label">{{ etiqueta }}</span>
-    <span class="edge-stat__value">{{ module.valor | default("0.00%") | escape_html }}</span>
-  </div>
+    {% elif tipo == "agua" %}
+      {% set bg      = "#36A0DE" %}
+      {% set etiqueta = "Agua" %}
+      {% set icon_src = get_asset_url("../../images/icon-agua.svg") %}
+
+    {% elif tipo == "co2" %}
+      {% set bg      = "#94BA5A" %}
+      {% set etiqueta = "Reducción de emisiones" %}
+      {% set icon_src = get_asset_url("../../images/icon-co2.svg") %}
+
+    {% elif tipo == "nivel_ahorro" %}
+      {% set bg      = "#6C6D72" %}
+      {% set etiqueta = "Nivel de ahorro" %}
+      {% set icon_src = get_asset_url("../../images/icon-ahorro.svg") %}
+
+    {% else %}
+      {% set bg      = "#888" %}
+      {% set etiqueta = tipo %}
+      {% set icon_src = "" %}
+    {% endif %}
+
+    <div class="edge-stat edge-stat--{{ tipo }}" style="background-color: {{ bg }};">
+
+      {# ── Ícono ── #}
+      <div class="edge-stat__icon-wrap" aria-hidden="true">
+        {% if icon_src %}
+          <img class="edge-stat__icon" src="{{ icon_src }}" alt="{{ etiqueta }}" loading="lazy">
+        {% endif %}
+      </div>
+
+      {# ── Cuerpo ── #}
+      <div class="edge-stat__body">
+        <span class="edge-stat__label">{{ etiqueta }}</span>
+
+        {# Energía o Agua: porcentaje entero grande #}
+        {% if tipo == "energia" or tipo == "agua" %}
+          <span class="edge-stat__value">{{ item.valor | int }}%</span>
+
+        {# CO₂: número decimal + "Toneladas al año" fijo #}
+        {% elif tipo == "co2" %}
+          <div class="edge-stat__value-wrap">
+            <span class="edge-stat__value">{{ item.valor }}</span>
+            <span class="edge-stat__unit">Toneladas<br>al año</span>
+          </div>
+
+        {# Nivel de ahorro: barra de escala con marcador #}
+        {% elif tipo == "nivel_ahorro" %}
+          <div class="edge-stat__scale-bar" role="img" aria-label="Nivel de ahorro: {{ item.valor | int }}%">
+            <div
+              class="edge-stat__scale-marker"
+              style="left: clamp(4%, {{ item.valor | default(50) }}%, 96%);"
+            >
+              {# Casa / home icon #}
+              <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+              </svg>
+            </div>
+          </div>
+        {% endif %}
+
+      </div>
+    </div>
+
+  {% endfor %}
 
 </div>

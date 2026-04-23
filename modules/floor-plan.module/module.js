@@ -2,7 +2,8 @@
 
   /**
    * Floor Plan – Real Solare
-   * Abre la imagen de distribución en un lightbox al hacer clic.
+   * • Soporta 1 o varios planos con nav prev/next.
+   * • Abre la imagen activa en lightbox al hacer clic.
    */
 
   var scrollLockCount = 0;
@@ -24,27 +25,50 @@
         .replace(/position:[^;]+;/, '')
         .replace(/top:[^;]+;/, '')
         .replace(/width:[^;]+;/, '');
-      /* 'instant' bypasea scroll-behavior:smooth del CSS —
-         la restauración de posición debe ser inmediata, no animada */
+      /* 'instant' bypasea scroll-behavior:smooth del CSS */
       window.scrollTo({ top: scrollY, left: 0, behavior: 'instant' });
     }
   }
 
-  function initFloorPlan(triggerEl) {
-    // Busca el lightbox en el mismo módulo (hermano del wrapper .floor-plan)
-    var wrapper   = triggerEl.closest('.floor-plan');
-    var container = wrapper ? wrapper.parentElement : document.body;
-    var lb        = container.querySelector('[data-fp-lightbox]');
+  function initFloorPlan(rootEl) {
+
+    // ── Slides ───────────────────────────────────────────────
+    var slides   = Array.from(rootEl.querySelectorAll('[data-fp-slide]'));
+    var btnPrev  = rootEl.querySelector('[data-fp-prev]');
+    var btnNext  = rootEl.querySelector('[data-fp-next]');
+    var current  = 0;
+
+    function goTo(index) {
+      slides[current].classList.remove('is-active');
+      current = (index + slides.length) % slides.length;
+      slides[current].classList.add('is-active');
+      updateNav();
+    }
+
+    function updateNav() {
+      if (!btnPrev || !btnNext) return;
+      btnPrev.disabled = current === 0;
+      btnNext.disabled = current === slides.length - 1;
+    }
+
+    if (btnPrev) btnPrev.addEventListener('click', function () { goTo(current - 1); });
+    if (btnNext) btnNext.addEventListener('click', function () { goTo(current + 1); });
+
+    updateNav();
+
+    // ── Lightbox ─────────────────────────────────────────────
+    var lb       = rootEl.nextElementSibling; // div[data-fp-lightbox]
+    // Fallback: buscar en el padre por si hay algo entre medias
+    if (!lb || !lb.hasAttribute('data-fp-lightbox')) {
+      lb = rootEl.parentElement && rootEl.parentElement.querySelector('[data-fp-lightbox]');
+    }
     if (!lb) return;
 
     var lbImg    = lb.querySelector('[data-fp-lb-img]');
     var closeEls = Array.from(lb.querySelectorAll('[data-fp-close]'));
     var isOpen   = false;
 
-    function open() {
-      var imgSrc = triggerEl.getAttribute('data-fp-img') || '';
-      var imgAlt = triggerEl.getAttribute('data-fp-alt') || '';
-
+    function open(imgSrc, imgAlt) {
       lbImg.classList.add('is-loading');
       lbImg.onload = function () { lbImg.classList.remove('is-loading'); };
       lbImg.src = imgSrc;
@@ -64,28 +88,38 @@
       lb.setAttribute('aria-hidden', 'true');
       isOpen = false;
       unlockScroll();
-      triggerEl.focus();
     }
 
-    // Abrir al clic
-    triggerEl.addEventListener('click', open);
+    // Clic en cada trigger abre el lightbox con la imagen del slide activo
+    slides.forEach(function (slide) {
+      var trigger = slide.querySelector('[data-fp-trigger]');
+      if (!trigger) return;
 
-    // Enter / Space
-    triggerEl.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+      trigger.addEventListener('click', function () {
+        var imgSrc = trigger.getAttribute('data-fp-img') || '';
+        var imgAlt = trigger.getAttribute('data-fp-alt') || '';
+        open(imgSrc, imgAlt);
+      });
+
+      trigger.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          var imgSrc = trigger.getAttribute('data-fp-img') || '';
+          var imgAlt = trigger.getAttribute('data-fp-alt') || '';
+          open(imgSrc, imgAlt);
+        }
+      });
     });
 
-    // Cerrar: overlay y botón X
     closeEls.forEach(function (el) { el.addEventListener('click', close); });
 
-    // Escape
     document.addEventListener('keydown', function (e) {
       if (isOpen && e.key === 'Escape') close();
     });
   }
 
   function init() {
-    document.querySelectorAll('[data-fp-trigger]').forEach(initFloorPlan);
+    document.querySelectorAll('[data-fp-root]').forEach(initFloorPlan);
   }
 
   if (document.readyState === 'loading') {

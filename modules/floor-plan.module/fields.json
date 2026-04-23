@@ -1,17 +1,38 @@
 [
   {
-    "id": "image",
-    "name": "image",
-    "label": "Imagen de distribución",
-    "type": "image",
-    "responsive": true,
-    "resizable": true,
-    "show_loading": true,
-    "default": {
-      "src": "",
-      "alt": "Distribución del prototipo",
-      "loading": "lazy"
-    }
+    "label": "Planos de distribución",
+    "name": "images",
+    "type": "group",
+    "occurrence": {
+      "default": 1,
+      "min": 1,
+      "max": 6,
+      "sorting_label_field": "images.alt"
+    },
+    "children": [
+      {
+        "label": "Imagen del plano",
+        "name": "src",
+        "type": "image",
+        "responsive": true,
+        "resizable": true,
+        "show_loading": true,
+        "default": {
+          "src": "",
+          "alt": "Distribución del prototipo",
+          "loading": "lazy"
+        }
+      }
+    ],
+    "default": [
+      {
+        "src": {
+          "src": "",
+          "alt": "Distribución del prototipo",
+          "loading": "lazy"
+        }
+      }
+    ]
   },
   {
     "id": "padding",

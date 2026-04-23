@@ -70,6 +70,10 @@ Helper classes with ability to override anything that comes before it
 *,html,body {
   font-family: "Barlow", sans-serif !important;
 }
+/* Scroll suave global */
+html {
+  scroll-behavior: smooth;
+}
 p, ul, ol,li {
     font-size: var(--font-size-base, 16px);
     color: var(--text-color);
