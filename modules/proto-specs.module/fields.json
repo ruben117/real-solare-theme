@@ -36,9 +36,9 @@
     "default": [
       { "etiqueta": "Recámaras",        "value": "2",     "icon": { "src": "../../images/icon-recamaras.svg",      "alt": "Recámaras"        } },
       { "etiqueta": "Baños",            "value": "1",     "icon": { "src": "../../images/icon-banos.svg",           "alt": "Baños"            } },
-      { "etiqueta": "Estacionamientos", "value": "1",     "icon": { "src": "../../images/icon-estacionamiento.svg", "alt": "Estacionamientos" } },
+      { "etiqueta": "Estacionamientos", "value": "1",     "icon": { "src": "../../images/icon-estacionamiento-coche.svg", "alt": "Estacionamientos" } },
       { "etiqueta": "Tipo",             "value": "Casa",  "icon": { "src": "../../images/icon-tipo.svg",            "alt": "Tipo"             } },
-      { "etiqueta": "Terreno (m2)",     "value": "53 m²", "icon": { "src": "../../images/icon-terreno.svg",         "alt": "Terreno"          } }
+      { "etiqueta": "Constricción",     "value": "53 m²", "icon": { "src": "../../images/icon-terreno.svg",         "alt": "Terreno"          } }
     ]
   },
   {
