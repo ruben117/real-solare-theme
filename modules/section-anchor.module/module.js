@@ -29,7 +29,18 @@
     }
   }
 
-  /* ── 2. Interceptar clics en anclas internas ────────── */
+  /* ── 2. Posición absoluta via cadena offsetParent ────── */
+
+  function getAbsoluteTop(el) {
+    var top = 0;
+    while (el) {
+      top += el.offsetTop || 0;
+      el = el.offsetParent;
+    }
+    return top;
+  }
+
+  /* ── 3. Interceptar clics en anclas internas ────────── */
 
   document.addEventListener('click', function (e) {
     /* Buscar el <a> más cercano al elemento clicado */
@@ -51,8 +62,8 @@
        Cerrarlo aquí elimina ese contexto de scroll antes de
        llamar a window.scrollTo.
     ─────────────────────────────────────────────────────── */
-    var mobileNav  = document.getElementById('header-nav');
-    var hamburger  = document.getElementById('header-hamburger');
+    var mobileNav = document.getElementById('header-nav');
+    var hamburger = document.getElementById('header-hamburger');
     if (mobileNav && mobileNav.classList.contains('is-open')) {
       mobileNav.classList.remove('is-open');
       if (hamburger) {
@@ -63,8 +74,8 @@
 
     /* ── Diferir el scroll al siguiente frame ──────────────
        requestAnimationFrame garantiza que el scroll se calcula
-       DESPUÉS de que el navegador haya procesado los cambios
-       del cierre del menú, evitando el problema de iOS Safari.
+       DESPUÉS de que el navegador haya procesado el cierre del
+       menú, evitando el bloqueo de iOS Safari.
     ─────────────────────────────────────────────────────── */
     requestAnimationFrame(function () {
       var headerHeight = parseFloat(
@@ -72,9 +83,15 @@
           .getPropertyValue('--header-height')
       ) || 100;
 
-      var top = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+      /* ── offsetParent chain: posición absoluta en el documento ──
+         getBoundingClientRect().top + scrollY puede ser inestable
+         si hay transiciones activas (menu closing). La cadena de
+         offsetTop da la posición real sin depender del viewport.
+      ──────────────────────────────────────────────────────────── */
+      var absoluteTop = getAbsoluteTop(target);
+      var top = Math.max(0, absoluteTop - headerHeight);
 
-      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+      window.scrollTo({ top: top, behavior: 'smooth' });
 
       /* Actualizar la URL sin disparar un segundo scroll */
       if (history.pushState) {

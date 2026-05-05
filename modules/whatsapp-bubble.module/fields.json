@@ -1,0 +1,63 @@
+[
+  {
+    "name": "phone_number",
+    "label": "Número de WhatsApp",
+    "type": "text",
+    "required": true,
+    "default": "524427084371",
+    "help_text": "Número completo con código de país, sin + ni espacios. Ej: 525512345678"
+  },
+  {
+    "name": "button_text",
+    "label": "Texto del botón",
+    "type": "text",
+    "default": "Contáctanos"
+  },
+  {
+    "name": "custom_message",
+    "label": "Mensaje predefinido (opcional)",
+    "type": "text",
+    "default": "¡Quiero más información de las casas y departamentos en Real Solare!",
+    "help_text": "Se enviará como texto inicial al abrir WhatsApp. Déjalo vacío para omitirlo."
+  },
+  {
+    "name": "position",
+    "label": "Posición",
+    "type": "choice",
+    "required": true,
+    "default": "right",
+    "choices": [
+      ["right", "Derecha"],
+      ["left",  "Izquierda"]
+    ]
+  },
+  {
+    "name": "styles",
+    "label": "Estilos",
+    "type": "group",
+    "tab": "STYLE",
+    "children": [
+      {
+        "name": "bubble_color",
+        "label": "Color de fondo",
+        "type": "color",
+        "default": { "color": "#25D366", "opacity": 100 }
+      },
+      {
+        "name": "text_color",
+        "label": "Color de texto e ícono",
+        "type": "color",
+        "default": { "color": "#ffffff", "opacity": 100 }
+      },
+      {
+        "name": "bottom_offset",
+        "label": "Separación desde abajo (px)",
+        "type": "number",
+        "min": 10,
+        "max": 120,
+        "step": 1,
+        "default": 32
+      }
+    ]
+  }
+]

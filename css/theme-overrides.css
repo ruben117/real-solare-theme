@@ -197,11 +197,13 @@ a:hover,
 a:focus {
   {{ anchor_font.style }};
   color: {{ color_variant(anchor_font.color, -40) }};
+  text-decoration: none;
 }
 
 a:active {
   {{ anchor_font.style }};
   color: {{ color_variant(anchor_font.color, 40) }};
+  text-decoration: none;
 }
 
 /* Headings */
@@ -315,6 +317,8 @@ form,
   border-bottom-right-radius: {{ form_bottom_right_corner_radius }};
   background-color: {{ form_bg_color }};
   {{ form_padding }};
+  background-color: transparent;
+      border: none;
 }
 
 /* Form title */

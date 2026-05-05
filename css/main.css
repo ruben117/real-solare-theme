@@ -70,10 +70,7 @@ Helper classes with ability to override anything that comes before it
 *,html,body {
   font-family: "Barlow", sans-serif !important;
 }
-/* Scroll suave global */
-html {
-  scroll-behavior: smooth;
-}
+/* scroll-behavior: smooth → definido en generic/_reset.css (con prefers-reduced-motion) */
 p, ul, ol,li {
     font-size: var(--font-size-base, 16px);
     color: var(--text-color);
