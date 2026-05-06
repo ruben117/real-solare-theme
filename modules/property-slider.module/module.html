@@ -1,6 +1,6 @@
 {# ── Property Slider – Real Solare ───────────────────────────
    • 2 tarjetas completas + mitad de la tercera visible
-   • Clic en tarjeta → lightbox con imagen grande + info + CTA
+   • Clic en tarjeta → navega a la URL configurada en cada slide
    • Footer: dots (izquierda) + 2 CTAs globales (derecha)
 #}
 
@@ -35,19 +35,12 @@
           role="group"
           aria-label="{{ slide.name_property|escape_html }} – {{ loop.index }} de {{ slide_count }}"
         >
-          {# ── Card: div con role=button para abrir el lightbox ── #}
-          <div
+          {# ── Card: <a> que navega a la URL del prototipo ── #}
+          <a
             class="prop-slider__card"
-            role="button"
-            tabindex="0"
-            data-lightbox-trigger
-            data-lb-index="{{ loop.index0 }}"
-            data-lb-img="{{ img_src|escape_attr }}"
-            data-lb-name="{{ slide.name_property|escape_attr }}"
-            data-lb-price="{{ slide.price|escape_attr }}"
-            data-lb-desc="{{ slide.description|escape_attr }}"
-            data-lb-href="{{ href|escape_attr }}"
-            data-lb-new-tab="{{ 'true' if slide.link.open_in_new_tab else '' }}"
+            href="{{ href|escape_url }}"
+            {% if slide.link.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+            {% if slide.link.no_follow %}rel="nofollow"{% endif %}
             aria-label="Ver {{ slide.name_property|escape_html }} en detalle"
           >
             {# Imagen #}
@@ -75,17 +68,17 @@
               {% endif %}
             </div>
 
-            {# Ícono de expandir – hint visual #}
+            {# Ícono de flecha – hint visual de navegación #}
             <span class="prop-slider__expand-icon" aria-hidden="true">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="15 3 21 3 21 9"></polyline>
-                <polyline points="9 21 3 21 3 15"></polyline>
-                <line x1="21" y1="3" x2="14" y2="10"></line>
-                <line x1="3" y1="21" x2="10" y2="14"></line>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
             </span>
 
-          </div>{# /.prop-slider__card #}
+          </a>{# /.prop-slider__card #}
         </div>{# /.prop-slider__slide #}
       {% endfor %}
 
@@ -101,7 +94,6 @@
         type="button"
         disabled
       >
-        {# Chevron left – Font Awesome style #}
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="14" height="14" fill="currentColor" aria-hidden="true">
           <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"/>
         </svg>
@@ -112,7 +104,6 @@
         aria-label="Siguiente propiedad"
         type="button"
       >
-        {# Chevron right – Font Awesome style #}
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="14" height="14" fill="currentColor" aria-hidden="true">
           <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/>
         </svg>
@@ -139,7 +130,7 @@
       </div>
     {% else %}
       <div></div>
-    {% endif %} 
+    {% endif %}
 
     <div class="prop-slider__ctas">
       {% if module.cta_primary.text %}
@@ -159,60 +150,5 @@
     </div>
 
   </div>
-
-  {# ── Lightbox ─────────────────────────────────────────────
-     Generado una vez por slider.
-     JS lee los data-lb-* de cada tarjeta y puebla este markup.
-  #}
-  <div
-    class="prop-slider__lightbox"
-    data-prop-lightbox
-    role="dialog"
-    aria-modal="true"
-    aria-label="Detalle de propiedad"
-    aria-hidden="true"
-  >
-    {# Overlay de fondo – cierra al hacer clic #}
-    <div class="prop-slider__lb-overlay" data-lb-close></div>
-
-    {# Contenedor del modal #}
-    <div class="prop-slider__lb-container">
-
-      {# Botón cerrar #}
-      <button class="prop-slider__lb-close" data-lb-close aria-label="Cerrar" type="button">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-      </button>
-
-      {# Cuerpo: solo imagen #}
-      <div class="prop-slider__lb-body">
-        <img class="prop-slider__lb-img" data-lb-img src="" alt="" loading="eager">
-      </div>
-
-      {# Flechas de navegación #}
-      <button class="prop-slider__lb-arrow prop-slider__lb-arrow--prev" data-lb-prev aria-label="Propiedad anterior" type="button">
-        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="15 18 9 12 15 6"></polyline>
-        </svg>
-      </button>
-      <button class="prop-slider__lb-arrow prop-slider__lb-arrow--next" data-lb-next aria-label="Siguiente propiedad" type="button">
-        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="9 18 15 12 9 6"></polyline>
-        </svg>
-      </button>
-
-      {# Contador de slide en el lightbox #}
-      <div class="prop-slider__lb-counter" aria-live="polite">
-        <span class="prop-slider__lb-prop-name" data-lb-name></span>
-        <span class="prop-slider__lb-counter-nums"><span data-lb-current>1</span> / <span data-lb-total>{{ slide_count }}</span></span>
-      </div>
-
-    </div>{# /.prop-slider__lb-container #}
-  </div>{# /.prop-slider__lightbox #}
 
 </div>{# /.prop-slider #}

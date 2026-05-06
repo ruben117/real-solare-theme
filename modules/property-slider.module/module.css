@@ -1,7 +1,7 @@
 /* ============================================================
    PROPERTY SLIDER – Real Solare
    • 2 tarjetas completas + mitad de la tercera
-   • Clic → lightbox con imagen grande + info
+   • Clic en tarjeta → navega a la URL configurada
    • Footer: dots + 2 CTAs
    ============================================================ */
 
@@ -88,7 +88,7 @@
   min-width: 0;
 }
 
-/* ── Card: div con role=button ───────────────────────────── */
+/* ── Card: <a> que navega a la URL del prototipo ────────── */
 
 .prop-slider__card {
   border-radius: 12px;
@@ -288,179 +288,6 @@
   color: var(--primary-color, #E0001A);
 }
 
-/* ============================================================
-   LIGHTBOX
-   ============================================================ */
-
-/* ── Overlay de fondo ────────────────────────────────────── */
-
-.prop-slider__lightbox {
-  align-items: center;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  left: 0;
-  opacity: 0;
-  padding: 1.5rem;
-  pointer-events: none;
-  position: fixed;
-  right: 0;
-  top: 0;
-  transition: opacity 0.3s ease;
-  z-index: 9999;
-}
-
-.prop-slider__lightbox.is-open {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.prop-slider__lb-overlay {
-  background-color: rgba(10, 18, 30, 0.88);
-  bottom: 0;
-  cursor: pointer;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
-/* ── Contenedor del modal ────────────────────────────────── */
-
-.prop-slider__lb-container {
-  background-color: #0a121e;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  max-height: 92vh;
-  max-width: 90vw;
-  overflow: hidden;
-  position: relative;
-  transform: scale(0.94) translateY(10px);
-  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-  width: 90vw;
-  z-index: 1;
-}
-
-.prop-slider__lightbox.is-open .prop-slider__lb-container {
-  transform: scale(1) translateY(0);
-}
-
-/* ── Botón cerrar ────────────────────────────────────────── */
-
-.prop-slider__lb-close {
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(6px);
-  border: none;
-  border-radius: 50%;
-  color: #152638;
-  cursor: pointer;
-  display: flex;
-  height: 40px;
-  justify-content: center;
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-  width: 40px;
-  z-index: 10;
-  padding:0;
-}
-
-.prop-slider__lb-close:hover {
-  background-color: #ffffff;
-  transform: scale(1.1);
-}
-
-/* ── Cuerpo: solo imagen ─────────────────────────────────── */
-
-.prop-slider__lb-body {
-  display: flex;
-  flex: 1;
-  min-height: 0;
-}
-
-.prop-slider__lb-img {
-  display: block;
-  height: auto;
-  max-height: 92vh;
-  object-fit: contain;
-  object-position: center center;
-  width: 100%;
-  transition: opacity 0.25s ease;
-}
-
-.prop-slider__lb-img.is-loading {
-  opacity: 0;
-}
-
-/* ── Flechas de navegación ───────────────────────────────── */
-
-.prop-slider__lb-arrow {
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(6px);
-  border: 1.5px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50% !important;
-  color: #ffffff;
-  cursor: pointer;
-  display: flex;
-  height: 44px;
-  justify-content: center;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  transition: background-color 0.2s ease, transform 0.2s ease;
-  width: 44px;
-  z-index: 10;
-  padding:0;
-}
-
-.prop-slider__lb-arrow:hover {
-  background-color: rgba(255, 255, 255, 0.28);
-  transform: translateY(calc(-50% - 2px));
-}
-
-.prop-slider__lb-arrow--prev { left: 0.875rem; }
-.prop-slider__lb-arrow--next { right: 0.875rem; }
-
-.prop-slider__lb-arrow:disabled {
-  opacity: 0.3;
-  cursor: default;
-  pointer-events: none;
-}
-
-/* ── Contador + nombre de propiedad ─────────────────────── */
-
-.prop-slider__lb-counter {
-  bottom: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.2rem;
-  left: 50%;
-  position: absolute;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  z-index: 10;
-}
-
-.prop-slider__lb-prop-name {
-  color: #ffffff;
-  font-size: 0.9375rem;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  line-height: 1.2;
-  text-align: center;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
-}
-
-.prop-slider__lb-counter-nums {
-  color: rgba(255, 255, 255, 0.55);
-  font-size: 0.8125rem;
-  font-weight: 500;
-}
 
 /* ── Responsive – Tablet ─────────────────────────────────── */
 
@@ -476,7 +303,6 @@
     padding: 0.625rem 1.125rem;
   }
 
-  .prop-slider__lb-img { max-height: 80vh; }
 }
 
 /* ── Responsive – Mobile ─────────────────────────────────── */
@@ -506,28 +332,4 @@
     text-align: center;
   }
 
-  /* Lightbox mobile: ocupa casi toda la pantalla */
-  .prop-slider__lightbox {
-    padding: 0.75rem;
-  }
-
-  .prop-slider__lb-container {
-    border-radius: 10px;
-    max-height: 88vh;
-    max-width: 100%;
-    width: 100%;
-  }
-
-  .prop-slider__lb-img {
-    max-height: 85vh;
-  }
-
-  .prop-slider__lb-arrow {
-    display: none; /* en mobile se navega con swipe */
-  }
-
-  .prop-slider__lb-counter {
-    bottom: auto;
-    top: 0.75rem;
-  }
 }

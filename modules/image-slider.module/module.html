@@ -1,23 +1,22 @@
 {# ── Image Slider – Real Solare ───────────────────────────
    Slide activo más grande; inactivos visibles como "peek".
-   Navegación por flechas con posición configurable.
+   Clic en imagen → abre lightbox con navegación completa.
 #}
-{# Imágenes fallback (../../ sube de modules/image-slider.module/ a raíz del tema) #}
 {% set fallback_imgs = [
   get_asset_url("../../images/amenidades-parque.png"),
   get_asset_url("../../images/amenidades-parque-2.png"),
   get_asset_url("../../images/amenidades-parque.png")
 ] %}
 
-{% set slide_count     = module.slides | length %}
-{% set nav_pos         = module.settings.nav_position   | default("center") %}
-{% set slide_w         = module.settings.slide_width    | default(76) %}
-{% set inactive_scale  = module.settings.inactive_scale | default(82) %}
-{% set inactive_opacity= module.settings.inactive_opacity | default(65) %}
-{% set gap             = module.settings.gap            | default(16) %}
-{% set ratio           = module.settings.aspect_ratio   | default("3/4") %}
-{% set radius          = module.settings.border_radius  | default(12) %}
-{% set arrow_size      = module.settings.arrow_size     | default(44) %}
+{% set slide_count      = module.slides | length %}
+{% set nav_pos          = module.settings.nav_position    | default("center") %}
+{% set slide_w          = module.settings.slide_width     | default(76) %}
+{% set inactive_scale   = module.settings.inactive_scale  | default(82) %}
+{% set inactive_opacity = module.settings.inactive_opacity | default(65) %}
+{% set gap              = module.settings.gap             | default(16) %}
+{% set ratio            = module.settings.aspect_ratio    | default("3/4") %}
+{% set radius           = module.settings.border_radius   | default(12) %}
+{% set arrow_size       = module.settings.arrow_size      | default(44) %}
 
 <div
   class="img-slider"
@@ -44,20 +43,45 @@
       {% for slide in module.slides %}
         {% set fallback_src = fallback_imgs[loop.index0 % 3] %}
         {% set img_src = slide.image.src if slide.image.src else fallback_src %}
+        {% set img_alt = slide.image.alt | default(slide.caption) | default('') %}
+
         <div
           class="img-slider__slide{% if loop.first %} is-active{% endif %}"
           data-img-slide="{{ loop.index0 }}"
         >
-          <div class="img-slider__img-wrap">
+          {# Imagen: clic abre lightbox #}
+          <div
+            class="img-slider__img-wrap"
+            data-img-lb-trigger
+            data-lb-index="{{ loop.index0 }}"
+            data-lb-img="{{ img_src | escape_attr }}"
+            data-lb-alt="{{ img_alt | escape_attr }}"
+            role="button"
+            tabindex="0"
+            aria-label="Ver imagen {{ loop.index }} en pantalla completa"
+          >
             <img
               class="img-slider__img"
               src="{{ img_src | escape_url }}"
-              alt="{{ slide.image.alt | escape_attr or slide.caption | escape_attr or '' }}"
+              alt="{{ img_alt | escape_attr }}"
               loading="{{ 'eager' if loop.first else 'lazy' }}"
               {% if slide.image.width %}width="{{ slide.image.width }}"{% endif %}
               {% if slide.image.height %}height="{{ slide.image.height }}"{% endif %}
             >
+
+            {# Hint visual: ícono expandir (visible en hover) #}
+            <span class="img-slider__expand-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <polyline points="9 21 3 21 3 15"></polyline>
+                <line x1="21" y1="3" x2="14" y2="10"></line>
+                <line x1="3" y1="21" x2="10" y2="14"></line>
+              </svg>
+            </span>
           </div>
+
           {% if slide.caption %}
             <p class="img-slider__caption">{{ slide.caption | escape_html }}</p>
           {% endif %}
@@ -70,31 +94,67 @@
   {# ── Navegación ── #}
   {% if slide_count > 1 %}
     <div class="img-slider__nav img-slider__nav--{{ nav_pos }}">
-      <button
-        class="img-slider__arrow img-slider__arrow--prev"
-        data-img-prev
-        aria-label="Imagen anterior"
-        type="button"
-      >
+      <button class="img-slider__arrow img-slider__arrow--prev" data-img-prev aria-label="Imagen anterior" type="button">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-          fill="none" stroke="currentColor" stroke-width="2.5"
-          stroke-linecap="round" stroke-linejoin="round">
+          fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="15 18 9 12 15 6"></polyline>
         </svg>
       </button>
-      <button
-        class="img-slider__arrow img-slider__arrow--next"
-        data-img-next
-        aria-label="Imagen siguiente"
-        type="button"
-      >
+      <button class="img-slider__arrow img-slider__arrow--next" data-img-next aria-label="Imagen siguiente" type="button">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-          fill="none" stroke="currentColor" stroke-width="2.5"
-          stroke-linecap="round" stroke-linejoin="round">
+          fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="9 18 15 12 9 6"></polyline>
         </svg>
       </button>
     </div>
   {% endif %}
+
+  {# ── Lightbox ──────────────────────────────────────────────
+     Un overlay por instancia del módulo.
+     JS puebla la imagen a partir de los data-lb-* del trigger.
+  #}
+  <div
+    class="img-slider__lightbox"
+    data-img-lightbox
+    role="dialog"
+    aria-modal="true"
+    aria-label="Galería de imágenes"
+    aria-hidden="true"
+  >
+    <div class="img-slider__lb-overlay" data-img-lb-close></div>
+
+    <div class="img-slider__lb-container">
+
+      <button class="img-slider__lb-close" data-img-lb-close aria-label="Cerrar" type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="img-slider__lb-body">
+        <img class="img-slider__lb-img" data-img-lb-img src="" alt="" loading="eager">
+      </div>
+
+      <button class="img-slider__lb-arrow img-slider__lb-arrow--prev" data-img-lb-prev aria-label="Anterior" type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      <button class="img-slider__lb-arrow img-slider__lb-arrow--next" data-img-lb-next aria-label="Siguiente" type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+
+      <div class="img-slider__lb-counter" aria-live="polite">
+        <span data-img-lb-current>1</span> / <span data-img-lb-total>{{ slide_count }}</span>
+      </div>
+
+    </div>
+  </div>
 
 </div>

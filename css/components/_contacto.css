@@ -20,6 +20,7 @@
 /* Botón outlined oscuro */
 .contacto__btn-module {
   margin: 1.75rem 0 1.5rem;
+  display:none !important;
 }
 
 .contacto__btn-module a,
